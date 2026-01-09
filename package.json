@@ -1,0 +1,24 @@
+{
+  "name": "bmma",
+  "version": "1.0.0",
+  "description": "Professional website for Beautiful Minds Medical Aesthetics - a premier medical aesthetics clinic in Brandon, Mississippi.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drewdavis007/BMMA.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drewdavis007/BMMA/issues"
+  },
+  "homepage": "https://github.com/drewdavis007/BMMA#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
