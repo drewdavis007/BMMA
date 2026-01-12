@@ -3,110 +3,266 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beautiful Minds Medical Aesthetics</title>
+    <title>Beautiful Minds Medical Aesthetics | Jackson, MS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
+    <nav id="nav">
         <div class="nav-container">
             <div class="logo">
                 <!-- INSERT YOUR LOGO HERE -->
-                <!-- <img src="images/logo.png" alt="Beautiful Minds Medical Aesthetics"> -->
-                LOGO HERE
+                <!-- <img src="images/logo.png" alt="Beautiful Minds"> -->
+                BEAUTIFUL MINDS
             </div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="before-after.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" class="book-now-btn">Book Now</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
-        <!-- INSERT HERO IMAGE OR VIDEO HERE -->
-        <!-- For Image: <img class="hero-bg" src="images/hero-bg.jpg" alt="Beautiful Minds"> -->
-        <!-- For Video: <video class="hero-bg" autoplay muted loop><source src="images/hero-video.mp4" type="video/mp4"></video> -->
+    <section class="hero">
+        <!-- INSERT HERO IMAGE HERE -->
+        <!-- <img class="hero-bg" src="images/hero.jpg" alt="Beautiful Minds"> -->
         <div class="hero-content">
-            <h1>Beautiful Minds Medical Aesthetics</h1>
-            <p>Enhance Your Natural Beauty with Expert Care</p>
-            <a href="#contact" class="cta-button">Book a Consultation</a>
+            <p class="hero-tagline">Medical Aesthetics</p>
+            <h1>Beauty from Within</h1>
+            <p>Transform your mind, body, and skin with expert aesthetic care</p>
+            <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" class="cta-button">Book Consultation</a>
+        </div>
+    </section>
+
+    <!-- Intro Statement -->
+    <section class="intro-statement">
+        <div class="intro-content">
+            <h2>True health starts from within the body and reflects on the outside</h2>
+            <p>At Beautiful Minds Medical Aesthetics, we believe in a holistic approach to beauty. Our mission is to improve our patients' health from the inside out, combining medical healthcare with cosmetic aesthetics for comprehensive wellness.</p>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section class="services" id="services">
-        <h2 class="section-title">Our Services</h2>
+    <section class="services">
+        <div class="section-header">
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-subtitle">Personalized treatments to enhance your natural beauty</p>
+        </div>
         <div class="services-grid">
             <div class="service-card">
-                <div class="service-icon">
-                    <!-- INSERT SERVICE ICON HERE -->
-                    <!-- <img src="images/services/botox-icon.png" alt="Botox"> -->
-                    Icon Here
+                <div class="service-bg">
+                    <!-- <img src="images/services/neurotoxins.jpg" alt="Neurotoxins"> -->
                 </div>
-                <h3>Botox</h3>
-                <p>Reduce fine lines and wrinkles with safe, effective Botox treatments administered by our experienced professionals.</p>
+                <div class="service-overlay">
+                    <h3>Neurotoxins</h3>
+                    <p>Botox, Dysport, Jeuveau, and Daxxify to reduce fine lines and wrinkles</p>
+                    <a href="services.html#neurotoxins" class="service-link">Explore Treatment</a>
+                </div>
             </div>
             <div class="service-card">
-                <div class="service-icon">
-                    <!-- INSERT SERVICE ICON HERE -->
-                    <!-- <img src="images/services/filler-icon.png" alt="Dermal Fillers"> -->
-                    Icon Here
+                <div class="service-bg">
+                    <!-- <img src="images/services/fillers.jpg" alt="Fillers"> -->
                 </div>
-                <h3>Dermal Fillers</h3>
-                <p>Restore volume and smooth wrinkles with premium dermal fillers tailored to your unique facial structure.</p>
+                <div class="service-overlay">
+                    <h3>Dermal Fillers</h3>
+                    <p>RHA Fillers to restore volume and create natural enhancement</p>
+                    <a href="services.html#fillers" class="service-link">Explore Treatment</a>
+                </div>
             </div>
             <div class="service-card">
-                <div class="service-icon">
-                    <!-- INSERT SERVICE ICON HERE -->
-                    <!-- <img src="images/services/skincare-icon.png" alt="Skin Care"> -->
-                    Icon Here
+                <div class="service-bg">
+                    <!-- <img src="images/services/skinpen.jpg" alt="Skin Pen"> -->
                 </div>
-                <h3>Skin Care Products</h3>
-                <p>Professional-grade skincare products designed to maintain and enhance your treatment results.</p>
+                <div class="service-overlay">
+                    <h3>Skin Pen</h3>
+                    <p>Microneedling to stimulate collagen for radiant skin</p>
+                    <a href="services.html#skinpen" class="service-link">Explore Treatment</a>
+                </div>
             </div>
             <div class="service-card">
-                <div class="service-icon">
-                    <!-- INSERT SERVICE ICON HERE -->
-                    <!-- <img src="images/services/skinpen-icon.png" alt="Skin Pen"> -->
-                    Icon Here
+                <div class="service-bg">
+                    <!-- <img src="images/services/skincare.jpg" alt="Skin Care"> -->
                 </div>
-                <h3>Skin Pen Microneedling</h3>
-                <p>Stimulate natural collagen production for firmer, smoother, more radiant skin with advanced Skin Pen technology.</p>
+                <div class="service-overlay">
+                    <h3>Skin Care</h3>
+                    <p>Professional-grade products to maintain your results</p>
+                    <a href="services.html#skincare" class="service-link">Explore Treatment</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- About Preview Section -->
-    <section class="about-preview" id="about">
-        <div class="about-content">
-            <div class="about-image">
-                <!-- INSERT ABOUT IMAGE HERE -->
-                <!-- <img src="images/about.jpg" alt="About Beautiful Minds"> -->
-                INSERT ABOUT IMAGE HERE
+    <!-- Before & After -->
+    <section class="before-after">
+        <div class="section-header">
+            <h2 class="section-title">Transformations</h2>
+            <p class="section-subtitle">Real results from real clients</p>
+        </div>
+        <div class="ba-grid">
+            <div class="ba-item">
+                <div class="ba-images">
+                    <div class="ba-image">
+                        <span class="ba-label">Before</span>
+                        <!-- <img src="images/ba/1-before.jpg" alt="Before"> -->
+                    </div>
+                    <div class="ba-image">
+                        <span class="ba-label">After</span>
+                        <!-- <img src="images/ba/1-after.jpg" alt="After"> -->
+                    </div>
+                </div>
+                <div class="ba-caption">
+                    <h4>Lip Enhancement</h4>
+                    <p>Natural volume and definition</p>
+                </div>
             </div>
-            <div class="about-text">
-                <h2>Expert Care, Beautiful Results</h2>
-                <p>At Beautiful Minds Medical Aesthetics, we believe that everyone deserves to feel confident in their own skin. Our team of experienced professionals is dedicated to providing personalized aesthetic treatments in a comfortable, welcoming environment.</p>
-                <p>We combine the latest technologies with proven techniques to help you achieve natural-looking results that enhance your unique beauty.</p>
-                <p>Your journey to radiant, youthful skin starts here.</p>
+            <div class="ba-item">
+                <div class="ba-images">
+                    <div class="ba-image">
+                        <span class="ba-label">Before</span>
+                        <!-- <img src="images/ba/2-before.jpg" alt="Before"> -->
+                    </div>
+                    <div class="ba-image">
+                        <span class="ba-label">After</span>
+                        <!-- <img src="images/ba/2-after.jpg" alt="After"> -->
+                    </div>
+                </div>
+                <div class="ba-caption">
+                    <h4>Neurotoxin Treatment</h4>
+                    <p>Smooth, youthful appearance</p>
+                </div>
+            </div>
+            <div class="ba-item">
+                <div class="ba-images">
+                    <div class="ba-image">
+                        <span class="ba-label">Before</span>
+                        <!-- <img src="images/ba/3-before.jpg" alt="Before"> -->
+                    </div>
+                    <div class="ba-image">
+                        <span class="ba-label">After</span>
+                        <!-- <img src="images/ba/3-after.jpg" alt="After"> -->
+                    </div>
+                </div>
+                <div class="ba-caption">
+                    <h4>Skin Pen</h4>
+                    <p>Improved texture and radiance</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact CTA Section -->
-    <section class="contact-cta" id="contact">
-        <h2>Ready to Begin Your Journey?</h2>
-        <p>Schedule your consultation today and discover the difference expert care can make.</p>
-        <a href="mailto:info@beautifulmindsmedaesthetics.com" class="contact-button">Contact Us</a>
+    <!-- Meet Kayla -->
+    <section class="meet-team">
+        <div class="team-split">
+            <div class="team-image-side">
+                <!-- <img src="images/kayla.jpg" alt="Kayla Collum Davis"> -->
+            </div>
+            <div class="team-text-side">
+                <h2>Kayla Collum Davis</h2>
+                <p class="team-credentials">DNP, FNP-C</p>
+                <p>Kayla Collum Davis is the Founder of Beautiful Minds Medical Aesthetics. She graduated from the University of Mississippi Medical Center in 2019 with her Bachelor of Science in Nursing degree. She then worked in multiple nursing specialties in the hospital setting while completing her Doctorate of Nurse Practitioner degree in Family Medicine at the University of Alabama at Birmingham in 2023.</p>
+                <p>She has always been passionate about medical healthcare as well as cosmetic aesthetics and skin care, so she created a clinic that incorporated both.</p>
+                <p><strong>True health starts from within the body and reflects on the outside. Our mission is to improve our patients' health from the inside out.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="section-header">
+            <h2 class="section-title">Client Love</h2>
+            <p class="section-subtitle">What our clients are saying</p>
+        </div>
+        <div class="testimonial-container">
+            <div class="testimonial">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">Kayla is absolutely amazing! She made me feel so comfortable and the results exceeded my expectations. I couldn't be happier with my treatment!</p>
+                <p class="testimonial-author">Happy Client</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram -->
+    <section class="instagram">
+        <div class="section-header">
+            <h2 class="section-title">Follow Our Journey</h2>
+            <p class="section-subtitle">@beautifulminds_medaesthetics</p>
+        </div>
+        <div class="instagram-grid">
+            <div class="instagram-post">
+                <!-- <img src="images/instagram/1.jpg" alt="Instagram"> -->
+                <div class="instagram-overlay">
+                    <span style="font-size: 3rem; color: white;">📷</span>
+                </div>
+            </div>
+            <div class="instagram-post">
+                <!-- <img src="images/instagram/2.jpg" alt="Instagram"> -->
+                <div class="instagram-overlay">
+                    <span style="font-size: 3rem; color: white;">📷</span>
+                </div>
+            </div>
+            <div class="instagram-post">
+                <!-- <img src="images/instagram/3.jpg" alt="Instagram"> -->
+                <div class="instagram-overlay">
+                    <span style="font-size: 3rem; color: white;">📷</span>
+                </div>
+            </div>
+            <div class="instagram-post">
+                <!-- <img src="images/instagram/4.jpg" alt="Instagram"> -->
+                <div class="instagram-overlay">
+                    <span style="font-size: 3rem; color: white;">📷</span>
+                </div>
+            </div>
+        </div>
+        <div class="instagram-link">
+            <a href="https://www.instagram.com/beautifulminds_medaesthetics/" target="_blank" class="instagram-button">Follow Us</a>
+        </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Beautiful Minds Medical Aesthetics. All rights reserved.</p>
-        <p>Brandon, Mississippi</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>📞 (601) 533-8597</p>
+                <p>📧 kcollum@beautifulmindsmedaesthetics.com</p>
+                <p>📍 971 Lakeland Dr. Suite 1159<br>West Medical Tower<br>Jackson, MS 39216</p>
+            </div>
+            <div class="footer-section">
+                <h4>Hours</h4>
+                <p>Monday: [Hours]</p>
+                <p>Tuesday: [Hours]</p>
+                <p>Wednesday: [Hours]</p>
+                <p>Thursday: [Hours]</p>
+                <p>Friday: [Hours]</p>
+                <p>Saturday: [Hours]</p>
+                <p>Sunday: Closed</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="before-after.html">Gallery</a>
+                <a href="pre-post-care.html">Pre & Post Care</a>
+                <a href="contact.html">Contact</a>
+                <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank">Book Now</a>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/beautifulminds_medaesthetics/" target="_blank">📷</a>
+                    <a href="https://www.facebook.com/p/Beautiful-Minds-Medical-Aesthetics-61567757859137/" target="_blank">👍</a>
+                </div>
+                <p style="margin-top: 2rem;"><strong>Botox Parties Available!</strong><br>Contact us for details</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Beautiful Minds Medical Aesthetics. All rights reserved.</p>
+        </div>
     </footer>
 
     <script src="js/main.js"></script>
