@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Beautiful Minds Medical Aesthetics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .page-hero {
+            height: 50vh;
+            margin-top: 90px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            background: linear-gradient(135deg, rgba(114, 5, 56, 0.9) 0%, rgba(251, 100, 195, 0.9) 100%);
+        }
+
+        .page-hero h1 {
+            font-size: 4.5rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        .contact-container {
+            padding: 6rem 6%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .contact-info {
+            background: #fafafa;
+            padding: 4rem;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            color: #720538;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .info-item {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #EADFE4;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-item h3 {
+            font-size: 1.3rem;
+            color: #840645;
+            margin-bottom: 1rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+        }
+
+        .info-item p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .info-item a {
+            color: #E60790;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .info-item a:hover {
+            color: #720538;
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .hours-grid p {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form-section {
+            background: white;
+            padding: 4rem;
+            border: 2px solid #EADFE4;
+        }
+
+        .contact-form-section h2 {
+            font-size: 2.5rem;
+            color: #720538;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .contact-form-section p {
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #720538;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #EADFE4;
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #E60790;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #E60790 0%, #FB64C3 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(230, 7, 144, 0.4);
+        }
+
+        .map-section {
+            margin-top: 4rem;
+            background: #fafafa;
+            padding: 4rem;
+        }
+
+        .map-section h2 {
+            font-size: 2.5rem;
+            color: #720538;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .map-section p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 450px;
+            background: #EADFE4;
+            border: 2px solid #E60790;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 1.1rem;
+        }
+
+        .booking-cta {
+            background: linear-gradient(135deg, #840645 0%, #AC658B 100%);
+            padding: 5rem 6%;
+            text-align: center;
+            color: white;
+        }
+
+        .booking-cta h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .booking-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+
+        .booking-cta .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: white;
+            color: #720538;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.4s;
+            border: 2px solid white;
+        }
+
+        .booking-cta .cta-button:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .social-connect {
+            padding: 4rem 6%;
+            background: white;
+            text-align: center;
+        }
+
+        .social-connect h2 {
+            font-size: 2.5rem;
+            color: #720538;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .social-connect p {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #E60790 0%, #FB64C3 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(230, 7, 144, 0.4);
+        }
+
+        .social-btn span {
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 1024px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hours-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 3rem;
+            }
+
+            .contact-info,
+            .contact-form-section {
+                padding: 2rem;
+            }
+
+            .map-section {
+                padding: 2rem;
+            }
+
+            .social-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="nav">
+        <div class="nav-container">
+            <div class="logo">
+                BEAUTIFUL MINDS
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="before-after.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" class="book-now-btn">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div>
+            <h1>Get In Touch</h1>
+        </div>
+    </section>
+
+    <!-- Contact Container -->
+    <section class="contact-container">
+        <div class="contact-grid">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h2>Contact Information</h2>
+                
+                <div class="info-item">
+                    <h3>📞 Phone</h3>
+                    <p><a href="tel:6015338597">(601) 533-8597</a></p>
+                    <p style="font-size: 0.95rem; margin-top: 0.5rem;">Call us for appointments, questions, or consultations</p>
+                </div>
+
+                <div class="info-item">
+                    <h3>📧 Email</h3>
+                    <p><a href="mailto:kcollum@beautifulmindsmedaesthetics.com">kcollum@beautifulmindsmedaesthetics.com</a></p>
+                    <p style="font-size: 0.95rem; margin-top: 0.5rem;">We'll respond within 24-48 hours</p>
+                </div>
+
+                <div class="info-item">
+                    <h3>📍 Location</h3>
+                    <p><strong>Beautiful Minds Medical Aesthetics</strong></p>
+                    <p>971 Lakeland Dr. Suite 1159<br>West Medical Tower<br>Jackson, MS 39216</p>
+                    <p style="font-size: 0.95rem; margin-top: 0.5rem;">Conveniently located in the West Medical Tower with easy parking access</p>
+                </div>
+
+                <div class="info-item">
+                    <h3>🕐 Hours</h3>
+                    <div class="hours-grid">
+                        <p><strong>Monday:</strong></p>
+                        <p>[Hours]</p>
+                        <p><strong>Tuesday:</strong></p>
+                        <p>[Hours]</p>
+                        <p><strong>Wednesday:</strong></p>
+                        <p>[Hours]</p>
+                        <p><strong>Thursday:</strong></p>
+                        <p>[Hours]</p>
+                        <p><strong>Friday:</strong></p>
+                        <p>[Hours]</p>
+                        <p><strong>Saturday:</strong></p>
+                        <p>[Hours]</p>
+                        <p><strong>Sunday:</strong></p>
+                        <p>Closed</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form-section">
+                <h2>Send Us a Message</h2>
+                <p>Have questions or want to learn more? Fill out the form below and we'll get back to you as soon as possible.</p>
+                
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interest">I'm Interested In *</label>
+                        <select id="interest" name="interest" required>
+                            <option value="">Select a service...</option>
+                            <option value="consultation">Free Consultation</option>
+                            <option value="neurotoxins">Neurotoxin Treatments (Botox, Jeuveau, Dysport, Daxxify)</option>
+                            <option value="fillers">Dermal Fillers</option>
+                            <option value="skinpen">Skin Pen Microneedling</option>
+                            <option value="skincare">Skin Care Products</option>
+                            <option value="botox-party">Botox Party</option>
+                            <option value="other">Other / General Question</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required placeholder="Tell us about your goals, questions, or concerns..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <h2>Visit Our Clinic</h2>
+        <p>We're located in the West Medical Tower in Jackson, MS</p>
+        <div class="map-container">
+            <!-- INSERT GOOGLE MAPS EMBED HERE -->
+            <!-- Example: <iframe src="https://www.google.com/maps/embed?pb=..." width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe> -->
+            <p>📍 Google Maps Embed Goes Here<br>971 Lakeland Dr. Suite 1159, Jackson, MS 39216</p>
+        </div>
+    </section>
+
+    <!-- Social Connect -->
+    <section class="social-connect">
+        <h2>Follow Us on Social Media</h2>
+        <p>Stay updated with our latest treatments, promotions, and beauty tips!</p>
+        <div class="social-buttons">
+            <a href="https://www.instagram.com/beautifulminds_medaesthetics/" target="_blank" class="social-btn">
+                <span>📷</span>
+                Follow us on Instagram
+            </a>
+            <a href="https://www.facebook.com/p/Beautiful-Minds-Medical-Aesthetics-61567757859137/" target="_blank" class="social-btn">
+                <span>👍</span>
+                Like us on Facebook
+            </a>
+        </div>
+    </section>
+
+    <!-- Booking CTA -->
+    <section class="booking-cta">
+        <h2>Ready to Book Your Appointment?</h2>
+        <p>Schedule your consultation today and take the first step toward your aesthetic goals.</p>
+        <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" class="cta-button">Book Online Now</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>📞 (601) 533-8597</p>
+                <p>📧 kcollum@beautifulmindsmedaesthetics.com</p>
+                <p>📍 971 Lakeland Dr. Suite 1159<br>West Medical Tower<br>Jackson, MS 39216</p>
+            </div>
+            <div class="footer-section">
+                <h4>Hours</h4>
+                <p>Monday: [Hours]</p>
+                <p>Tuesday: [Hours]</p>
+                <p>Wednesday: [Hours]</p>
+                <p>Thursday: [Hours]</p>
+                <p>Friday: [Hours]</p>
+                <p>Saturday: [Hours]</p>
+                <p>Sunday: Closed</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="before-after.html">Gallery</a>
+                <a href="pre-post-care.html">Pre & Post Care</a>
+                <a href="contact.html">Contact</a>
+                <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank">Book Now</a>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/beautifulminds_medaesthetics/" target="_blank">📷</a>
+                    <a href="https://www.facebook.com/p/Beautiful-Minds-Medical-Aesthetics-61567757859137/" target="_blank">👍</a>
+                </div>
+                <p style="margin-top: 2rem;"><strong>Botox Parties Available!</strong><br>Contact us for details</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Beautiful Minds Medical Aesthetics. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Basic form handling (you'll need to connect this to your email service)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                interest: document.getElementById('interest').value,
+                message: document.getElementById('message').value
+            };
+            
+            // Here you would normally send this to your backend/email service
+            // For now, we'll just show a success message
+            alert('Thank you for your message! We will get back to you within 24-48 hours.');
+            
+            // Reset form
+            this.reset();
+        });
+    </script>
+</body>
+</html>

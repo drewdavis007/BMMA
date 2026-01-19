@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Pen Microneedling | Beautiful Minds Medical Aesthetics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .page-hero {
+            height: 60vh;
+            margin-top: 90px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            background: linear-gradient(135deg, rgba(114, 5, 56, 0.9) 0%, rgba(251, 100, 195, 0.9) 100%);
+        }
+
+        .page-hero h1 {
+            font-size: 4.5rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+
+        .page-hero p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            opacity: 0.95;
+        }
+
+        .content-section {
+            padding: 6rem 6%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content-section h2 {
+            font-size: 3rem;
+            color: #720538;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .content-section h3 {
+            font-size: 2rem;
+            color: #840645;
+            margin: 3rem 0 1.5rem;
+            font-weight: 400;
+        }
+
+        .content-section p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 2;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+        }
+
+        .content-section ul li {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 2;
+            padding-left: 2rem;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .content-section ul li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #E60790;
+            font-weight: 600;
+            font-size: 1.3rem;
+        }
+
+        .pricing-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 2px solid #EADFE4;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.4s;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border-color: #E60790;
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured:before {
+            content: 'RECOMMENDED';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #E60790 0%, #FB64C3 100%);
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            border-color: #E60790;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            color: #840645;
+            margin-bottom: 1rem;
+            margin-top: 0;
+        }
+
+        .pricing-card .price {
+            font-size: 3rem;
+            color: #E60790;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .pricing-card .savings {
+            color: #720538;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .pricing-card p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-card .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #E60790 0%, #FB64C3 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .pricing-card .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(230, 7, 144, 0.4);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #EADFE4 0%, #fafafa 100%);
+            padding: 3rem;
+            margin: 3rem 0;
+            border-left: 4px solid #E60790;
+        }
+
+        .highlight-box h3 {
+            color: #720538;
+            margin-top: 0;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .benefit-item {
+            background: white;
+            padding: 2rem;
+            border: 2px solid #EADFE4;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .benefit-item:hover {
+            border-color: #E60790;
+            transform: translateY(-5px);
+        }
+
+        .benefit-item h4 {
+            color: #840645;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+            margin: 3rem 0;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            align-items: start;
+        }
+
+        .timeline-marker {
+            background: linear-gradient(135deg, #E60790 0%, #FB64C3 100%);
+            color: white;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .timeline-content h4 {
+            color: #720538;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #EADFE4 0%, #fafafa 100%);
+            padding: 4rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta-box h3 {
+            font-size: 2.5rem;
+            color: #720538;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-box .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, #E60790 0%, #FB64C3 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.4s;
+        }
+
+        .cta-box .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(230, 7, 144, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-item {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .timeline-marker {
+                margin: 0 auto 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="nav">
+        <div class="nav-container">
+            <div class="logo">
+                BEAUTIFUL MINDS
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="before-after.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" class="book-now-btn">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div>
+            <h1>Skin Pen Microneedling</h1>
+            <p>Stimulate natural collagen for radiant, youthful skin</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        <h2>What is Skin Pen Microneedling?</h2>
+        <p>Skin Pen is the first FDA-cleared microneedling device, designed to safely and effectively treat facial acne scars, fine lines, wrinkles, and overall skin texture. This minimally invasive treatment uses fine needles to create controlled micro-injuries to the skin, triggering your body's natural wound healing process to produce new collagen and elastin.</p>
+
+        <div class="highlight-box">
+            <h3>The Science Behind Skin Pen</h3>
+            <p>Microneedling works by activating your skin's natural healing response. As the tiny needles create controlled micro-channels in the skin, your body rushes to repair these areas by producing fresh collagen and elastin—the building blocks of healthy, youthful skin. This process, called neocollagenesis, results in smoother, firmer, more radiant skin over time.</p>
+        </div>
+
+        <h2>Pricing & Packages</h2>
+        <div class="pricing-options">
+            <div class="pricing-card">
+                <h3>Single Treatment</h3>
+                <div class="price">$350</div>
+                <p>Perfect for trying the treatment or for maintenance</p>
+                <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" class="cta-button">Book Now</a>
+            </div>
+            <div class="pricing-card featured">
+                <h3>3 Treatment Package</h3>
+                <div class="price">$900</div>
+                <div class="savings">Save $150!</div>
+                <p>Recommended for optimal, long-lasting results</p>
+                <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" class="cta-button">Book Now</a>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <h3>Why We Recommend 3 Treatments</h3>
+            <p>While you'll see improvement after just one treatment, a series of 3 sessions spaced 4-6 weeks apart delivers optimal results. This allows your skin to build upon each treatment, producing more collagen and achieving dramatic, long-lasting improvements in skin texture, tone, and overall appearance.</p>
+        </div>
+
+        <h2>What Skin Pen Can Treat</h2>
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <h4>Acne Scars</h4>
+                <p>Reduce the appearance of atrophic acne scars</p>
+            </div>
+            <div class="benefit-item">
+                <h4>Fine Lines & Wrinkles</h4>
+                <p>Smooth facial lines and wrinkles</p>
+            </div>
+            <div class="benefit-item">
+                <h4>Skin Texture</h4>
+                <p>Improve overall skin smoothness and texture</p>
+            </div>
+            <div class="benefit-item">
+                <h4>Large Pores</h4>
+                <p>Minimize the appearance of enlarged pores</p>
+            </div>
+            <div class="benefit-item">
+                <h4>Uneven Tone</h4>
+                <p>Even out skin tone and pigmentation</p>
+            </div>
+            <div class="benefit-item">
+                <h4>Dull Skin</h4>
+                <p>Restore radiance and glow</p>
+            </div>
+            <div class="benefit-item">
+                <h4>Stretch Marks</h4>
+                <p>Improve the appearance of stretch marks</p>
+            </div>
+            <div class="benefit-item">
+                <h4>Sun Damage</h4>
+                <p>Repair signs of photo-aging</p>
+            </div>
+        </div>
+
+        <h2>Key Benefits of Skin Pen</h2>
+        <ul>
+            <li>FDA-cleared and clinically proven safe and effective</li>
+            <li>Stimulates natural collagen production</li>
+            <li>Minimal downtime (1-2 days of redness)</li>
+            <li>Safe for all skin types and tones</li>
+            <li>Natural-looking, gradual results</li>
+            <li>Can be used on face, neck, décolletage, and other areas</li>
+            <li>Long-lasting improvement with proper skincare</li>
+            <li>No harsh chemicals or invasive procedures</li>
+        </ul>
+
+        <h2>The Treatment Timeline</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-marker">Week 1</div>
+                <div class="timeline-content">
+                    <h4>Initial Healing</h4>
+                    <p>Immediately after treatment, you may experience redness and slight swelling, similar to a mild sunburn. This typically subsides within 24-48 hours. Your skin begins the healing process.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker">Week 2-4</div>
+                <div class="timeline-content">
+                    <h4>Collagen Production Begins</h4>
+                    <p>Your skin starts producing new collagen. You may notice your skin feeling smoother and looking more radiant. The healing process is well underway.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker">Week 4-6</div>
+                <div class="timeline-content">
+                    <h4>Visible Improvement</h4>
+                    <p>Skin texture continues to improve. Fine lines soften, pores appear smaller, and overall skin quality enhances. Time for your next treatment in the series!</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker">3-6 Months</div>
+                <div class="timeline-content">
+                    <h4>Maximum Results</h4>
+                    <p>After completing your treatment series, you'll see continued improvement as collagen continues to build. Results can last for months with proper skincare maintenance.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>What to Expect</h2>
+        
+        <h3>Before Your Treatment</h3>
+        <ul>
+            <li>Avoid sun exposure and tanning for 2 weeks prior</li>
+            <li>Discontinue retinoids and exfoliating products 3-5 days before</li>
+            <li>Avoid blood-thinning medications if medically safe (aspirin, ibuprofen, etc.)</li>
+            <li>Arrive with a clean, makeup-free face</li>
+            <li>Stay well-hydrated in the days leading up to treatment</li>
+        </ul>
+
+        <h3>During Your Treatment</h3>
+        <ul>
+            <li>Treatment takes approximately 30-45 minutes</li>
+            <li>Numbing cream is applied for 20-30 minutes before the procedure</li>
+            <li>The Skin Pen device is gently moved across treatment areas</li>
+            <li>Most patients describe the sensation as mild vibration or light scratching</li>
+            <li>A soothing serum is applied after treatment</li>
+        </ul>
+
+        <h3>After Your Treatment</h3>
+        <ul>
+            <li>Expect redness and mild swelling for 24-48 hours (like a sunburn)</li>
+            <li>Avoid makeup for 24 hours</li>
+            <li>Use only gentle, approved skincare products</li>
+            <li>Avoid direct sun exposure and wear SPF 30+ daily</li>
+            <li>Don't use retinoids or harsh exfoliants for 5-7 days</li>
+            <li>Avoid strenuous exercise for 24 hours</li>
+            <li>Keep skin well-moisturized and hydrated</li>
+            <li>Slight peeling or flaking may occur 3-5 days post-treatment (this is normal)</li>
+        </ul>
+
+        <h2>Frequently Asked Questions</h2>
+        
+        <h3>Does it hurt?</h3>
+        <p>We apply a topical numbing cream before treatment to maximize comfort. Most patients describe the sensation as tolerable, with some areas being more sensitive than others. The discomfort is brief and well worth the results!</p>
+
+        <h3>How long is the downtime?</h3>
+        <p>You'll experience redness and possibly some swelling for 24-48 hours after treatment. Most patients return to normal activities the next day, though we recommend scheduling treatments when you have a day or two for recovery.</p>
+
+        <h3>When will I see results?</h3>
+        <p>You may notice improved skin texture within a week, but the most dramatic results appear gradually over 2-6 months as new collagen forms. Results continue to improve with each treatment in your series.</p>
+
+        <h3>How many treatments do I need?</h3>
+        <p>We recommend 3 treatments spaced 4-6 weeks apart for optimal results. Some patients may benefit from additional treatments depending on their concerns and goals.</p>
+
+        <h3>Is it safe for all skin types?</h3>
+        <p>Yes! Unlike some laser treatments, Skin Pen is safe and effective for all skin types and tones, with minimal risk of hyperpigmentation.</p>
+
+        <h3>How long do results last?</h3>
+        <p>With proper skincare and sun protection, results can last for many months. Many patients return for maintenance treatments 1-2 times per year to sustain their results.</p>
+
+        <div class="cta-box">
+            <h3>Ready to Transform Your Skin?</h3>
+            <p>Schedule your Skin Pen consultation today and start your journey to smoother, more radiant skin.</p>
+            <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" class="cta-button">Book Your Consultation</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>📞 (601) 533-8597</p>
+                <p>📧 kcollum@beautifulmindsmedaesthetics.com</p>
+                <p>📍 971 Lakeland Dr. Suite 1159<br>West Medical Tower<br>Jackson, MS 39216</p>
+            </div>
+            <div class="footer-section">
+                <h4>Hours</h4>
+                <p>Monday: [Hours]</p>
+                <p>Tuesday: [Hours]</p>
+                <p>Wednesday: [Hours]</p>
+                <p>Thursday: [Hours]</p>
+                <p>Friday: [Hours]</p>
+                <p>Saturday: [Hours]</p>
+                <p>Sunday: Closed</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="before-after.html">Gallery</a>
+                <a href="pre-post-care.html">Pre & Post Care</a>
+                <a href="contact.html">Contact</a>
+                <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank">Book Now</a>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/beautifulminds_medaesthetics/" target="_blank">📷</a>
+                    <a href="https://www.facebook.com/p/Beautiful-Minds-Medical-Aesthetics-61567757859137/" target="_blank">👍</a>
+                </div>
+                <p style="margin-top: 2rem;"><strong>Botox Parties Available!</strong><br>Contact us for details</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Beautiful Minds Medical Aesthetics. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

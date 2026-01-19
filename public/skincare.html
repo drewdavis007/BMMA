@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Skin Care | Beautiful Minds Medical Aesthetics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .page-hero {
+            height: 60vh;
+            margin-top: 90px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            background: linear-gradient(135deg, rgba(114, 5, 56, 0.9) 0%, rgba(251, 100, 195, 0.9) 100%);
+        }
+
+        .page-hero h1 {
+            font-size: 4.5rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+
+        .page-hero p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            opacity: 0.95;
+        }
+
+        .content-section {
+            padding: 6rem 6%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content-section h2 {
+            font-size: 3rem;
+            color: #720538;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .content-section h3 {
+            font-size: 2rem;
+            color: #840645;
+            margin: 3rem 0 1.5rem;
+            font-weight: 400;
+        }
+
+        .content-section p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 2;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #EADFE4 0%, #fafafa 100%);
+            padding: 3rem;
+            margin: 3rem 0;
+            border-left: 4px solid #E60790;
+        }
+
+        .highlight-box h3 {
+            color: #720538;
+            margin-top: 0;
+        }
+
+        .product-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .category-card {
+            background: white;
+            border: 2px solid #EADFE4;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.4s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            border-color: #E60790;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .category-card h4 {
+            font-size: 1.8rem;
+            color: #840645;
+            margin-bottom: 1rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+        }
+
+        .category-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skin-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .skin-type {
+            background: #fafafa;
+            padding: 2rem;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .skin-type:hover {
+            background: linear-gradient(135deg, #EADFE4 0%, #fafafa 100%);
+        }
+
+        .skin-type h4 {
+            color: #720538;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #840645 0%, #AC658B 100%);
+            padding: 4rem;
+            text-align: center;
+            margin: 4rem 0;
+            color: white;
+        }
+
+        .cta-box h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .cta-box p {
+            color: white;
+            opacity: 0.95;
+            margin-bottom: 2rem;
+        }
+
+        .cta-box .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: white;
+            color: #720538;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.4s;
+            border: 2px solid white;
+        }
+
+        .cta-box .cta-button:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .benefits-list {
+            background: white;
+            padding: 3rem;
+            border: 2px solid #EADFE4;
+            margin: 3rem 0;
+        }
+
+        .benefits-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .benefits-list li {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 2;
+            padding-left: 2rem;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .benefits-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #E60790;
+            font-weight: 600;
+            font-size: 1.3rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="nav">
+        <div class="nav-container">
+            <div class="logo">
+                BEAUTIFUL MINDS
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="before-after.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" class="book-now-btn">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div>
+            <h1>Professional Skin Care</h1>
+            <p>Medical-grade products for beautiful, healthy skin</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        <h2>Elevate Your Skincare Routine</h2>
+        <p>At Beautiful Minds Medical Aesthetics, we believe that beautiful skin starts with the right products. We offer carefully curated, medical-grade skincare products designed to work synergistically with your aesthetic treatments and deliver visible results at home.</p>
+
+        <div class="highlight-box">
+            <h3>Why Medical-Grade Skincare?</h3>
+            <p>Medical-grade skincare products contain higher concentrations of active ingredients than over-the-counter products and are formulated to penetrate deeper into the skin. These professional products are clinically tested, backed by science, and proven to deliver superior results for addressing specific skin concerns.</p>
+        </div>
+
+        <h2>Our Product Philosophy</h2>
+        <p>We take a personalized approach to skincare. Rather than a one-size-fits-all solution, we create customized regimens tailored to your unique skin type, concerns, and goals. During your consultation, we'll analyze your skin and recommend products that will work best for you.</p>
+
+        <div class="benefits-list">
+            <ul>
+                <li>Medical-grade formulations with proven efficacy</li>
+                <li>Higher concentrations of active ingredients</li>
+                <li>Products that complement your aesthetic treatments</li>
+                <li>Customized regimens for your specific needs</li>
+                <li>Expert guidance from our trained professionals</li>
+                <li>Results-driven solutions for lasting improvement</li>
+                <li>Professional support and follow-up</li>
+            </ul>
+        </div>
+
+        <h2>Product Categories</h2>
+        <div class="product-categories">
+            <div class="category-card">
+                <div class="category-icon">🧴</div>
+                <h4>Cleansers</h4>
+                <p>Gentle yet effective cleansers that remove impurities without stripping your skin's natural moisture</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">💧</div>
+                <h4>Serums & Treatments</h4>
+                <p>Concentrated formulas targeting specific concerns like aging, hyperpigmentation, and acne</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">✨</div>
+                <h4>Moisturizers</h4>
+                <p>Hydrating formulas that lock in moisture and support your skin barrier</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">☀️</div>
+                <h4>Sun Protection</h4>
+                <p>Broad-spectrum SPF products essential for protecting your skin and maintaining results</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🌙</div>
+                <h4>Night Treatments</h4>
+                <p>Potent nighttime formulas that work while you sleep for maximum rejuvenation</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">👁️</div>
+                <h4>Eye Care</h4>
+                <p>Specialized products for the delicate eye area to target fine lines, puffiness, and dark circles</p>
+            </div>
+        </div>
+
+        <h2>Common Skin Concerns We Address</h2>
+        <div class="skin-types">
+            <div class="skin-type">
+                <h4>Anti-Aging</h4>
+                <p>Products with retinoids, peptides, and antioxidants to reduce fine lines, wrinkles, and loss of firmness</p>
+            </div>
+            <div class="skin-type">
+                <h4>Hyperpigmentation</h4>
+                <p>Brightening agents and exfoliants to even skin tone and fade dark spots</p>
+            </div>
+            <div class="skin-type">
+                <h4>Acne & Blemishes</h4>
+                <p>Targeted treatments to clear breakouts and prevent future acne formation</p>
+            </div>
+            <div class="skin-type">
+                <h4>Dryness & Dehydration</h4>
+                <p>Intensive hydrators and barrier-repair formulas for plump, moisturized skin</p>
+            </div>
+            <div class="skin-type">
+                <h4>Sensitive Skin</h4>
+                <p>Gentle, calming formulas designed to soothe and strengthen reactive skin</p>
+            </div>
+            <div class="skin-type">
+                <h4>Rosacea & Redness</h4>
+                <p>Anti-inflammatory ingredients to reduce redness and calm irritation</p>
+            </div>
+        </div>
+
+        <h2>Key Ingredients We Recommend</h2>
+        <p>Our product selection features scientifically proven ingredients known for their effectiveness:</p>
+        
+        <div class="benefits-list">
+            <ul>
+                <li><strong>Retinoids (Retinol, Tretinoin):</strong> Gold standard for anti-aging and acne treatment</li>
+                <li><strong>Vitamin C:</strong> Powerful antioxidant that brightens and protects</li>
+                <li><strong>Hyaluronic Acid:</strong> Superior hydrator that plumps and moisturizes</li>
+                <li><strong>Peptides:</strong> Building blocks that support collagen production</li>
+                <li><strong>Niacinamide:</strong> Multi-tasking ingredient for pores, tone, and texture</li>
+                <li><strong>Alpha Hydroxy Acids (AHAs):</strong> Exfoliants that reveal smoother, brighter skin</li>
+                <li><strong>Growth Factors:</strong> Support skin repair and regeneration</li>
+                <li><strong>Antioxidants:</strong> Protect against environmental damage and aging</li>
+            </ul>
+        </div>
+
+        <h2>Enhancing Your Treatment Results</h2>
+        <p>The right skincare products can significantly enhance and prolong the results of your aesthetic treatments. Here's how:</p>
+
+        <div class="highlight-box">
+            <h3>Post-Treatment Support</h3>
+            <p>After neurotoxin or filler treatments, proper skincare helps maintain your results. High-quality products support skin health, hydration, and protection.</p>
+        </div>
+
+        <div class="highlight-box">
+            <h3>Microneedling Enhancement</h3>
+            <p>Following Skin Pen treatments, the right serums and recovery products accelerate healing and maximize collagen production for superior outcomes.</p>
+        </div>
+
+        <div class="highlight-box">
+            <h3>Daily Protection</h3>
+            <p>Quality SPF and antioxidants protect your investment in aesthetic treatments by preventing sun damage and environmental aging.</p>
+        </div>
+
+        <h2>Building Your Perfect Routine</h2>
+        <p>A comprehensive skincare routine typically includes:</p>
+
+        <h3>Morning Routine</h3>
+        <div class="benefits-list">
+            <ul>
+                <li>Gentle cleanser</li>
+                <li>Antioxidant serum (Vitamin C)</li>
+                <li>Eye cream</li>
+                <li>Moisturizer</li>
+                <li>Broad-spectrum SPF 30+</li>
+            </ul>
+        </div>
+
+        <h3>Evening Routine</h3>
+        <div class="benefits-list">
+            <ul>
+                <li>Cleanser (double cleanse if wearing makeup/SPF)</li>
+                <li>Treatment serum (retinoid, peptides, or targeted treatment)</li>
+                <li>Eye cream</li>
+                <li>Night moisturizer or sleeping mask</li>
+            </ul>
+        </div>
+
+        <h2>Frequently Asked Questions</h2>
+        
+        <h3>What's the difference between medical-grade and drugstore skincare?</h3>
+        <p>Medical-grade products contain higher concentrations of active ingredients and are formulated to penetrate deeper into the skin. They're clinically tested and proven effective, whereas over-the-counter products often have lower concentrations that may not deliver significant results.</p>
+
+        <h3>How do I know which products are right for me?</h3>
+        <p>During your consultation, we'll assess your skin type, concerns, and goals to create a personalized product regimen. We consider factors like sensitivity, current skincare routine, and compatibility with any treatments you're receiving.</p>
+
+        <h3>Can I use these products with my current skincare?</h3>
+        <p>We'll review your current products and recommend how to integrate medical-grade skincare into your routine. Some products work well together, while others should be used separately to avoid irritation.</p>
+
+        <h3>When will I see results?</h3>
+        <p>Most patients notice improvements in skin texture and radiance within 2-4 weeks. More significant changes in fine lines, hyperpigmentation, and overall skin quality typically appear after 8-12 weeks of consistent use.</p>
+
+        <h3>Do I need a consultation to purchase products?</h3>
+        <p>Yes, we require a brief consultation to ensure you receive products appropriate for your skin. This helps prevent adverse reactions and ensures you're investing in products that will actually work for your specific needs.</p>
+
+        <div class="cta-box">
+            <h3>Ready to Transform Your Skincare?</h3>
+            <p>Schedule your personalized skincare consultation today. We'll create a customized regimen designed specifically for your skin's unique needs and goals.</p>
+            <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" class="cta-button">Book Your Consultation</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>📞 (601) 533-8597</p>
+                <p>📧 kcollum@beautifulmindsmedaesthetics.com</p>
+                <p>📍 971 Lakeland Dr. Suite 1159<br>West Medical Tower<br>Jackson, MS 39216</p>
+            </div>
+            <div class="footer-section">
+                <h4>Hours</h4>
+                <p>Monday: [Hours]</p>
+                <p>Tuesday: [Hours]</p>
+                <p>Wednesday: [Hours]</p>
+                <p>Thursday: [Hours]</p>
+                <p>Friday: [Hours]</p>
+                <p>Saturday: [Hours]</p>
+                <p>Sunday: Closed</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="before-after.html">Gallery</a>
+                <a href="pre-post-care.html">Pre & Post Care</a>
+                <a href="contact.html">Contact</a>
+                <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank">Book Now</a>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/beautifulminds_medaesthetics/" target="_blank">📷</a>
+                    <a href="https://www.facebook.com/p/Beautiful-Minds-Medical-Aesthetics-61567757859137/" target="_blank">👍</a>
+                </div>
+                <p style="margin-top: 2rem;"><strong>Botox Parties Available!</strong><br>Contact us for details</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Beautiful Minds Medical Aesthetics. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

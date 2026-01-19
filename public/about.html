@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Beautiful Minds Medical Aesthetics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .page-hero {
+            height: 60vh;
+            margin-top: 90px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            background: linear-gradient(135deg, rgba(114, 5, 56, 0.9) 0%, rgba(251, 100, 195, 0.9) 100%);
+        }
+
+        .page-hero h1 {
+            font-size: 4.5rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+
+        .page-hero p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            opacity: 0.95;
+        }
+
+        .mission-section {
+            padding: 8rem 6%;
+            background: white;
+            text-align: center;
+        }
+
+        .mission-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .mission-content h2 {
+            font-size: 3.5rem;
+            color: #720538;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .mission-content p {
+            font-size: 1.2rem;
+            color: #666;
+            line-height: 2;
+            margin-bottom: 1.5rem;
+        }
+
+        .mission-highlight {
+            font-size: 1.4rem;
+            color: #720538;
+            font-weight: 500;
+            margin: 3rem 0;
+            font-style: italic;
+        }
+
+        .founder-section {
+            padding: 0;
+            background: #fafafa;
+        }
+
+        .founder-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 700px;
+        }
+
+        .founder-image-side {
+            background: #EADFE4;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .founder-image-side img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .founder-text-side {
+            padding: 8rem 6rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #fafafa;
+        }
+
+        .founder-text-side h2 {
+            font-size: 3.5rem;
+            color: #720538;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .credentials {
+            color: #E60790;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .founder-text-side p {
+            color: #666;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            font-size: 1.05rem;
+        }
+
+        .founder-text-side strong {
+            color: #720538;
+            font-weight: 500;
+        }
+
+        .values-section {
+            padding: 8rem 6%;
+            background: white;
+        }
+
+        .values-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .values-header h2 {
+            font-size: 3.5rem;
+            color: #720538;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .values-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .value-card {
+            background: #fafafa;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.4s;
+            border-top: 4px solid transparent;
+        }
+
+        .value-card:hover {
+            background: white;
+            border-top-color: #E60790;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+        }
+
+        .value-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .value-card h3 {
+            font-size: 1.8rem;
+            color: #840645;
+            margin-bottom: 1rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+        }
+
+        .value-card p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .approach-section {
+            padding: 8rem 6%;
+            background: linear-gradient(135deg, #EADFE4 0%, #fafafa 100%);
+        }
+
+        .approach-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .approach-content h2 {
+            font-size: 3.5rem;
+            color: #720538;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .approach-items {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .approach-item {
+            background: white;
+            padding: 3rem;
+            border-left: 4px solid #E60790;
+        }
+
+        .approach-item h3 {
+            font-size: 1.8rem;
+            color: #720538;
+            margin-bottom: 1rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .approach-item p {
+            color: #666;
+            line-height: 1.9;
+            font-size: 1.05rem;
+        }
+
+        .cta-section {
+            padding: 8rem 6%;
+            background: linear-gradient(135deg, #840645 0%, #AC658B 100%);
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: white;
+            color: #720538;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.4s;
+            border: 2px solid white;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 1024px) {
+            .founder-split {
+                grid-template-columns: 1fr;
+            }
+
+            .approach-items {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 3rem;
+            }
+
+            .mission-content h2,
+            .founder-text-side h2,
+            .values-header h2,
+            .approach-content h2,
+            .cta-section h2 {
+                font-size: 2.5rem;
+            }
+
+            .founder-text-side {
+                padding: 4rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="nav">
+        <div class="nav-container">
+            <div class="logo">
+                BEAUTIFUL MINDS
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="before-after.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" class="book-now-btn">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div>
+            <h1>About Us</h1>
+            <p>Where beauty meets wellness</p>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="mission-content">
+            <h2>Our Mission</h2>
+            <p>At Beautiful Minds Medical Aesthetics, we believe that true beauty radiates from within. Our mission is to help you achieve your aesthetic goals while prioritizing your overall health and well-being.</p>
+            <p>We understand that looking good and feeling good are deeply connected. That's why we've created a medical spa that focuses on both your mental and physical health, providing comprehensive care that addresses the whole person—not just your appearance.</p>
+            <p class="mission-highlight">"True health starts from within the body and reflects on the outside. Our mission is to improve our patients' health from the inside out."</p>
+        </div>
+    </section>
+
+    <!-- Founder Section -->
+    <section class="founder-section">
+        <div class="founder-split">
+            <div class="founder-image-side">
+                <!-- <img src="images/kayla-about.jpg" alt="Kayla Collum Davis"> -->
+                <!-- Insert Kayla's professional photo here -->
+            </div>
+            <div class="founder-text-side">
+                <h2>Meet Our Founder</h2>
+                <h3 style="font-size: 2.5rem; color: #840645; margin-bottom: 0.5rem; font-family: 'Cormorant Garamond', serif; font-weight: 400;">Kayla Collum Davis</h3>
+                <p class="credentials">DNP, FNP-C</p>
+                <p>Kayla Collum Davis is the Founder of Beautiful Minds Medical Aesthetics. She graduated from the University of Mississippi Medical Center in 2019 with her Bachelor of Science in Nursing degree. She then worked in multiple nursing specialties in the hospital setting while completing her Doctorate of Nurse Practitioner degree in Family Medicine at the University of Alabama at Birmingham in 2023.</p>
+                <p>Throughout her career, Kayla has always been passionate about two things: medical healthcare and cosmetic aesthetics. Rather than choosing one path, she decided to combine her dual passions to create something unique—a clinic that integrates both medical care and aesthetic services.</p>
+                <p>Her extensive background in family medicine gives her a comprehensive understanding of how overall health impacts appearance and well-being. This holistic perspective is what sets Beautiful Minds Medical Aesthetics apart from traditional med spas.</p>
+                <p><strong>Kayla's philosophy is simple: beautiful skin is healthy skin, and true beauty begins with proper care from the inside out.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="values-header">
+            <h2>Our Core Values</h2>
+            <p style="font-size: 1.1rem; color: #666; max-width: 700px; margin: 1rem auto 0;">These principles guide everything we do at Beautiful Minds Medical Aesthetics</p>
+        </div>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">💫</div>
+                <h3>Holistic Wellness</h3>
+                <p>We believe in treating the whole person, not just addressing surface-level concerns. Your mental and physical health are equally important to us.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🎯</div>
+                <h3>Personalized Care</h3>
+                <p>Every patient is unique, and so are their needs. We create customized treatment plans tailored specifically to your goals and concerns.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🔬</div>
+                <h3>Evidence-Based Treatments</h3>
+                <p>We use only FDA-approved, scientifically proven treatments and products to ensure your safety and deliver real results.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">❤️</div>
+                <h3>Compassionate Service</h3>
+                <p>We create a welcoming, judgment-free environment where you feel comfortable, respected, and cared for throughout your journey.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">✨</div>
+                <h3>Natural Results</h3>
+                <p>Our goal is to enhance your natural beauty, not change who you are. We believe in subtle, beautiful improvements that make you look and feel like the best version of yourself.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">📚</div>
+                <h3>Continuous Education</h3>
+                <p>We stay current with the latest advancements in aesthetic medicine to provide you with cutting-edge treatments and techniques.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Approach Section -->
+    <section class="approach-section">
+        <div class="approach-content">
+            <h2>Our Approach</h2>
+            <div class="approach-items">
+                <div class="approach-item">
+                    <h3>Comprehensive Consultations</h3>
+                    <p>Every journey begins with a thorough consultation. We take the time to understand your concerns, goals, and medical history to create a treatment plan that's right for you.</p>
+                </div>
+                <div class="approach-item">
+                    <h3>Patient Education</h3>
+                    <p>We believe in empowering our patients with knowledge. We'll explain your treatment options, what to expect, and how to maintain your results for the long term.</p>
+                </div>
+                <div class="approach-item">
+                    <h3>Safety First</h3>
+                    <p>Your safety is our top priority. We follow strict medical protocols, use only premium products, and ensure every treatment is performed by trained professionals.</p>
+                </div>
+                <div class="approach-item">
+                    <h3>Ongoing Support</h3>
+                    <p>Our relationship doesn't end after your treatment. We provide ongoing support, follow-up care, and adjustments to ensure you achieve and maintain your desired results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="mission-section">
+        <div class="mission-content">
+            <h2>Why Choose Beautiful Minds?</h2>
+            <p>We're more than just a medical spa—we're a partner in your wellness journey. Here's what makes us different:</p>
+            <div style="text-align: left; max-width: 600px; margin: 3rem auto;">
+                <p style="margin-bottom: 1rem;">✓ <strong>Medical Expertise:</strong> Led by a Doctorate-level Nurse Practitioner with extensive medical training</p>
+                <p style="margin-bottom: 1rem;">✓ <strong>Holistic Focus:</strong> We address both your aesthetic goals and overall health</p>
+                <p style="margin-bottom: 1rem;">✓ <strong>Premium Products:</strong> We use only the highest quality, FDA-approved treatments</p>
+                <p style="margin-bottom: 1rem;">✓ <strong>Personalized Plans:</strong> Every treatment is customized to your unique needs</p>
+                <p style="margin-bottom: 1rem;">✓ <strong>Comfortable Environment:</strong> A welcoming, spa-like setting in Jackson, MS</p>
+                <p style="margin-bottom: 1rem;">✓ <strong>Transparent Pricing:</strong> Clear, upfront pricing with no hidden fees</p>
+                <p style="margin-bottom: 1rem;">✓ <strong>Convenient Location:</strong> Easily accessible in the West Medical Tower</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Ready to Start Your Journey?</h2>
+        <p>Experience the Beautiful Minds difference. Schedule your personalized consultation today and discover how we can help you look and feel your absolute best.</p>
+        <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" class="cta-button">Book Your Consultation</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>📞 (601) 533-8597</p>
+                <p>📧 kcollum@beautifulmindsmedaesthetics.com</p>
+                <p>📍 971 Lakeland Dr. Suite 1159<br>West Medical Tower<br>Jackson, MS 39216</p>
+            </div>
+            <div class="footer-section">
+                <h4>Hours</h4>
+                <p>Monday: [Hours]</p>
+                <p>Tuesday: [Hours]</p>
+                <p>Wednesday: [Hours]</p>
+                <p>Thursday: [Hours]</p>
+                <p>Friday: [Hours]</p>
+                <p>Saturday: [Hours]</p>
+                <p>Sunday: Closed</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="before-after.html">Gallery</a>
+                <a href="pre-post-care.html">Pre & Post Care</a>
+                <a href="contact.html">Contact</a>
+                <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank">Book Now</a>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/beautifulminds_medaesthetics/" target="_blank">📷</a>
+                    <a href="https://www.facebook.com/p/Beautiful-Minds-Medical-Aesthetics-61567757859137/" target="_blank">👍</a>
+                </div>
+                <p style="margin-top: 2rem;"><strong>Botox Parties Available!</strong><br>Contact us for details</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Beautiful Minds Medical Aesthetics. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
