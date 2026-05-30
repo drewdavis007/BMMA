@@ -66,7 +66,6 @@
             background: #fafafa;
         }
 
-        /* Side arrow buttons overlaid on carousel */
         .carousel-arrow {
             position: absolute;
             top: 50%;
@@ -134,6 +133,20 @@
             margin: 0 auto;
             line-height: 1.8;
             font-weight: 400;
+        }
+
+        /* ── SUB HEADER (Alternative Neurotoxins) ── */
+        .sub-header {
+            max-width: 1200px;
+            margin: 3rem auto 1.5rem;
+            text-align: center;
+        }
+
+        .sub-header h3 {
+            font-size: 2rem;
+            color: #720538;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
 
         /* ── PRICING GRID ── */
@@ -238,13 +251,6 @@
             border-left: 4px solid #E60790;
         }
 
-        .special-note h3 {
-            font-size: 1.5rem;
-            color: #720538;
-            margin-bottom: 0.6rem;
-            font-weight: 700;
-        }
-
         .special-note p {
             font-size: 0.97rem;
             color: #000;
@@ -252,27 +258,7 @@
             font-weight: 400;
         }
 
-        .special-note a {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.8rem 2rem;
-            background: linear-gradient(135deg, #720538, #E60790);
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 700;
-            letter-spacing: 1.2px;
-            text-transform: uppercase;
-            font-size: 0.82rem;
-            transition: all 0.3s;
-        }
-
-        .special-note a:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 28px rgba(230,7,144,0.4);
-        }
-
-        /* ── BOTTOM CONTROLS (dots + pause) ── */
+        /* ── BOTTOM CONTROLS ── */
         .carousel-controls {
             display: flex;
             align-items: center;
@@ -282,10 +268,7 @@
             background: #1a1a1a;
         }
 
-        .carousel-dots {
-            display: flex;
-            gap: 0.6rem;
-        }
+        .carousel-dots { display: flex; gap: 0.6rem; }
 
         .carousel-dot {
             width: 10px;
@@ -362,13 +345,15 @@
                     <a href="services.html">Services <span class="dropdown-arrow">▾</span></a>
                     <div class="dropdown-menu">
                         <a href="services.html" data-slide="0">Neurotoxins</a>
-                        <a href="services.html" data-slide="1">Dermal Fillers</a>
-                        <a href="services.html" data-slide="2">Therapeutic Treatments</a>
+                        <a href="services.html" data-slide="1">Therapeutic Treatments</a>
+                        <a href="services.html" data-slide="2">Dermal Fillers</a>
                         <a href="services.html" data-slide="3">Skin Pen Microneedling</a>
                         <a href="services.html" data-slide="4">Skin Care</a>
                         <div class="dropdown-divider"></div>
-                        <a href="botox-parties.html">Botox Parties &amp; Referrals</a>
+                        <a href="botox-parties.html">Botox Parties</a>
+                        <a href="referral-program.html">Referral Program</a>
                         <a href="gift-certificates.html">Gift Certificates</a>
+                        <a href="payment-plans.html">Payment Plans</a>
                     </div>
                 </li>
                 <li><a href="before-after.html">Gallery</a></li>
@@ -393,8 +378,8 @@
     <!-- Jump Nav -->
     <div class="jump-nav" id="jumpNav">
         <button data-slide="0">Neurotoxins</button>
-        <button data-slide="1">Dermal Fillers</button>
-        <button data-slide="2">Therapeutic</button>
+        <button data-slide="1">Therapeutic Treatments</button>
+        <button data-slide="2">Dermal Fillers</button>
         <button data-slide="3">Skin Pen</button>
         <button data-slide="4">Skin Care</button>
         <button data-slide="5">Botox Parties</button>
@@ -403,13 +388,12 @@
     <!-- Carousel -->
     <div class="carousel-outer" id="carouselOuter">
 
-        <!-- Side Arrows -->
         <button class="carousel-arrow left"  id="arrowLeft"  aria-label="Previous slide">&#8592;</button>
         <button class="carousel-arrow right" id="arrowRight" aria-label="Next slide">&#8594;</button>
 
         <div class="carousel-track" id="carouselTrack">
 
-            <!-- SLIDE 0 — Cosmetic Neurotoxins -->
+            <!-- SLIDE 0 — Neurotoxins -->
             <div class="carousel-slide">
                 <div class="category-header">
                     <h2 class="category-title">Cosmetic Neurotoxins</h2>
@@ -449,23 +433,7 @@
                 </div>
             </div>
 
-            <!-- SLIDE 1 — Dermal Fillers -->
-            <div class="carousel-slide">
-                <div class="category-header">
-                    <h2 class="category-title">Dermal Fillers</h2>
-                    <p class="category-description">Restore volume, smooth wrinkles, and enhance facial contours with our premium RHA filler treatments.</p>
-                </div>
-                <div class="pricing-grid" style="max-width:420px;margin:0 auto;">
-                    <div class="pricing-card">
-                        <h3>RHA Filler</h3>
-                        <div class="price">$650<span class="price-unit">/syringe</span></div>
-                        <p>Advanced hyaluronic acid filler designed to adapt to your facial expressions for natural-looking results</p>
-                        <a href="fillers.html" class="learn-more">Learn More</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SLIDE 2 — Therapeutic -->
+            <!-- SLIDE 1 — Therapeutic Treatments -->
             <div class="carousel-slide">
                 <div class="category-header">
                     <h2 class="category-title">Therapeutic Treatments</h2>
@@ -491,11 +459,64 @@
                         <a href="neurotoxins.html#therapeutic" class="learn-more">Learn More</a>
                     </div>
                 </div>
-                <div class="special-note">
+
+                <!-- Alternative Neurotoxin Options -->
+                <div class="sub-header">
                     <h3>Alternative Neurotoxin Options</h3>
-                    <p><strong>Jeuveau for Migraines:</strong> $12/unit (full or partial treatment)<br>
-                    <strong>Jeuveau or Dysport for Hyperhidrosis:</strong> $12/unit &nbsp;|&nbsp; Daxxify: $8/unit<br>
-                    <strong>Jeuveau for TMJ:</strong> $12/unit &nbsp;|&nbsp; Daxxify: $8/unit</p>
+                </div>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3>Jeuveau for Migraines</h3>
+                        <div class="price">$12<span class="price-unit">/unit</span></div>
+                        <p>TBD</p>
+                        <a href="neurotoxins.html#therapeutic" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Jeuveau / Dysport for Hyperhidrosis</h3>
+                        <div class="price">$12<span class="price-unit">/unit</span></div>
+                        <p>TBD</p>
+                        <a href="neurotoxins.html#therapeutic" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Daxxify for Hyperhidrosis</h3>
+                        <div class="price">$8<span class="price-unit">/unit</span></div>
+                        <p>TBD</p>
+                        <a href="neurotoxins.html#therapeutic" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Jeuveau for TMJ</h3>
+                        <div class="price">$12<span class="price-unit">/unit</span></div>
+                        <p>TBD</p>
+                        <a href="neurotoxins.html#therapeutic" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Daxxify for TMJ</h3>
+                        <div class="price">$8<span class="price-unit">/unit</span></div>
+                        <p>TBD</p>
+                        <a href="neurotoxins.html#therapeutic" class="learn-more">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 2 — Dermal Fillers -->
+            <div class="carousel-slide">
+                <div class="category-header">
+                    <h2 class="category-title">Dermal Fillers</h2>
+                    <p class="category-description">Restore volume, smooth wrinkles, and enhance facial contours with our premium RHA filler treatments.</p>
+                </div>
+                <div class="pricing-grid" style="max-width:640px;margin:0 auto;">
+                    <div class="pricing-card">
+                        <h3>Half Syringe</h3>
+                        <div class="price">$325</div>
+                        <p>Ideal for subtle touch-ups and targeted volume restoration</p>
+                        <a href="fillers.html" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Full Syringe</h3>
+                        <div class="price">$650</div>
+                        <p>Advanced hyaluronic acid filler designed to adapt to your facial expressions for natural-looking results</p>
+                        <a href="fillers.html" class="learn-more">Learn More</a>
+                    </div>
                 </div>
             </div>
 
@@ -546,14 +567,14 @@
             <!-- SLIDE 5 — Botox Parties -->
             <div class="carousel-slide">
                 <div class="category-header">
-                    <h2 class="category-title">🎉 Botox Parties &amp; Referral Program</h2>
-                    <p class="category-description">Gather your friends for a fun, social aesthetic experience — and save while you do it!</p>
+                    <h2 class="category-title">🎉 Botox Parties &amp; More</h2>
+                    <p class="category-description">Gather your friends, earn rewards, and give the gift of beautiful skin.</p>
                 </div>
                 <div class="pricing-grid">
                     <div class="pricing-card">
-                        <h3>Host a Botox Party</h3>
+                        <h3>Botox Parties</h3>
                         <div class="price" style="font-size:1.6rem;">Save Big</div>
-                        <p>4 guests = <strong>25% off</strong> for the host<br>
+                        <p>4 guests = <strong>25% off</strong><br>
                            5–6 guests = <strong>50% off</strong><br>
                            7–9 guests = <strong>75% off</strong><br>
                            10+ guests = <strong>Free treatment!</strong></p>
@@ -562,14 +583,20 @@
                     <div class="pricing-card">
                         <h3>Referral Program</h3>
                         <div class="price" style="font-size:1.6rem;">$50 Credit</div>
-                        <p>Earn a <strong>$50 credit</strong> for every friend you refer who comes in and receives a service.</p>
-                        <a href="botox-parties.html" class="learn-more">Learn More</a>
+                        <p>Earn a <strong>$50 credit</strong> for every friend you refer who books and receives a service.</p>
+                        <a href="referral-program.html" class="learn-more">Learn More</a>
                     </div>
                     <div class="pricing-card">
                         <h3>Gift Certificates</h3>
                         <div class="price" style="font-size:1.6rem;">Give Beauty</div>
-                        <p>Give the gift of confidence. Gift certificates available online or in person. Payment plans via Affirm, Klarna, Afterpay &amp; Cherry.</p>
+                        <p>Give the gift of confidence. Gift certificates available online or in person.</p>
                         <a href="gift-certificates.html" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Payment Plans</h3>
+                        <div class="price" style="font-size:1.6rem;">Flexible</div>
+                        <p>Pay over time with Affirm, Klarna, Afterpay, or Cherry. Get started in seconds.</p>
+                        <a href="payment-plans.html" class="learn-more">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -624,7 +651,9 @@
                 <a href="services.html">Services</a>
                 <a href="before-after.html">Gallery</a>
                 <a href="botox-parties.html">Botox Parties</a>
+                <a href="referral-program.html">Referral Program</a>
                 <a href="gift-certificates.html">Gift Certificates</a>
+                <a href="payment-plans.html">Payment Plans</a>
                 <a href="contact.html">Contact</a>
                 <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank">Book Now</a>
             </div>
@@ -648,54 +677,52 @@
         const SLIDE_COUNT = 6;
         const AUTO_DELAY  = 10000;
 
-        const track     = document.getElementById('carouselTrack');
-        const dotsEl    = document.getElementById('carouselDots');
-        const pauseBtn  = document.getElementById('pauseBtn');
-        const arrowL    = document.getElementById('arrowLeft');
-        const arrowR    = document.getElementById('arrowRight');
-        const jumpBtns  = document.querySelectorAll('.jump-nav button');
+        const track    = document.getElementById('carouselTrack');
+        const dotsEl   = document.getElementById('carouselDots');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const arrowL   = document.getElementById('arrowLeft');
+        const arrowR   = document.getElementById('arrowRight');
+        const jumpBtns = document.querySelectorAll('.jump-nav button');
 
         let current   = 0;
         let paused    = false;
         let autoTimer = null;
 
-        // ── Check if a slide index was stored from dropdown click ──
+        // Read sessionStorage on load (cross-page dropdown nav)
         const stored = sessionStorage.getItem('bmma_slide');
         if (stored !== null) {
             current = parseInt(stored, 10);
             sessionStorage.removeItem('bmma_slide');
         }
 
-        // ── Build dots ──
+        // Build dots
         for (let i = 0; i < SLIDE_COUNT; i++) {
             const dot = document.createElement('button');
             dot.className = 'carousel-dot';
             dot.setAttribute('aria-label', 'Slide ' + (i + 1));
-            dot.addEventListener('click', () => userGoTo(i));
+            dot.addEventListener('click', function() { userGoTo(i); });
             dotsEl.appendChild(dot);
         }
 
-        // ── Core render — only moves track & updates indicators ──
+        // Single source of truth for rendering position + indicators
         function render() {
             track.style.transform = 'translateX(-' + (current * 100) + '%)';
-
             document.querySelectorAll('.carousel-dot').forEach(function(d, i) {
                 d.classList.toggle('active', i === current);
             });
-
             jumpBtns.forEach(function(b) {
                 b.classList.toggle('active', parseInt(b.dataset.slide, 10) === current);
             });
         }
 
-        // ── User-initiated navigation: pauses auto-advance ──
+        // User-initiated: pauses autoplay
         function userGoTo(index) {
             current = ((index % SLIDE_COUNT) + SLIDE_COUNT) % SLIDE_COUNT;
             render();
             pauseAutoplay();
         }
 
-        // ── Auto-advance (does NOT pause) ──
+        // Auto-advance only
         function autoNext() {
             current = (current + 1) % SLIDE_COUNT;
             render();
@@ -722,42 +749,34 @@
             startAutoplay();
         }
 
-        // ── Wire up jump-nav buttons ──
+        // Jump nav buttons
         jumpBtns.forEach(function(btn) {
             btn.addEventListener('click', function() {
                 userGoTo(parseInt(btn.dataset.slide, 10));
             });
         });
 
-        // ── Wire up side arrows ──
-        arrowL.addEventListener('click', function() {
-            userGoTo(current - 1);
-        });
+        // Side arrows
+        arrowL.addEventListener('click', function() { userGoTo(current - 1); });
+        arrowR.addEventListener('click', function() { userGoTo(current + 1); });
 
-        arrowR.addEventListener('click', function() {
-            userGoTo(current + 1);
-        });
-
-        // ── Wire up pause button ──
+        // Pause button
         pauseBtn.addEventListener('click', function() {
             if (paused) { resumeAutoplay(); } else { pauseAutoplay(); }
         });
 
-        // ── Wire up dropdown links (same page) ──
-        // Links with data-slide attribute that stay on services.html
+        // Dropdown links on this same page — intercept and jump directly
         document.querySelectorAll('.dropdown-menu a[data-slide]').forEach(function(link) {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
-                var slideIndex = parseInt(link.dataset.slide, 10);
                 document.getElementById('carouselOuter').scrollIntoView({ behavior: 'smooth', block: 'start' });
-                userGoTo(slideIndex);
+                userGoTo(parseInt(link.dataset.slide, 10));
             });
         });
 
-        // ── Init ──
+        // Init
         render();
         startAutoplay();
-
     })();
     </script>
 </body>

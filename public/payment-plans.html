@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Botox Parties | Beautiful Minds Medical Aesthetics</title>
+    <title>Payment Plans | Beautiful Minds Medical Aesthetics</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <style>
@@ -23,26 +23,22 @@
         .cta-box .cta-button { background: white; color: #720538; border: 2px solid white; font-weight: 700; }
         .cta-box .cta-button:hover { background: transparent; color: white; }
         
-        .tiers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 4rem; }
-        .tier-card { background: white; border: 2px solid #EADFE4; padding: 2.5rem 1.5rem; text-align: center; transition: all 0.35s; position: relative; overflow: hidden; }
-        .tier-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #720538, #E60790); transform: scaleX(0); transition: transform 0.35s; }
-        .tier-card:hover::after { transform: scaleX(1); }
-        .tier-card:hover { border-color: #E60790; transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
-        .tier-card.featured { border-color: #E60790; background: linear-gradient(160deg, #fff 60%, #EADFE4 100%); }
-        .tier-card.featured::before { content: '⭐ BEST DEAL'; position: absolute; top: 14px; right: -28px; background: linear-gradient(135deg, #720538, #E60790); color: white; font-size: 0.65rem; font-weight: 700; letter-spacing: 1px; padding: 5px 40px; transform: rotate(45deg); }
-        .tier-guests { font-size: 1rem; font-weight: 700; color: #000; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem; }
-        .tier-discount { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 700; color: #E60790; line-height: 1; margin-bottom: 0.5rem; }
-        .tier-label { font-size: 0.85rem; color: #720538; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; }
-        .tier-desc { font-size: 0.92rem; color: #000; line-height: 1.7; font-weight: 400; }
-        .how-it-works { background: linear-gradient(135deg, #EADFE4 0%, #fafafa 100%); padding: 4rem; margin-bottom: 4rem; border-left: 4px solid #E60790; }
-        .how-it-works h3 { font-size: 2rem; color: #720538; font-weight: 700; margin-bottom: 1.5rem; }
-        .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
-        .step { text-align: center; }
-        .step-num { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, #720538, #E60790); color: white; font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-family: 'Cormorant Garamond', serif; }
-        .step h4 { font-size: 1.1rem; color: #720538; font-weight: 700; margin-bottom: 0.5rem; }
-        .step p { font-size: 0.92rem; color: #000; line-height: 1.7; font-weight: 400; }
-        @media (max-width: 768px) { .how-it-works { padding: 2.5rem 1.5rem; } .tiers-grid { grid-template-columns: repeat(2,1fr); } }
-        @media (max-width: 480px) { .tiers-grid { grid-template-columns: 1fr; } }
+        .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+        .plan-card { background: white; border: 2px solid #EADFE4; padding: 2.5rem 1.5rem; text-align: center; transition: all 0.35s; }
+        .plan-card:hover { border-color: #E60790; transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .plan-logo { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; font-family: 'Cormorant Garamond', serif; }
+        .plan-logo.affirm { color: #0F1F78; }
+        .plan-logo.klarna { color: #FF69B4; }
+        .plan-logo.afterpay { color: #B2FCE4; background: #000; padding: 0.3rem 0.8rem; border-radius: 6px; font-size: 1.4rem; display: inline-block; }
+        .plan-logo.cherry { color: #C8102E; }
+        .plan-card h3 { font-size: 1.4rem; color: #720538; font-weight: 700; margin-bottom: 0.5rem; }
+        .plan-card p { font-size: 0.9rem; color: #000; line-height: 1.7; font-weight: 400; }
+        @media (max-width: 480px) { .plans-grid { grid-template-columns: 1fr; } }
+        .cherry-section-header { text-align: center; margin: 4rem 0 2rem; }
+        .cherry-section-header h2 { font-size: 2.5rem; color: #720538; font-weight: 700; letter-spacing: 2px; margin-bottom: 0.8rem; font-family: 'Cormorant Garamond', serif; }
+        .cherry-section-header p { font-size: 1.05rem; color: #000; max-width: 650px; margin: 0 auto; line-height: 1.9; font-weight: 400; }
+        /* Contain Cherry widget width */
+        #hero, #calculator, #howitworks, #testimony, #faq, #all { max-width: 1200px; margin: 0 auto; }
     </style>
 </head>
 <body>
@@ -75,51 +71,85 @@
         </div>
     </nav>
 
-    <section class="page-hero"><div><h1>Botox Parties</h1><p>Celebrate, save, and glow together</p></div></section>
+    <section class="page-hero"><div><h1>Payment Plans</h1><p>Flexible financing for every budget</p></div></section>
     <div class="content-wrap">
         <div class="section-label">
-            <h2>🎉 Host a Botox Party</h2>
-            <p>Invite your friends, pick a date, and let us take care of the rest. The more guests you bring, the more YOU save — it's that simple. Perfect for birthdays, bachelorettes, or just a girls' night out!</p>
+            <h2>Flexible Payment Plans</h2>
+            <p>We believe beautiful, healthy skin should be accessible. That's why we offer multiple payment plan options so you can get the treatments you want, on a schedule that works for you.</p>
         </div>
-        <div class="tiers-grid">
-            <div class="tier-card">
-                <div class="tier-guests">4 Guests</div>
-                <div class="tier-discount">25%</div>
-                <div class="tier-label">off for the host</div>
-                <p class="tier-desc">A great start! Bring 4 friends and enjoy a quarter off your treatment.</p>
+        <div class="plans-grid">
+            <div class="plan-card">
+                <div class="plan-logo affirm">Affirm</div>
+                <h3>Affirm</h3>
+                <p>Split your purchase into easy monthly payments with no hidden fees. Check your rate with no impact to your credit score.</p>
             </div>
-            <div class="tier-card">
-                <div class="tier-guests">5–6 Guests</div>
-                <div class="tier-discount">50%</div>
-                <div class="tier-label">off for the host</div>
-                <p class="tier-desc">Half-price treatment when you bring a group of five or six.</p>
+            <div class="plan-card">
+                <div class="plan-logo klarna">Klarna</div>
+                <h3>Klarna</h3>
+                <p>Pay in 4 interest-free installments or choose a longer-term monthly plan that fits your budget.</p>
             </div>
-            <div class="tier-card">
-                <div class="tier-guests">7–9 Guests</div>
-                <div class="tier-discount">75%</div>
-                <div class="tier-label">off for the host</div>
-                <p class="tier-desc">Nearly free! Bring 7 to 9 friends and save three quarters on your treatment.</p>
+            <div class="plan-card">
+                <div class="plan-logo afterpay">Afterpay</div>
+                <h3>Afterpay</h3>
+                <p>Always interest-free. Pay over 6 weeks in 4 equal installments, automatically charged to your card.</p>
             </div>
-            <div class="tier-card featured">
-                <div class="tier-guests">10+ Guests</div>
-                <div class="tier-discount">FREE</div>
-                <div class="tier-label">treatment of your choice</div>
-                <p class="tier-desc">The ultimate host reward — bring 10 or more and your entire treatment is on us!</p>
-            </div>
+
         </div>
-        <div class="how-it-works">
-            <h3>How It Works</h3>
-            <div class="steps">
-                <div class="step"><div class="step-num">1</div><h4>Reach Out</h4><p>Contact us to choose a date and share details about your group size and preferred treatments.</p></div>
-                <div class="step"><div class="step-num">2</div><h4>Invite Your Crew</h4><p>Share the event with friends. The more the merrier — and the better your discount!</p></div>
-                <div class="step"><div class="step-num">3</div><h4>Arrive &amp; Enjoy</h4><p>We handle everything in a comfortable, private setting. Relax and let us work our magic.</p></div>
-                <div class="step"><div class="step-num">4</div><h4>Host Saves Big</h4><p>Your discount is applied based on confirmed guests. Celebrate your savings!</p></div>
-            </div>
+        <div class="highlight-box">
+            <h3>How Payment Plans Work</h3>
+            <p>Simply let us know at checkout that you'd like to use a payment plan. We'll walk you through the quick approval process for your preferred provider. Most approvals take just seconds, and you can start your treatment the same day. Financing is available for all services and products offered at Beautiful Minds Medical Aesthetics.</p>
         </div>
+        <!-- ── CHERRY SECTION ── -->
+        <div class="cherry-section-header">
+            <h2>Financing with Cherry</h2>
+            <p>Cherry is built specifically for aesthetic and wellness practices. Get approved in seconds — no hard credit pull — and choose a repayment plan that fits your life.</p>
+        </div>
+
+        <!-- CHERRY WIDGET BEGIN -->
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@200..900&family=Slabo+27px:wght@200..900&family=Lato:wght@200..900&family=Raleway:wght@200..900&family=Montserrat:wght@200..900&family=Oswald:wght@200..900&family=Poppins:wght@200..900&family=Source+Sans+Pro:wght@200..900&family=PT+Sans:wght@200..900&family=Open+Sans:wght@200..900&display=swap" rel="stylesheet" />
+        <script>
+            (function (w, d, s, o, f, js, fjs) {
+                w[o] = w[o] || function () {
+                    (w[o].q = w[o].q || []).push(arguments);
+                };
+                (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
+                js.id = o;
+                js.src = f;
+                js.async = 1;
+                fjs.parentNode.insertBefore(js, fjs);
+            })(window, document, "script", "_hw", "https://files.withcherry.com/widgets/widget.js");
+            _hw("init", {
+                debug: false,
+                variables: {
+                    slug: 'beautiful-minds-medical-aesthetics',
+                    name: 'Beautiful Minds Medical Aesthetics',
+                    images: [26],
+                    customLogo: '',
+                    defaultPurchaseAmount: 750,
+                    customImage: '',
+                    imageCategory: 'medspa',
+                    language: 'en',
+                },
+                styles: {
+                    primaryColor: '#fe66c4',
+                    secondaryColor: '#fe66c410',
+                    fontFamily: 'Montserrat',
+                    headerFontFamily: 'Montserrat',
+                }
+            }, ['hero','calculator','howitworks','faq']);
+        </script>
+        <div id="all"></div>
+        <div id="hero"></div>
+        <div id="calculator"></div>
+        <div id="howitworks"></div>
+        <div id="testimony"></div>
+        <div id="faq"></div>
+        <!-- CHERRY WIDGET END -->
+
         <div class="cta-box">
-            <h3>Ready to Plan Your Party?</h3>
-            <p>Contact us today to book your Botox Party date.</p>
-            <a href="contact.html" class="cta-button">Get In Touch</a>
+            <h3>Questions About Payment Options?</h3>
+            <p>Reach out and we'll help you find the plan that works best for you.</p>
+            <a href="contact.html" class="cta-button">Contact Us</a>
         </div>
     </div>
     <footer>

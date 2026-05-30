@@ -3,291 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gift Certificates & Payment Plans | Beautiful Minds Medical Aesthetics</title>
+    <title>Gift Certificates | Beautiful Minds Medical Aesthetics</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <style>
         .page-hero { height: 55vh; margin-top: 85px; }
         .page-hero h1 { font-size: 4rem; }
         .page-hero p  { margin-top: 1rem; font-size: 1.2rem; }
-
-        .content-wrap {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 5rem 6%;
-        }
-
-        .section-label {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        .section-label h2 {
-            font-size: 3rem;
-            color: #720538;
-            font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 0.8rem;
-        }
-        .section-label p {
-            font-size: 1.05rem;
-            color: #000;
-            max-width: 650px;
-            margin: 0 auto;
-            line-height: 1.9;
-            font-weight: 400;
-        }
-
-        /* ── GIFT CERT BLOCK ── */
-        .gift-block {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-            margin-bottom: 5rem;
-        }
-
-        .gift-visual {
-            background: linear-gradient(135deg, #720538 0%, #E60790 100%);
-            padding: 4rem 3rem;
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .gift-visual::before {
-            content: '🎁';
-            position: absolute;
-            font-size: 10rem;
-            opacity: 0.08;
-            top: -1rem;
-            right: -1rem;
-        }
-
-        .gift-visual h3 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: white;
-            position: relative;
-            z-index: 1;
-        }
-
-        .gift-visual p {
-            font-size: 1rem;
-            opacity: 0.9;
-            line-height: 1.8;
-            position: relative;
-            z-index: 1;
-            font-weight: 400;
-            margin-bottom: 1.5rem;
-        }
-
-        .gift-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.2);
-            border: 2px solid rgba(255,255,255,0.5);
-            color: white;
-            padding: 0.6rem 1.5rem;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin: 0.3rem;
-        }
-
-        .gift-text h2 {
-            font-size: 2.8rem;
-            color: #720538;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .gift-text p {
-            font-size: 1rem;
-            color: #000;
-            line-height: 1.9;
-            margin-bottom: 1rem;
-            font-weight: 400;
-        }
-
-        .gift-options {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .gift-option-btn {
-            display: inline-block;
-            padding: 0.9rem 2rem;
-            background: linear-gradient(135deg, #720538 0%, #E60790 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: all 0.3s;
-        }
-
-        .gift-option-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(230, 7, 144, 0.4);
-        }
-
-        .gift-option-btn.outline {
-            background: transparent;
-            border: 2px solid #720538;
-            color: #720538;
-        }
-
-        .gift-option-btn.outline:hover {
-            background: #720538;
-            color: white;
-            box-shadow: 0 10px 25px rgba(114, 5, 56, 0.3);
-        }
-
-        /* ── DIVIDER ── */
-        .section-divider {
-            text-align: center;
-            margin: 2rem 0 4rem;
-            position: relative;
-        }
-        .section-divider::before {
-            content: '';
-            position: absolute;
-            top: 50%; left: 0;
-            width: 100%; height: 1px;
-            background: #EADFE4;
-        }
-        .section-divider span {
-            position: relative;
-            background: white;
-            padding: 0 1.5rem;
-            color: #720538;
-            font-size: 1.5rem;
-        }
-
-        /* ── PAYMENT PLANS ── */
-        .plans-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .plan-card {
-            background: white;
-            border: 2px solid #EADFE4;
-            padding: 2.5rem 1.5rem;
-            text-align: center;
-            transition: all 0.35s;
-        }
-
-        .plan-card:hover {
-            border-color: #E60790;
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-        }
-
-        .plan-logo {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            font-family: 'Cormorant Garamond', serif;
-        }
-
-        .plan-logo.affirm  { color: #0F1F78; }
-        .plan-logo.klarna  { color: #FF69B4; }
-        .plan-logo.afterpay { color: #B2FCE4; background: #000; padding: 0.3rem 0.8rem; border-radius: 6px; font-size: 1.4rem; display: inline-block; }
-        .plan-logo.cherry  { color: #C8102E; }
-
-        .plan-card h3 {
-            font-size: 1.4rem;
-            color: #720538;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .plan-card p {
-            font-size: 0.9rem;
-            color: #000;
-            line-height: 1.7;
-            font-weight: 400;
-        }
-
-        /* ── INFO BOX ── */
-        .info-box {
-            background: linear-gradient(135deg, #EADFE4 0%, #fafafa 100%);
-            border-left: 4px solid #E60790;
-            padding: 2.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .info-box h3 {
-            font-size: 1.6rem;
-            color: #720538;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .info-box p {
-            font-size: 1rem;
-            color: #000;
-            line-height: 1.9;
-            font-weight: 400;
-        }
-
-        /* ── CTA BOX ── */
-        .cta-box {
-            background: linear-gradient(135deg, #720538 0%, #AC658B 100%);
-            padding: 4rem;
-            text-align: center;
-            color: white;
-        }
-
-        .cta-box h3 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .cta-box p {
-            font-size: 1.05rem;
-            opacity: 0.95;
-            margin-bottom: 2rem;
-            font-weight: 400;
-        }
-
-        .cta-box .cta-button {
-            background: white;
-            color: #720538;
-            border: 2px solid white;
-            font-weight: 700;
-        }
-
-        .cta-box .cta-button:hover {
-            background: transparent;
-            color: white;
-        }
-
-        @media (max-width: 768px) {
-            .gift-block { grid-template-columns: 1fr; }
-            .plans-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (max-width: 480px) {
-            .plans-grid { grid-template-columns: 1fr; }
-        }
+        .content-wrap { max-width: 1200px; margin: 0 auto; padding: 5rem 6%; }
+        .section-label { text-align: center; margin-bottom: 4rem; }
+        .section-label h2 { font-size: 3rem; color: #720538; font-weight: 700; letter-spacing: 2px; margin-bottom: 0.8rem; }
+        .section-label p { font-size: 1.05rem; color: #000; max-width: 650px; margin: 0 auto; line-height: 1.9; font-weight: 400; }
+        .highlight-box { background: linear-gradient(135deg, #EADFE4 0%, #fafafa 100%); border-left: 4px solid #E60790; padding: 2.5rem; margin-bottom: 2rem; }
+        .highlight-box h3 { font-size: 1.6rem; color: #720538; font-weight: 700; margin-bottom: 0.8rem; }
+        .highlight-box p { font-size: 1rem; color: #000; line-height: 1.9; font-weight: 400; }
+        .cta-box { background: linear-gradient(135deg, #720538 0%, #AC658B 100%); padding: 4rem; text-align: center; color: white; }
+        .cta-box h3 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: white; }
+        .cta-box p { font-size: 1.05rem; opacity: 0.95; margin-bottom: 2rem; font-weight: 400; }
+        .cta-box .cta-button { background: white; color: #720538; border: 2px solid white; font-weight: 700; }
+        .cta-box .cta-button:hover { background: transparent; color: white; }
+        
+        .gift-block { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 5rem; }
+        .gift-visual { background: linear-gradient(135deg, #720538 0%, #E60790 100%); padding: 4rem 3rem; text-align: center; color: white; position: relative; overflow: hidden; }
+        .gift-visual::before { content: "🎁"; position: absolute; font-size: 10rem; opacity: 0.08; top: -1rem; right: -1rem; }
+        .gift-visual h3 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; color: white; position: relative; z-index: 1; }
+        .gift-visual p { font-size: 1rem; opacity: 0.9; line-height: 1.8; position: relative; z-index: 1; font-weight: 400; margin-bottom: 1.5rem; }
+        .gift-badge { display: inline-block; background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.5); color: white; padding: 0.6rem 1.5rem; border-radius: 30px; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin: 0.3rem; }
+        .gift-text h2 { font-size: 2.8rem; color: #720538; font-weight: 700; margin-bottom: 1rem; }
+        .gift-text p { font-size: 1rem; color: #000; line-height: 1.9; margin-bottom: 1rem; font-weight: 400; }
+        .gift-options { display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; }
+        .gift-option-btn { display: inline-block; padding: 0.9rem 2rem; background: linear-gradient(135deg, #720538 0%, #E60790 100%); color: white; text-decoration: none; border-radius: 30px; font-weight: 700; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s; }
+        .gift-option-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(230,7,144,0.4); }
+        .gift-option-btn.outline { background: transparent; border: 2px solid #720538; color: #720538; }
+        .gift-option-btn.outline:hover { background: #720538; color: white; }
+        @media (max-width: 768px) { .gift-block { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-
-    <!-- Navigation -->
     <nav id="nav">
         <div class="nav-container">
             <a href="index.html" class="logo">BEAUTIFUL MINDS MEDICAL AESTHETICS</a>
@@ -298,14 +50,16 @@
                 <li class="nav-dropdown">
                     <a href="services.html">Services <span class="dropdown-arrow">▾</span></a>
                     <div class="dropdown-menu">
-                        <a href="services.html#neurotoxins">Neurotoxins</a>
-                        <a href="services.html#fillers">Dermal Fillers</a>
-                        <a href="services.html#skinpen">Skin Pen Microneedling</a>
-                        <a href="services.html#skincare">Skin Care</a>
-                        <a href="services.html#therapeutic">Therapeutic Treatments</a>
+                        <a href="services.html" data-slide="0">Neurotoxins</a>
+                        <a href="services.html" data-slide="1">Therapeutic Treatments</a>
+                        <a href="services.html" data-slide="2">Dermal Fillers</a>
+                        <a href="services.html" data-slide="3">Skin Pen Microneedling</a>
+                        <a href="services.html" data-slide="4">Skin Care</a>
                         <div class="dropdown-divider"></div>
-                        <a href="botox-parties.html">Botox Parties &amp; Referrals</a>
+                        <a href="botox-parties.html">Botox Parties</a>
+                        <a href="referral-program.html">Referral Program</a>
                         <a href="gift-certificates.html">Gift Certificates</a>
+                        <a href="payment-plans.html">Payment Plans</a>
                     </div>
                 </li>
                 <li><a href="before-after.html">Gallery</a></li>
@@ -315,17 +69,8 @@
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="page-hero">
-        <div>
-            <h1>Gift Certificates</h1>
-            <p>Give the gift of confidence and beauty</p>
-        </div>
-    </section>
-
+    <section class="page-hero"><div><h1>Gift Certificates</h1><p>Give the gift of confidence and beauty</p></div></section>
     <div class="content-wrap">
-
-        <!-- Gift Cert Block -->
         <div class="gift-block">
             <div class="gift-visual">
                 <h3>🎁 Give Beauty</h3>
@@ -339,60 +84,21 @@
                 <p>Gift certificates are available for any dollar amount and can be used toward any service we offer — neurotoxins, fillers, microneedling, skincare, and more.</p>
                 <p><strong>Purchase online or visit us in person.</strong> Gift certificates never expire and make a thoughtful, luxurious gift for anyone on your list.</p>
                 <div class="gift-options">
-                    <!-- Replace href with actual purchase link when available -->
-                    <a href="contact.html" class="gift-option-btn">Purchase Online — Coming Soon</a>
+                    <a href="https://beautifulmindsmedaesthetics.janeapp.com/online_gift_cards/new" target="_blank" class="gift-option-btn">Purchase Online</a>
                     <a href="contact.html" class="gift-option-btn outline">Buy In Person</a>
                 </div>
             </div>
         </div>
-
-        <!-- Divider -->
-        <div class="section-divider"><span>💳</span></div>
-
-        <!-- Payment Plans -->
-        <div class="section-label">
-            <h2>Flexible Payment Plans</h2>
-            <p>We believe beautiful, healthy skin should be accessible. That's why we offer multiple payment plan options so you can get the treatments you want, on a schedule that works for you.</p>
+        <div class="highlight-box">
+            <h3>Perfect for Any Occasion</h3>
+            <p>Gift certificates can be used for any of our services — from Botox and fillers to microneedling and medical-grade skincare. Let your loved one choose exactly what they want. Gift certificates never expire.</p>
         </div>
-
-        <div class="plans-grid">
-            <div class="plan-card">
-                <div class="plan-logo affirm">Affirm</div>
-                <h3>Affirm</h3>
-                <p>Split your purchase into easy monthly payments with no hidden fees. Check your rate with no impact to your credit score.</p>
-            </div>
-            <div class="plan-card">
-                <div class="plan-logo klarna">Klarna</div>
-                <h3>Klarna</h3>
-                <p>Pay in 4 interest-free installments or choose a longer-term monthly plan that fits your budget.</p>
-            </div>
-            <div class="plan-card">
-                <div class="plan-logo afterpay">Afterpay</div>
-                <h3>Afterpay</h3>
-                <p>Always interest-free. Pay over 6 weeks in 4 equal installments, automatically charged to your card.</p>
-            </div>
-            <div class="plan-card">
-                <div class="plan-logo cherry">Cherry</div>
-                <h3>Cherry</h3>
-                <p>Designed specifically for aesthetic and wellness treatments. Get approved in seconds with flexible repayment terms.</p>
-            </div>
-        </div>
-
-        <div class="info-box">
-            <h3>How Payment Plans Work</h3>
-            <p>Simply let us know at checkout that you'd like to use a payment plan. We'll walk you through the quick approval process for your preferred provider. Most approvals take just seconds, and you can start your treatment the same day. Financing is available for all services and products offered at Beautiful Minds Medical Aesthetics.</p>
-        </div>
-
-        <!-- CTA -->
         <div class="cta-box">
-            <h3>Questions About Payment Options?</h3>
-            <p>Reach out and we'll help you find the plan that works best for you.</p>
+            <h3>Questions About Gift Certificates?</h3>
+            <p>Contact us and we'll help you find the perfect gift.</p>
             <a href="contact.html" class="cta-button">Contact Us</a>
         </div>
-
     </div>
-
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-section">
@@ -426,7 +132,9 @@
                 <a href="services.html">Services</a>
                 <a href="before-after.html">Gallery</a>
                 <a href="botox-parties.html">Botox Parties</a>
+                <a href="referral-program.html">Referral Program</a>
                 <a href="gift-certificates.html">Gift Certificates</a>
+                <a href="payment-plans.html">Payment Plans</a>
                 <a href="contact.html">Contact</a>
                 <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank">Book Now</a>
             </div>
@@ -436,13 +144,20 @@
                     <a href="https://www.instagram.com/beautifulminds_medaesthetics/" target="_blank">📷</a>
                     <a href="https://www.facebook.com/p/Beautiful-Minds-Medical-Aesthetics-61567757859137/" target="_blank">👍</a>
                 </div>
+                <p style="margin-top:2rem;"><strong>Botox Parties Available!</strong><br>Contact us for details</p>
             </div>
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 Beautiful Minds Medical Aesthetics. All rights reserved.</p>
         </div>
     </footer>
-
+    <script>
+        document.querySelectorAll('.dropdown-menu a[data-slide]').forEach(function(link) {
+            link.addEventListener('click', function() {
+                sessionStorage.setItem('bmma_slide', link.dataset.slide);
+            });
+        });
+    </script>
     <script src="js/main.js"></script>
 </body>
 </html>
