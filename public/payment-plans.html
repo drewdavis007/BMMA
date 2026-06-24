@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' https:;">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Plans | Beautiful Minds Medical Aesthetics</title>
@@ -10,38 +13,246 @@
         .page-hero { height: 55vh; margin-top: 85px; }
         .page-hero h1 { font-size: 4rem; }
         .page-hero p  { margin-top: 1rem; font-size: 1.2rem; }
+
         .content-wrap { max-width: 1200px; margin: 0 auto; padding: 5rem 6%; }
-        .section-label { text-align: center; margin-bottom: 4rem; }
+
+        .section-label { text-align: center; margin-bottom: 3rem; }
         .section-label h2 { font-size: 3rem; color: #720538; font-weight: 700; letter-spacing: 2px; margin-bottom: 0.8rem; }
         .section-label p { font-size: 1.05rem; color: #000; max-width: 650px; margin: 0 auto; line-height: 1.9; font-weight: 400; }
-        .highlight-box { background: linear-gradient(135deg, #EADFE4 0%, #fafafa 100%); border-left: 4px solid #E60790; padding: 2.5rem; margin-bottom: 2rem; }
-        .highlight-box h3 { font-size: 1.6rem; color: #720538; font-weight: 700; margin-bottom: 0.8rem; }
-        .highlight-box p { font-size: 1rem; color: #000; line-height: 1.9; font-weight: 400; }
+
         .cta-box { background: linear-gradient(135deg, #720538 0%, #AC658B 100%); padding: 4rem; text-align: center; color: white; }
         .cta-box h3 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: white; }
         .cta-box p { font-size: 1.05rem; opacity: 0.95; margin-bottom: 2rem; font-weight: 400; }
         .cta-box .cta-button { background: white; color: #720538; border: 2px solid white; font-weight: 700; }
         .cta-box .cta-button:hover { background: transparent; color: white; }
-        
-        .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
-        .plan-card { background: white; border: 2px solid #EADFE4; padding: 2.5rem 1.5rem; text-align: center; transition: all 0.35s; }
-        .plan-card:hover { border-color: #E60790; transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
-        .plan-logo { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; font-family: 'Cormorant Garamond', serif; }
-        .plan-logo.affirm { color: #0F1F78; }
-        .plan-logo.klarna { color: #FF69B4; }
-        .plan-logo.afterpay { color: #B2FCE4; background: #000; padding: 0.3rem 0.8rem; border-radius: 6px; font-size: 1.4rem; display: inline-block; }
-        .plan-logo.cherry { color: #C8102E; }
-        .plan-card h3 { font-size: 1.4rem; color: #720538; font-weight: 700; margin-bottom: 0.5rem; }
-        .plan-card p { font-size: 0.9rem; color: #000; line-height: 1.7; font-weight: 400; }
-        @media (max-width: 480px) { .plans-grid { grid-template-columns: 1fr; } }
-        .cherry-section-header { text-align: center; margin: 4rem 0 2rem; }
-        .cherry-section-header h2 { font-size: 2.5rem; color: #720538; font-weight: 700; letter-spacing: 2px; margin-bottom: 0.8rem; font-family: 'Cormorant Garamond', serif; }
-        .cherry-section-header p { font-size: 1.05rem; color: #000; max-width: 650px; margin: 0 auto; line-height: 1.9; font-weight: 400; }
-        /* Contain Cherry widget width */
-        #hero, #calculator, #howitworks, #testimony, #faq, #all { max-width: 1200px; margin: 0 auto; }
+
+        /* ── NAV SOCIAL ICONS ── */
+        .nav-social { display: flex; align-items: center; gap: 0.6rem; }
+        .nav-social-link { color: white; opacity: 0.8; transition: opacity 0.3s; display: flex; align-items: center; }
+        .nav-social-link:hover { opacity: 1; }
+        .nav-social-link::after { display: none !important; }
+
+        /* ── PROVIDER TABS ── */
+        .provider-tabs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            border: 2px solid #EADFE4;
+            margin-bottom: 0;
+        }
+
+        .provider-tab {
+            padding: 1.5rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            background: white;
+            border-right: 1px solid #EADFE4;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.25s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .provider-tab:last-child { border-right: none; }
+
+        .provider-tab:hover { background: #fafafa; }
+
+        .provider-tab.active {
+            background: linear-gradient(135deg, #720538 0%, #E60790 100%);
+            color: white;
+        }
+
+        .provider-tab .tab-logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            font-family: 'Cormorant Garamond', serif;
+            line-height: 1;
+        }
+
+        .provider-tab .tab-name {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* Logo colors — only show when tab NOT active */
+        .provider-tab:not(.active) .tab-logo.affirm  { color: #0F1F78; }
+        .provider-tab:not(.active) .tab-logo.klarna  { color: #e85fa0; }
+        .provider-tab:not(.active) .tab-logo.afterpay{ color: #333; }
+        .provider-tab:not(.active) .tab-logo.cherry  { color: #C8102E; }
+        .provider-tab:not(.active) .tab-name         { color: #720538; }
+        .provider-tab.active .tab-logo,
+        .provider-tab.active .tab-name               { color: white; }
+
+        /* ── PANEL CONTAINER ── */
+        .provider-panel-wrap {
+            border: 2px solid #EADFE4;
+            border-top: none;
+            background: white;
+            margin-bottom: 3rem;
+        }
+
+        .provider-panel {
+            display: none;
+            padding: 3rem;
+        }
+
+        .provider-panel.active { display: block; }
+
+        /* ── PANEL LAYOUT: info left, widget/badge right ── */
+        .panel-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .panel-info h3 {
+            font-size: 2rem;
+            color: #720538;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .panel-info p {
+            font-size: 0.97rem;
+            color: #000;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .panel-info ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem;
+        }
+
+        .panel-info ul li {
+            font-size: 0.95rem;
+            color: #000;
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .panel-info ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #E60790;
+            font-weight: 700;
+        }
+
+        .panel-cta-btn {
+            display: inline-block;
+            padding: 0.9rem 2.2rem;
+            background: linear-gradient(135deg, #720538, #E60790);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .panel-cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(230,7,144,0.4);
+        }
+
+        /* ── PROVIDER BADGE / VISUAL ── */
+        .panel-visual {
+            background: #fafafa;
+            border: 2px solid #EADFE4;
+            padding: 2.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.2rem;
+            min-height: 220px;
+        }
+
+        .panel-visual .big-logo {
+            font-size: 3.5rem;
+            font-weight: 700;
+            font-family: 'Cormorant Garamond', serif;
+            line-height: 1;
+        }
+
+        .big-logo.affirm   { color: #0F1F78; }
+        .big-logo.klarna   { color: #e85fa0; }
+        .big-logo.afterpay {
+            color: #B2FCE4;
+            background: #000;
+            padding: 0.4rem 1rem;
+            border-radius: 8px;
+            font-size: 2.2rem;
+            display: inline-block;
+        }
+        .big-logo.cherry   { color: #C8102E; }
+
+        .panel-visual .badge-tagline {
+            font-size: 0.88rem;
+            color: #555;
+            line-height: 1.6;
+            max-width: 220px;
+        }
+
+        /* ── CHERRY PANEL — widget container, constrained ── */
+        .cherry-panel-wrap {
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        /* Force Cherry widget to fit within our layout */
+        .cherry-panel-wrap #hero,
+        .cherry-panel-wrap #calculator,
+        .cherry-panel-wrap #howitworks,
+        .cherry-panel-wrap #faq,
+        .cherry-panel-wrap #all {
+            max-width: 100% !important;
+            box-sizing: border-box;
+        }
+
+        /* Hide Cherry sections we don't need to keep it compact */
+        .cherry-panel-wrap #all { display: none; }
+
+        /* ── HOW IT WORKS BOX ── */
+        .highlight-box {
+            background: linear-gradient(135deg, #EADFE4 0%, #fafafa 100%);
+            border-left: 4px solid #E60790;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .highlight-box h3 { font-size: 1.6rem; color: #720538; font-weight: 700; margin-bottom: 0.8rem; }
+        .highlight-box p  { font-size: 1rem; color: #000; line-height: 1.9; font-weight: 400; }
+
+        @media (max-width: 900px) {
+            .provider-tabs { grid-template-columns: repeat(2, 1fr); }
+            .provider-tab:nth-child(2) { border-right: none; }
+            .provider-tab:nth-child(3) { border-right: 1px solid #EADFE4; border-top: 1px solid #EADFE4; }
+            .provider-tab:nth-child(4) { border-top: 1px solid #EADFE4; }
+        }
+
+        @media (max-width: 640px) {
+            .panel-inner { grid-template-columns: 1fr; }
+            .provider-tabs { grid-template-columns: repeat(2, 1fr); }
+            .provider-panel { padding: 2rem 1.5rem; }
+        }
     </style>
 </head>
 <body>
+
     <nav id="nav">
         <div class="nav-container">
             <a href="index.html" class="logo">BEAUTIFUL MINDS MEDICAL AESTHETICS</a>
@@ -55,8 +266,10 @@
                         <a href="services.html" data-slide="0">Neurotoxins</a>
                         <a href="services.html" data-slide="1">Therapeutic Treatments</a>
                         <a href="services.html" data-slide="2">Dermal Fillers</a>
-                        <a href="services.html" data-slide="3">Skin Pen Microneedling</a>
-                        <a href="services.html" data-slide="4">Skin Care</a>
+                        <a href="services.html" data-slide="3">Sculptra</a>
+                        <a href="services.html" data-slide="4">Cellenis Derma PRP</a>
+                        <a href="services.html" data-slide="5">Skin Pen Microneedling</a>
+                        <a href="services.html" data-slide="6">Skin Care</a>
                         <div class="dropdown-divider"></div>
                         <a href="botox-parties.html">Botox Parties</a>
                         <a href="referral-program.html">Referral Program</a>
@@ -66,108 +279,193 @@
                 </li>
                 <li><a href="before-after.html">Gallery</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" class="book-now-btn">Book Now</a></li>
+                <li class="nav-social">
+                    <a href="https://www.instagram.com/beautifulminds_medaesthetics/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="nav-social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/p/Beautiful-Minds-Medical-Aesthetics-61567757859137/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="nav-social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                </li>
+                <li><a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="book-now-btn">Book Now</a></li>
             </ul>
         </div>
     </nav>
 
-    <section class="page-hero"><div><h1>Payment Plans</h1><p>Flexible financing for every budget</p></div></section>
+    <section class="page-hero">
+        <div>
+            <h1>Payment Plans</h1>
+            <p>Flexible financing for every budget</p>
+        </div>
+    </section>
+
     <div class="content-wrap">
+
         <div class="section-label">
             <h2>Flexible Payment Plans</h2>
-            <p>We believe beautiful, healthy skin should be accessible. That's why we offer multiple payment plan options so you can get the treatments you want, on a schedule that works for you.</p>
+            <p>We believe beautiful, healthy skin should be accessible. Choose from four financing options — all designed to let you get the treatments you want on a schedule that works for you.</p>
         </div>
-        <div class="plans-grid">
-            <div class="plan-card">
-                <div class="plan-logo affirm">Affirm</div>
-                <h3>Affirm</h3>
-                <p>Split your purchase into easy monthly payments with no hidden fees. Check your rate with no impact to your credit score.</p>
-            </div>
-            <div class="plan-card">
-                <div class="plan-logo klarna">Klarna</div>
-                <h3>Klarna</h3>
-                <p>Pay in 4 interest-free installments or choose a longer-term monthly plan that fits your budget.</p>
-            </div>
-            <div class="plan-card">
-                <div class="plan-logo afterpay">Afterpay</div>
-                <h3>Afterpay</h3>
-                <p>Always interest-free. Pay over 6 weeks in 4 equal installments, automatically charged to your card.</p>
+
+        <!-- ── PROVIDER TABS ── -->
+        <div class="provider-tabs" id="providerTabs">
+            <button class="provider-tab active" data-panel="affirm">
+                <span class="tab-logo affirm">Affirm</span>
+                <span class="tab-name">Monthly</span>
+            </button>
+            <button class="provider-tab" data-panel="klarna">
+                <span class="tab-logo klarna">Klarna</span>
+                <span class="tab-name">Pay in 4</span>
+            </button>
+            <button class="provider-tab" data-panel="afterpay">
+                <span class="tab-logo afterpay">Afterpay</span>
+                <span class="tab-name">Interest-Free</span>
+            </button>
+            <button class="provider-tab" data-panel="cherry">
+                <span class="tab-logo cherry">Cherry</span>
+                <span class="tab-name">Instant Approval</span>
+            </button>
+        </div>
+
+        <!-- ── PANELS ── -->
+        <div class="provider-panel-wrap">
+
+            <!-- AFFIRM -->
+            <div class="provider-panel active" id="panel-affirm">
+                <div class="panel-inner">
+                    <div class="panel-info">
+                        <h3>Affirm</h3>
+                        <p>Split your treatment cost into easy monthly payments with no hidden fees and no late fees. Check your rate in seconds with no impact to your credit score.</p>
+                        <ul>
+                            <li>Monthly payment plans from 3–36 months</li>
+                            <li>No hidden fees, no prepayment penalty</li>
+                            <li>Soft credit check — no impact to your score</li>
+                            <li>Instant approval decision</li>
+                            <li>Available on all services and products</li>
+                        </ul>
+                        <a href="https://www.affirm.com/how-it-works" target="_blank" rel="noopener noreferrer" class="panel-cta-btn">Learn How Affirm Works</a>
+                    </div>
+                    <div class="panel-visual">
+                        <span class="big-logo affirm">Affirm</span>
+                        <p class="badge-tagline">Pay over time — simple, transparent monthly payments with 0% APR options.</p>
+                    </div>
+                </div>
             </div>
 
-        </div>
+            <!-- KLARNA -->
+            <div class="provider-panel" id="panel-klarna">
+                <div class="panel-inner">
+                    <div class="panel-info">
+                        <h3>Klarna</h3>
+                        <p>Pay in 4 interest-free installments every two weeks, or choose a flexible monthly plan. Klarna lets you decide what works best for your budget.</p>
+                        <ul>
+                            <li>Pay in 4 — split into 4 automatic payments</li>
+                            <li>0% interest when you pay on time</li>
+                            <li>Longer-term monthly financing also available</li>
+                            <li>Quick, easy approval at checkout</li>
+                            <li>No impact to credit score for Pay in 4</li>
+                        </ul>
+                        <a href="https://www.klarna.com/us/how-it-works/" target="_blank" rel="noopener noreferrer" class="panel-cta-btn">Learn How Klarna Works</a>
+                    </div>
+                    <div class="panel-visual">
+                        <span class="big-logo klarna">Klarna</span>
+                        <p class="badge-tagline">Pay in 4 interest-free installments — first payment at checkout, rest every 2 weeks.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AFTERPAY -->
+            <div class="provider-panel" id="panel-afterpay">
+                <div class="panel-inner">
+                    <div class="panel-info">
+                        <h3>Afterpay</h3>
+                        <p>Always interest-free. Pay over 6 weeks in 4 equal installments — automatically charged to your debit or credit card every two weeks.</p>
+                        <ul>
+                            <li>Always 0% interest — guaranteed</li>
+                            <li>4 equal payments over 6 weeks</li>
+                            <li>First payment due at time of purchase</li>
+                            <li>Automatic payments — nothing to remember</li>
+                            <li>Available on all services and products</li>
+                        </ul>
+                        <a href="https://www.afterpay.com/en-US/how-it-works" target="_blank" rel="noopener noreferrer" class="panel-cta-btn">Learn How Afterpay Works</a>
+                    </div>
+                    <div class="panel-visual">
+                        <span class="big-logo afterpay">Afterpay</span>
+                        <p class="badge-tagline">4 payments. 6 weeks. Always interest-free. No catches.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHERRY -->
+            <div class="provider-panel" id="panel-cherry">
+                <div class="panel-inner" style="grid-template-columns:1fr;">
+                    <div class="panel-info" style="margin-bottom:1.5rem;">
+                        <h3>Cherry</h3>
+                        <p>Cherry is built specifically for aesthetic and wellness practices. Get approved in seconds with no hard credit pull and choose a repayment plan that fits your life — from 3 to 24 months.</p>
+                        <ul>
+                            <li>Approvals in seconds — no hard credit pull</li>
+                            <li>Plans from 3 to 24 months</li>
+                            <li>Designed for med spa &amp; aesthetic treatments</li>
+                            <li>0% APR promotional options available</li>
+                            <li>Use the calculator below to estimate your payments</li>
+                        </ul>
+                    </div>
+                    <!-- Cherry widget — constrained to panel width -->
+                    <div class="cherry-panel-wrap">
+                        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200..900&display=swap" rel="stylesheet">
+                        <script>
+                            (function (w, d, s, o, f, js, fjs) {
+                                w[o] = w[o] || function () { (w[o].q = w[o].q || []).push(arguments); };
+                                (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
+                                js.id = o; js.src = f; js.async = 1;
+                                fjs.parentNode.insertBefore(js, fjs);
+                            })(window, document, "script", "_hw", "https://files.withcherry.com/widgets/widget.js");
+                            _hw("init", {
+                                debug: false,
+                                variables: {
+                                    slug: 'beautiful-minds-medical-aesthetics',
+                                    name: 'Beautiful Minds Medical Aesthetics',
+                                    images: [26],
+                                    customLogo: '',
+                                    defaultPurchaseAmount: 750,
+                                    customImage: '',
+                                    imageCategory: 'medspa',
+                                    language: 'en',
+                                },
+                                styles: {
+                                    primaryColor: '#fe66c4',
+                                    secondaryColor: '#fe66c410',
+                                    fontFamily: 'Montserrat',
+                                    headerFontFamily: 'Montserrat',
+                                }
+                            }, ['calculator']);
+                        </script>
+                        <div id="calculator"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- end provider-panel-wrap -->
+
         <div class="highlight-box">
-            <h3>How Payment Plans Work</h3>
-            <p>Simply let us know at checkout that you'd like to use a payment plan. We'll walk you through the quick approval process for your preferred provider. Most approvals take just seconds, and you can start your treatment the same day. Financing is available for all services and products offered at Beautiful Minds Medical Aesthetics.</p>
+            <h3>How to Use a Payment Plan</h3>
+            <p>Simply let us know at checkout that you'd like to use a payment plan and which provider you prefer. We'll guide you through the quick approval process. Most approvals take just seconds and you can begin your treatment the same day. Financing is available for all services and products at Beautiful Minds Medical Aesthetics.</p>
         </div>
-        <!-- ── CHERRY SECTION ── -->
-        <div class="cherry-section-header">
-            <h2>Financing with Cherry</h2>
-            <p>Cherry is built specifically for aesthetic and wellness practices. Get approved in seconds — no hard credit pull — and choose a repayment plan that fits your life.</p>
-        </div>
-
-        <!-- CHERRY WIDGET BEGIN -->
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@200..900&family=Slabo+27px:wght@200..900&family=Lato:wght@200..900&family=Raleway:wght@200..900&family=Montserrat:wght@200..900&family=Oswald:wght@200..900&family=Poppins:wght@200..900&family=Source+Sans+Pro:wght@200..900&family=PT+Sans:wght@200..900&family=Open+Sans:wght@200..900&display=swap" rel="stylesheet" />
-        <script>
-            (function (w, d, s, o, f, js, fjs) {
-                w[o] = w[o] || function () {
-                    (w[o].q = w[o].q || []).push(arguments);
-                };
-                (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
-                js.id = o;
-                js.src = f;
-                js.async = 1;
-                fjs.parentNode.insertBefore(js, fjs);
-            })(window, document, "script", "_hw", "https://files.withcherry.com/widgets/widget.js");
-            _hw("init", {
-                debug: false,
-                variables: {
-                    slug: 'beautiful-minds-medical-aesthetics',
-                    name: 'Beautiful Minds Medical Aesthetics',
-                    images: [26],
-                    customLogo: '',
-                    defaultPurchaseAmount: 750,
-                    customImage: '',
-                    imageCategory: 'medspa',
-                    language: 'en',
-                },
-                styles: {
-                    primaryColor: '#fe66c4',
-                    secondaryColor: '#fe66c410',
-                    fontFamily: 'Montserrat',
-                    headerFontFamily: 'Montserrat',
-                }
-            }, ['hero','calculator','howitworks','faq']);
-        </script>
-        <div id="all"></div>
-        <div id="hero"></div>
-        <div id="calculator"></div>
-        <div id="howitworks"></div>
-        <div id="testimony"></div>
-        <div id="faq"></div>
-        <!-- CHERRY WIDGET END -->
 
         <div class="cta-box">
             <h3>Questions About Payment Options?</h3>
             <p>Reach out and we'll help you find the plan that works best for you.</p>
             <a href="contact.html" class="cta-button">Contact Us</a>
         </div>
+
     </div>
+
     <footer>
         <div class="footer-content">
             <div class="footer-section">
                 <h4>Contact</h4>
-                <div class="footer-contact-item">
-                    <span class="footer-icon">📞</span>
-                    <a href="tel:6015338597">(601) 533-8597</a>
-                </div>
-                <div class="footer-contact-item">
-                    <span class="footer-icon">📧</span>
-                    <a href="mailto:kcollum@beautifulmindsmedaesthetics.com">kcollum@beautifulmindsmedaesthetics.com</a>
-                </div>
-                <div class="footer-contact-item">
-                    <span class="footer-icon">📍</span>
-                    <span>637 HWY 51 Suite B<br>Ridgeland, MS 39157</span>
-                </div>
+                <div class="footer-contact-item"><span class="footer-icon">📞</span><a href="tel:6015338597">(601) 533-8597</a></div>
+                <div class="footer-contact-item"><span class="footer-icon">📧</span><a href="mailto:kcollum@beautifulmindsmedaesthetics.com">kcollum@beautifulmindsmedaesthetics.com</a></div>
+                <div class="footer-contact-item"><span class="footer-icon">📍</span><span>637 Highway 51 South<br>Ridgeland, MS 39157</span></div>
             </div>
             <div class="footer-section">
                 <h4>Hours</h4>
@@ -189,13 +487,17 @@
                 <a href="gift-certificates.html">Gift Certificates</a>
                 <a href="payment-plans.html">Payment Plans</a>
                 <a href="contact.html">Contact</a>
-                <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank">Book Now</a>
+                <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer">Book Now</a>
             </div>
             <div class="footer-section">
                 <h4>Follow Us</h4>
                 <div class="social-links">
-                    <a href="https://www.instagram.com/beautifulminds_medaesthetics/" target="_blank">📷</a>
-                    <a href="https://www.facebook.com/p/Beautiful-Minds-Medical-Aesthetics-61567757859137/" target="_blank">👍</a>
+                    <a href="https://www.instagram.com/beautifulminds_medaesthetics/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/p/Beautiful-Minds-Medical-Aesthetics-61567757859137/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
                 </div>
                 <p style="margin-top:2rem;"><strong>Botox Parties Available!</strong><br>Contact us for details</p>
             </div>
@@ -204,6 +506,7 @@
             <p>&copy; 2026 Beautiful Minds Medical Aesthetics. All rights reserved.</p>
         </div>
     </footer>
+
     <script>
         document.querySelectorAll('.dropdown-menu a[data-slide]').forEach(function(link) {
             link.addEventListener('click', function() {
@@ -212,5 +515,22 @@
         });
     </script>
     <script src="js/main.js"></script>
+    <script>
+        // Tab switching
+        const tabs   = document.querySelectorAll('.provider-tab');
+        const panels = document.querySelectorAll('.provider-panel');
+
+        tabs.forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                const target = tab.dataset.panel;
+
+                tabs.forEach(function(t) { t.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('active'); });
+
+                tab.classList.add('active');
+                document.getElementById('panel-' + target).classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>

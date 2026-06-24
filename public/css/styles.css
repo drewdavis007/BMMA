@@ -184,6 +184,12 @@ nav {
     transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
 }
+/* ── NAV SOCIAL ICONS ── */
+.nav-social { display: flex; align-items: center; gap: 0.6rem; }
+.nav-social-link { color: white; opacity: 0.8; transition: opacity 0.3s; display: flex; align-items: center; }
+.nav-social-link:hover { opacity: 1; }
+.nav-social-link::after { display: none !important; }
+
 
 /* Mobile hamburger */
 .hamburger {

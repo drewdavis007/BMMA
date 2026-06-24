@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' https:;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Before & After Gallery | Beautiful Minds Medical Aesthetics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .page-hero { height: 50vh; margin-top: 85px; }
+        .page-hero h1 { font-size: 4rem; }
+        .page-hero p  { margin-top: 1rem; font-size: 1.2rem; }
+
+        /* ── NAV SOCIAL ── */
+        .nav-social { display: flex; align-items: center; gap: 0.6rem; }
+        .nav-social-link { color: white; opacity: 0.8; transition: opacity 0.3s; display: flex; align-items: center; }
+        .nav-social-link:hover { opacity: 1; }
+        .nav-social-link::after { display: none !important; }
+
+        /* ── GALLERY LAYOUT ── */
+        .gallery-wrap {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 5rem 6%;
+        }
+
+        /* ── FILTER BAR ── */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: center;
+            margin-bottom: 4rem;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 2px solid #EADFE4;
+            color: #720538;
+            padding: 0.65rem 1.5rem;
+            border-radius: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: linear-gradient(135deg, #720538, #E60790);
+            border-color: transparent;
+            color: white;
+        }
+
+        /* ── CATEGORY SECTION ── */
+        .gallery-category {
+            margin-bottom: 5rem;
+        }
+
+        .gallery-category.hidden { display: none; }
+
+        .category-heading {
+            font-size: 2.2rem;
+            color: #720538;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid #E60790;
+            display: inline-block;
+        }
+
+        .category-sub {
+            font-size: 0.95rem;
+            color: #000;
+            margin-bottom: 2.5rem;
+            margin-top: 0.5rem;
+            font-weight: 400;
+        }
+
+        /* ── BA GRID ── */
+        .ba-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        /* ── BA CARD ── */
+        .ba-card {
+            background: white;
+            border: 2px solid #EADFE4;
+            overflow: hidden;
+            transition: all 0.35s;
+            position: relative;
+        }
+
+        .ba-card:hover {
+            border-color: #E60790;
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+        }
+
+        .ba-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .ba-side {
+            position: relative;
+            height: 260px;
+            background: #EADFE4;
+            overflow: hidden;
+        }
+
+        /* Placeholder styling — swap for real images */
+        .ba-side img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .ba-side-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: #AC658B;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: #EADFE4;
+        }
+
+        .ba-label-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(255,255,255,0.95);
+            color: #720538;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 20px;
+            z-index: 2;
+        }
+
+        .ba-divider {
+            width: 3px;
+            background: white;
+        }
+
+        .ba-caption {
+            padding: 1.4rem 1.6rem;
+            border-top: 1px solid #EADFE4;
+        }
+
+        .ba-caption h4 {
+            font-size: 1.25rem;
+            color: #720538;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .ba-caption p {
+            font-size: 0.88rem;
+            color: #000;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        /* ── COMING SOON CARD ── */
+        .ba-card.coming-soon .ba-images {
+            display: block;
+        }
+
+        .coming-soon-block {
+            height: 260px;
+            background: linear-gradient(135deg, #EADFE4 0%, #fafafa 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .coming-soon-block span {
+            font-size: 2.5rem;
+        }
+
+        .coming-soon-block p {
+            font-size: 0.85rem;
+            color: #720538;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* ── DISCLAIMER ── */
+        .gallery-disclaimer {
+            text-align: center;
+            padding: 2rem 6%;
+            background: linear-gradient(135deg, #EADFE4 0%, #fafafa 100%);
+            border-top: 1px solid #EADFE4;
+        }
+
+        .gallery-disclaimer p {
+            font-size: 0.88rem;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* ── CTA ── */
+        .cta-section {
+            padding: 5rem 6%;
+            background: linear-gradient(135deg, #720538 0%, #AC658B 100%);
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 { font-size: 3rem; margin-bottom: 1rem; font-weight: 700; }
+        .cta-section p  { font-size: 1.1rem; margin-bottom: 2.5rem; opacity: 0.95; }
+        .cta-section .cta-button { background: white; color: #720538; border: 2px solid white; font-weight: 700; }
+        .cta-section .cta-button:hover { background: transparent; color: white; }
+
+        @media (max-width: 768px) {
+            .ba-grid { grid-template-columns: 1fr; }
+            .filter-bar { gap: 0.5rem; }
+            .filter-btn { font-size: 0.7rem; padding: 0.5rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">BEAUTIFUL MINDS MEDICAL AESTHETICS</a>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li class="nav-dropdown">
+                    <a href="services.html">Services <span class="dropdown-arrow">▾</span></a>
+                    <div class="dropdown-menu">
+                        <a href="services.html" data-slide="0">Neurotoxins</a>
+                        <a href="services.html" data-slide="1">Therapeutic Treatments</a>
+                        <a href="services.html" data-slide="2">Dermal Fillers</a>
+                        <a href="services.html" data-slide="3">Sculptra</a>
+                        <a href="services.html" data-slide="4">Cellenis Derma PRP</a>
+                        <a href="services.html" data-slide="5">Skin Pen Microneedling</a>
+                        <a href="services.html" data-slide="6">Skin Care</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="botox-parties.html">Botox Parties</a>
+                        <a href="referral-program.html">Referral Program</a>
+                        <a href="gift-certificates.html">Gift Certificates</a>
+                        <a href="payment-plans.html">Payment Plans</a>
+                    </div>
+                </li>
+                <li><a href="before-after.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="nav-social">
+                    <a href="https://www.instagram.com/beautifulminds_medaesthetics/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="nav-social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/p/Beautiful-Minds-Medical-Aesthetics-61567757859137/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="nav-social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                </li>
+                <li><a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="book-now-btn">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div>
+            <h1>Before &amp; After Gallery</h1>
+            <p>Real results from real clients</p>
+        </div>
+    </section>
+
+    <div class="gallery-wrap">
+
+        <!-- Filter Bar -->
+        <div class="filter-bar" id="filterBar">
+            <button class="filter-btn active" data-filter="all">All Treatments</button>
+            <button class="filter-btn" data-filter="neurotoxins">Neurotoxins</button>
+            <button class="filter-btn" data-filter="fillers">Dermal Fillers</button>
+            <button class="filter-btn" data-filter="sculptra">Sculptra</button>
+            <button class="filter-btn" data-filter="prp">Cellenis Derma PRP</button>
+            <button class="filter-btn" data-filter="skinpen">Skin Pen</button>
+            <button class="filter-btn" data-filter="therapeutic">Therapeutic</button>
+        </div>
+
+        <!-- ── NEUROTOXINS ── -->
+        <div class="gallery-category" data-category="neurotoxins">
+            <h2 class="category-heading">Neurotoxins</h2>
+            <p class="category-sub">Botox, Daxxify, Jeuveau &amp; Dysport — reducing fine lines and wrinkles for a smooth, refreshed appearance.</p>
+            <div class="ba-grid">
+                <div class="ba-card">
+                    <div class="ba-images">
+                        <div class="ba-side">
+                            <!-- <img src="images/ba/neuro-forehead-1-before.jpg" alt="Before"> -->
+                            <div class="ba-side-placeholder">Before</div>
+                            <span class="ba-label-tag">Before</span>
+                        </div>
+                        <div class="ba-side">
+                            <!-- <img src="images/ba/neuro-forehead-1-after.jpg" alt="After"> -->
+                            <div class="ba-side-placeholder">After</div>
+                            <span class="ba-label-tag">After</span>
+                        </div>
+                    </div>
+                    <div class="ba-caption">
+                        <h4>Forehead Lines</h4>
+                        <p>Smooth, natural-looking reduction of horizontal forehead lines</p>
+                    </div>
+                </div>
+                <div class="ba-card">
+                    <div class="ba-images">
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">Before</div>
+                            <span class="ba-label-tag">Before</span>
+                        </div>
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">After</div>
+                            <span class="ba-label-tag">After</span>
+                        </div>
+                    </div>
+                    <div class="ba-caption">
+                        <h4>Frown Lines (Glabella)</h4>
+                        <p>Softening of the "11s" between the brows for a relaxed appearance</p>
+                    </div>
+                </div>
+                <div class="ba-card">
+                    <div class="ba-images">
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">Before</div>
+                            <span class="ba-label-tag">Before</span>
+                        </div>
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">After</div>
+                            <span class="ba-label-tag">After</span>
+                        </div>
+                    </div>
+                    <div class="ba-caption">
+                        <h4>Crow's Feet</h4>
+                        <p>Reduction of fine lines around the eyes for a youthful look</p>
+                    </div>
+                </div>
+                <div class="ba-card">
+                    <div class="ba-images">
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">Before</div>
+                            <span class="ba-label-tag">Before</span>
+                        </div>
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">After</div>
+                            <span class="ba-label-tag">After</span>
+                        </div>
+                    </div>
+                    <div class="ba-caption">
+                        <h4>Lip Flip</h4>
+                        <p>Subtle upper lip enhancement without added volume</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── DERMAL FILLERS ── -->
+        <div class="gallery-category" data-category="fillers">
+            <h2 class="category-heading">Dermal Fillers</h2>
+            <p class="category-sub">RHA Fillers — restoring volume and enhancing contours with natural-looking, long-lasting results.</p>
+            <div class="ba-grid">
+                <div class="ba-card">
+                    <div class="ba-images">
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">Before</div>
+                            <span class="ba-label-tag">Before</span>
+                        </div>
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">After</div>
+                            <span class="ba-label-tag">After</span>
+                        </div>
+                    </div>
+                    <div class="ba-caption">
+                        <h4>Lip Enhancement</h4>
+                        <p>Natural volume and definition for beautifully enhanced lips</p>
+                    </div>
+                </div>
+                <div class="ba-card">
+                    <div class="ba-images">
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">Before</div>
+                            <span class="ba-label-tag">Before</span>
+                        </div>
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">After</div>
+                            <span class="ba-label-tag">After</span>
+                        </div>
+                    </div>
+                    <div class="ba-caption">
+                        <h4>Cheek Augmentation</h4>
+                        <p>Restored youthful fullness and lifted contour</p>
+                    </div>
+                </div>
+                <div class="ba-card">
+                    <div class="ba-images">
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">Before</div>
+                            <span class="ba-label-tag">Before</span>
+                        </div>
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">After</div>
+                            <span class="ba-label-tag">After</span>
+                        </div>
+                    </div>
+                    <div class="ba-caption">
+                        <h4>Nasolabial Folds</h4>
+                        <p>Softened smile lines for a more youthful appearance</p>
+                    </div>
+                </div>
+                <div class="ba-card">
+                    <div class="ba-images">
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">Before</div>
+                            <span class="ba-label-tag">Before</span>
+                        </div>
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">After</div>
+                            <span class="ba-label-tag">After</span>
+                        </div>
+                    </div>
+                    <div class="ba-caption">
+                        <h4>Under Eye (Tear Trough)</h4>
+                        <p>Reduced hollowing and dark circles under the eyes</p>
+                    </div>
+                </div>
+                <div class="ba-card">
+                    <div class="ba-images">
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">Before</div>
+                            <span class="ba-label-tag">Before</span>
+                        </div>
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">After</div>
+                            <span class="ba-label-tag">After</span>
+                        </div>
+                    </div>
+                    <div class="ba-caption">
+                        <h4>Jawline Contouring</h4>
+                        <p>Defined, sculpted jawline for a sharper profile</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── SCULPTRA ── -->
+        <div class="gallery-category" data-category="sculptra">
+            <h2 class="category-heading">Sculptra</h2>
+            <p class="category-sub">Biostimulatory collagen induction — gradual, natural-looking restoration of skin volume and tightness lasting up to 2 years.</p>
+            <div class="ba-grid">
+                <div class="ba-card">
+                    <div class="ba-images">
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">Before</div>
+                            <span class="ba-label-tag">Before</span>
+                        </div>
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">After</div>
+                            <span class="ba-label-tag">After</span>
+                        </div>
+                    </div>
+                    <div class="ba-caption">
+                        <h4>Full Face Volume Restoration</h4>
+                        <p>Gradual collagen stimulation for natural, refreshed-looking volume</p>
+                    </div>
+                </div>
+                <div class="ba-card">
+                    <div class="ba-images">
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">Before</div>
+                            <span class="ba-label-tag">Before</span>
+                        </div>
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">After</div>
+                            <span class="ba-label-tag">After</span>
+                        </div>
+                    </div>
+                    <div class="ba-caption">
+                        <h4>Temple &amp; Cheek Collagen</h4>
+                        <p>Improved skin tightness and volume at 1 month post-treatment</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── CELLENIS DERMA PRP ── -->
+        <div class="gallery-category" data-category="prp">
+            <h2 class="category-heading">Cellenis Derma PRP</h2>
+            <p class="category-sub">Natural PRP treatments — from facial rejuvenation and under-eye restoration to hair regrowth and Vampire Facials.</p>
+            <div class="ba-grid">
+                <div class="ba-card">
+                    <div class="ba-images">
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">Before</div>
+                            <span class="ba-label-tag">Before</span>
+                        </div>
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">After</div>
+                            <span class="ba-label-tag">After</span>
+                        </div>
+                    </div>
+                    <div class="ba-caption">
+                        <h4>Derma PRP — Face</h4>
+                        <p>Natural filler with immediate and lasting regenerative effects</p>
+                    </div>
+                </div>
+                <div class="ba-card">
+                    <div class="ba-images">
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">Before</div>
+                            <span class="ba-label-tag">Before</span>
+                        </div>
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">After</div>
+                            <span class="ba-label-tag">After</span>
+                        </div>
+                    </div>
+                    <div class="ba-caption">
+                        <h4>PRP Under Eye</h4>
+                        <p>Rejuvenated, brighter under-eye area with natural PRP</p>
+                    </div>
+                </div>
+                <div class="ba-card">
+                    <div class="ba-images">
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">Before</div>
+                            <span class="ba-label-tag">Before</span>
+                        </div>
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">After</div>
+                            <span class="ba-label-tag">After</span>
+                        </div>
+                    </div>
+                    <div class="ba-caption">
+                        <h4>Vampire Facial</h4>
+                        <p>PRP microneedling for improved texture, tone, and radiance</p>
+                    </div>
+                </div>
+                <div class="ba-card">
+                    <div class="ba-images">
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">Before</div>
+                            <span class="ba-label-tag">Before</span>
+                        </div>
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">After</div>
+                            <span class="ba-label-tag">After</span>
+                        </div>
+                    </div>
+                    <div class="ba-caption">
+                        <h4>PRP Hair Restoration</h4>
+                        <p>Improved hair density and follicle stimulation after PRP scalp treatment</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── SKIN PEN ── -->
+        <div class="gallery-category" data-category="skinpen">
+            <h2 class="category-heading">Skin Pen Microneedling</h2>
+            <p class="category-sub">FDA-cleared collagen induction therapy — improved texture, reduced scars, and radiant skin.</p>
+            <div class="ba-grid">
+                <div class="ba-card">
+                    <div class="ba-images">
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">Before</div>
+                            <span class="ba-label-tag">Before</span>
+                        </div>
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">After</div>
+                            <span class="ba-label-tag">After</span>
+                        </div>
+                    </div>
+                    <div class="ba-caption">
+                        <h4>Acne Scarring</h4>
+                        <p>Visibly reduced acne scars and improved skin texture after series of 3</p>
+                    </div>
+                </div>
+                <div class="ba-card">
+                    <div class="ba-images">
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">Before</div>
+                            <span class="ba-label-tag">Before</span>
+                        </div>
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">After</div>
+                            <span class="ba-label-tag">After</span>
+                        </div>
+                    </div>
+                    <div class="ba-caption">
+                        <h4>Skin Texture &amp; Tone</h4>
+                        <p>Smoother, more radiant complexion and refined pores</p>
+                    </div>
+                </div>
+                <div class="ba-card">
+                    <div class="ba-images">
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">Before</div>
+                            <span class="ba-label-tag">Before</span>
+                        </div>
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">After</div>
+                            <span class="ba-label-tag">After</span>
+                        </div>
+                    </div>
+                    <div class="ba-caption">
+                        <h4>Fine Lines</h4>
+                        <p>Reduction of fine lines through natural collagen stimulation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── THERAPEUTIC ── -->
+        <div class="gallery-category" data-category="therapeutic">
+            <h2 class="category-heading">Therapeutic Treatments</h2>
+            <p class="category-sub">Medical neurotoxin treatments for migraines, hyperhidrosis, and TMJ — functional results that improve quality of life.</p>
+            <div class="ba-grid">
+                <div class="ba-card">
+                    <div class="ba-images">
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">Before</div>
+                            <span class="ba-label-tag">Before</span>
+                        </div>
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">After</div>
+                            <span class="ba-label-tag">After</span>
+                        </div>
+                    </div>
+                    <div class="ba-caption">
+                        <h4>Masseter / TMJ</h4>
+                        <p>Slimmed jawline and reduced teeth-grinding tension</p>
+                    </div>
+                </div>
+                <div class="ba-card">
+                    <div class="ba-images">
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">Before</div>
+                            <span class="ba-label-tag">Before</span>
+                        </div>
+                        <div class="ba-side">
+                            <div class="ba-side-placeholder">After</div>
+                            <span class="ba-label-tag">After</span>
+                        </div>
+                    </div>
+                    <div class="ba-caption">
+                        <h4>Hyperhidrosis</h4>
+                        <p>Dramatically reduced excessive sweating in underarm area</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- end gallery-wrap -->
+
+    <div class="gallery-disclaimer">
+        <p>Individual results may vary. All before and after photos are of actual patients treated at Beautiful Minds Medical Aesthetics and are shared with their consent. Photos are not retouched or altered. Results are not guaranteed.</p>
+    </div>
+
+    <section class="cta-section">
+        <h2>Ready for Your Transformation?</h2>
+        <p>Book a personalized consultation and discover which treatments are right for you.</p>
+        <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="cta-button">Book Appointment</a>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <div class="footer-contact-item"><span class="footer-icon">📞</span><a href="tel:6015338597">(601) 533-8597</a></div>
+                <div class="footer-contact-item"><span class="footer-icon">📧</span><a href="mailto:kcollum@beautifulmindsmedaesthetics.com">kcollum@beautifulmindsmedaesthetics.com</a></div>
+                <div class="footer-contact-item"><span class="footer-icon">📍</span><span>637 Highway 51 South<br>Ridgeland, MS 39157</span></div>
+            </div>
+            <div class="footer-section">
+                <h4>Hours</h4>
+                <p>Monday: 8:00 AM – 5:00 PM</p>
+                <p>Tuesday: 8:00 AM – 5:00 PM</p>
+                <p>Wednesday: Closed</p>
+                <p>Thursday: 8:00 AM – 5:00 PM</p>
+                <p>Friday: 8:00 AM – 5:00 PM</p>
+                <p>Saturday: 8:00 AM – 1:00 PM</p>
+                <p>Sunday: Closed</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="before-after.html">Gallery</a>
+                <a href="botox-parties.html">Botox Parties</a>
+                <a href="referral-program.html">Referral Program</a>
+                <a href="gift-certificates.html">Gift Certificates</a>
+                <a href="payment-plans.html">Payment Plans</a>
+                <a href="contact.html">Contact</a>
+                <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer">Book Now</a>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/beautifulminds_medaesthetics/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/p/Beautiful-Minds-Medical-Aesthetics-61567757859137/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                </div>
+                <p style="margin-top:2rem;"><strong>Botox Parties Available!</strong><br>Contact us for details</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Beautiful Minds Medical Aesthetics. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.dropdown-menu a[data-slide]').forEach(function(link) {
+            link.addEventListener('click', function() {
+                sessionStorage.setItem('bmma_slide', link.dataset.slide);
+            });
+        });
+    </script>
+    <script src="js/main.js"></script>
+    <script>
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const categories = document.querySelectorAll('.gallery-category');
+
+        filterBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                const filter = btn.dataset.filter;
+
+                filterBtns.forEach(function(b) { b.classList.remove('active'); });
+                btn.classList.add('active');
+
+                categories.forEach(function(cat) {
+                    if (filter === 'all' || cat.dataset.category === filter) {
+                        cat.classList.remove('hidden');
+                    } else {
+                        cat.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
