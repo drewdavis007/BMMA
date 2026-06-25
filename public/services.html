@@ -1,435 +1,650 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' https:;">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services & Pricing | Beautiful Minds Medical Aesthetics</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <style>
-        /* Page-specific styles */
-        .page-hero {
-            height: 50vh;
-            margin-top: 90px;
-            position: relative;
+        .page-hero { height: 45vh; margin-top: 85px; }
+        .page-hero h1 { font-size: 4rem; }
+
+        .services-intro { padding: 3.5rem 6%; background: white; text-align: center; }
+        .services-intro p { max-width: 800px; margin: 0 auto; font-size: 1.1rem; color: #000; line-height: 1.9; font-weight: 400; }
+
+        /* ── JUMP NAV ── */
+        .jump-nav {
+            background: #720538;
+            position: sticky;
+            top: 85px;
+            z-index: 900;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+        }
+        .jump-nav button {
+            background: transparent;
+            border: none;
+            color: rgba(255,255,255,0.75);
+            padding: 0.9rem 1.1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.25s;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+        }
+        .jump-nav button:hover,
+        .jump-nav button.active {
+            color: white;
+            border-bottom-color: #FB64C3;
+            background: rgba(255,255,255,0.08);
+        }
+
+        /* ── CAROUSEL ── */
+        .carousel-outer { position: relative; overflow: hidden; background: #fafafa; }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            background: rgba(114,5,56,0.85);
+            border: 2px solid rgba(255,255,255,0.4);
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            color: white;
-            background: linear-gradient(135deg, rgba(114, 5, 56, 0.9) 0%, rgba(251, 100, 195, 0.9) 100%);
+            transition: all 0.3s;
+            backdrop-filter: blur(4px);
+        }
+        .carousel-arrow:hover { background: #E60790; border-color: white; box-shadow: 0 8px 25px rgba(230,7,144,0.5); }
+        .carousel-arrow.left  { left: 1.5rem; }
+        .carousel-arrow.right { right: 1.5rem; }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
+            will-change: transform;
         }
 
-        .page-hero h1 {
-            font-size: 4rem;
-            font-weight: 300;
-            letter-spacing: 3px;
+        .carousel-slide {
+            min-width: 100%;
+            padding: 4.5rem 8%;
+            box-sizing: border-box;
         }
+        .carousel-slide:nth-child(even) { background: white; }
+        .carousel-slide:nth-child(odd)  { background: #fafafa; }
 
-        .services-intro {
-            padding: 6rem 6%;
-            background: white;
-            text-align: center;
-        }
+        /* ── HEADERS ── */
+        .category-header { max-width: 1200px; margin: 0 auto 2.5rem; text-align: center; }
+        .category-title { font-size: 2.6rem; color: #720538; margin-bottom: 0.6rem; font-weight: 700; letter-spacing: 2px; }
+        .category-description { font-size: 1rem; color: #000; max-width: 700px; margin: 0 auto; line-height: 1.8; font-weight: 400; }
 
-        .services-intro p {
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 1.2rem;
-            color: #666;
-            line-height: 2;
-        }
+        .sub-header { max-width: 1200px; margin: 3rem auto 1.5rem; text-align: center; }
+        .sub-header h3 { font-size: 2rem; color: #720538; font-weight: 700; letter-spacing: 1px; }
 
-        .service-category {
-            padding: 6rem 6%;
-        }
-
-        .service-category:nth-child(even) {
-            background: #fafafa;
-        }
-
-        .service-category:nth-child(odd) {
-            background: white;
-        }
-
-        .category-header {
-            max-width: 1400px;
-            margin: 0 auto 4rem;
-            text-align: center;
-        }
-
-        .category-title {
-            font-size: 3rem;
-            color: #720538;
-            margin-bottom: 1rem;
-            font-weight: 300;
-            letter-spacing: 2px;
-        }
-
-        .category-description {
-            font-size: 1.1rem;
-            color: #666;
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-
+        /* ── PRICING GRID & CARDS ── */
         .pricing-grid {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1.5rem;
         }
-
         .pricing-card {
             background: white;
             border: 2px solid #EADFE4;
-            padding: 3rem 2rem;
+            padding: 2.2rem 1.8rem;
             text-align: center;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
-
-        .pricing-card:before {
+        .pricing-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(230, 7, 144, 0.05) 0%, rgba(251, 100, 195, 0.05) 100%);
-            transition: left 0.4s ease;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(230,7,144,0.04), rgba(251,100,195,0.04));
+            transition: left 0.3s ease;
         }
-
-        .pricing-card:hover:before {
-            left: 0;
-        }
-
-        .pricing-card:hover {
-            border-color: #E60790;
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-        }
-
-        .pricing-card h3 {
-            font-size: 1.8rem;
-            color: #840645;
-            margin-bottom: 1rem;
-            font-weight: 400;
-            position: relative;
-            z-index: 1;
-        }
-
-        .pricing-card .price {
-            font-size: 2.5rem;
-            color: #E60790;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-            position: relative;
-            z-index: 1;
-        }
-
-        .pricing-card .price-unit {
-            font-size: 1rem;
-            color: #999;
-            font-weight: 400;
-        }
-
-        .pricing-card p {
-            color: #666;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
+        .pricing-card:hover::before { left: 0; }
+        .pricing-card:hover { border-color: #E60790; transform: translateY(-7px); box-shadow: 0 18px 45px rgba(0,0,0,0.1); }
+        .pricing-card h3 { font-size: 1.65rem; color: #720538; margin-bottom: 0.5rem; font-weight: 700; position: relative; z-index: 1; }
+        .pricing-card .price { font-size: 2.3rem; color: #E60790; margin-bottom: 0.8rem; font-weight: 700; position: relative; z-index: 1; line-height: 1; }
+        .pricing-card .price-unit { font-size: 0.9rem; color: #555; font-weight: 400; }
+        .pricing-card p { color: #000; line-height: 1.7; margin-bottom: 1.4rem; position: relative; z-index: 1; font-size: 0.93rem; font-weight: 400; }
         .pricing-card .learn-more {
             display: inline-block;
-            padding: 0.8rem 2rem;
-            background: linear-gradient(135deg, #E60790 0%, #FB64C3 100%);
+            padding: 0.65rem 1.6rem;
+            background: linear-gradient(135deg, #720538, #E60790);
             color: white;
             text-decoration: none;
             border-radius: 30px;
-            font-weight: 500;
+            font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 0.78rem;
             transition: all 0.3s;
             position: relative;
             z-index: 1;
         }
+        .pricing-card .learn-more:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(230,7,144,0.4); }
 
-        .pricing-card .learn-more:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(230, 7, 144, 0.4);
-        }
-
+        /* ── SPECIAL NOTE ── */
         .special-note {
-            max-width: 1400px;
-            margin: 4rem auto 0;
-            padding: 3rem;
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            padding: 1.8rem 2.2rem;
             background: linear-gradient(135deg, #EADFE4 0%, #fafafa 100%);
             border-left: 4px solid #E60790;
-            text-align: center;
         }
+        .special-note p { font-size: 0.97rem; color: #000; line-height: 1.8; font-weight: 400; }
 
-        .special-note h3 {
-            font-size: 2rem;
-            color: #720538;
-            margin-bottom: 1rem;
-            font-weight: 400;
-        }
+        /* ── TIER CARDS (Botox Parties slide) ── */
+        .tiers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto; }
+        .tier-card { background: white; border: 2px solid #EADFE4; padding: 2rem 1.2rem; text-align: center; transition: all 0.35s; position: relative; overflow: hidden; }
+        .tier-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #720538, #E60790); transform: scaleX(0); transition: transform 0.35s; }
+        .tier-card:hover::after { transform: scaleX(1); }
+        .tier-card:hover { border-color: #E60790; transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .tier-card.featured { border-color: #E60790; background: linear-gradient(160deg, #fff 60%, #EADFE4 100%); }
+        .tier-card.featured::before { content: '⭐ BEST DEAL'; position: absolute; top: 14px; right: -28px; background: linear-gradient(135deg, #720538, #E60790); color: white; font-size: 0.6rem; font-weight: 700; letter-spacing: 1px; padding: 5px 40px; transform: rotate(45deg); }
+        .tier-guests { font-size: 0.85rem; font-weight: 700; color: #000; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.4rem; }
+        .tier-discount { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 700; color: #E60790; line-height: 1; margin-bottom: 0.4rem; }
+        .tier-label { font-size: 0.78rem; color: #720538; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.8rem; }
+        .tier-desc { font-size: 0.85rem; color: #000; line-height: 1.6; font-weight: 400; }
 
-        .special-note p {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 1.5rem;
-        }
+        /* ── CONTROLS ── */
+        .carousel-controls { display: flex; align-items: center; justify-content: center; gap: 1.2rem; padding: 1.4rem 2rem; background: #1a1a1a; }
+        .carousel-dots { display: flex; gap: 0.6rem; }
+        .carousel-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.3); border: none; cursor: pointer; transition: all 0.3s; padding: 0; }
+        .carousel-dot.active { background: #FB64C3; transform: scale(1.35); }
+        .carousel-pause-btn { background: transparent; border: 2px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.7); padding: 0.45rem 1.1rem; border-radius: 20px; font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
+        .carousel-pause-btn:hover, .carousel-pause-btn.paused { background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.6); }
 
-        .special-note a {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, #E60790 0%, #FB64C3 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 500;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            transition: all 0.4s;
-        }
+        /* ── CTA ── */
+        .cta-section { padding: 5rem 6%; background: linear-gradient(135deg, #720538 0%, #AC658B 100%); text-align: center; color: white; }
+        .cta-section h2 { font-size: 3rem; margin-bottom: 1rem; font-weight: 700; }
+        .cta-section p  { font-size: 1.1rem; margin-bottom: 2.5rem; opacity: 0.95; }
+        .cta-section .cta-button { background: white; color: #720538; border: 2px solid white; font-weight: 700; }
+        .cta-section .cta-button:hover { background: transparent; color: white; }
 
-        .special-note a:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(230, 7, 144, 0.4);
-        }
+        /* ── NAV SOCIAL ICONS ── */
+        .nav-social { display: flex; align-items: center; gap: 0.6rem; }
+        .nav-social-link { color: white; opacity: 0.8; transition: opacity 0.3s; display: flex; align-items: center; }
+        .nav-social-link:hover { opacity: 1; }
+        .nav-social-link::after { display: none !important; }
 
-        .cta-section {
-            padding: 6rem 6%;
-            background: linear-gradient(135deg, #840645 0%, #AC658B 100%);
-            text-align: center;
-            color: white;
+        @media (max-width: 768px) {
+            .carousel-slide { padding: 3rem 5%; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .carousel-arrow { display: none; }
+            .tiers-grid { grid-template-columns: repeat(2,1fr); }
         }
-
-        .cta-section h2 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            font-weight: 300;
-        }
-
-        .cta-section p {
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.95;
-        }
-
-        .cta-section .cta-button {
-            background: white;
-            color: #720538;
-            border: 2px solid white;
-        }
-
-        .cta-section .cta-button:hover {
-            background: transparent;
-            color: white;
-        }
+        @media (max-width: 480px) { .tiers-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+
     <nav id="nav">
         <div class="nav-container">
-            <div class="logo">
-                <!-- <img src="images/logo.png" alt="Beautiful Minds"> -->
-                BEAUTIFUL MINDS MEDICAL AESTHETICS
-            </div>
-            <ul class="nav-links">
+            <a href="index.html" class="logo">BEAUTIFUL MINDS MEDICAL AESTHETICS</a>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
+                <li class="nav-dropdown">
+                    <a href="services.html">Services <span class="dropdown-arrow">▾</span></a>
+                    <div class="dropdown-menu">
+                        <a href="services.html" data-slide="0">Neurotoxins</a>
+                        <a href="services.html" data-slide="1">Therapeutic Treatments</a>
+                        <a href="services.html" data-slide="2">Dermal Fillers</a>
+                        <a href="services.html" data-slide="3">Sculptra</a>
+                        <a href="services.html" data-slide="4">Cellenis Derma PRP</a>
+                        <a href="services.html" data-slide="5">Skin Pen Microneedling</a>
+                        <a href="services.html" data-slide="6">Skin Care</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="botox-parties.html">Botox Parties</a>
+                        <a href="referral-program.html">Referral Program</a>
+                        <a href="gift-certificates.html">Gift Certificates</a>
+                        <a href="payment-plans.html">Payment Plans</a>
+                    </div>
+                </li>
                 <li><a href="before-after.html">Gallery</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" class="book-now-btn">Book Now</a></li>
+                <li class="nav-social">
+                    <a href="https://www.instagram.com/beautifulminds_medaesthetics/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="nav-social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/p/Beautiful-Minds-Medical-Aesthetics-61567757859137/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="nav-social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                </li>
+                <li><a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="book-now-btn">Book Now</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Page Hero -->
-    <section class="page-hero">
-        <div>
-            <h1>Services & Pricing</h1>
-        </div>
-    </section>
+    <section class="page-hero"><div><h1>Services &amp; Pricing</h1></div></section>
 
-    <!-- Services Intro -->
     <section class="services-intro">
         <p>At Beautiful Minds Medical Aesthetics, we offer a comprehensive range of treatments designed to enhance your natural beauty and boost your confidence. All treatments are administered by our expert medical professionals in a safe, comfortable environment.</p>
     </section>
 
-    <!-- Cosmetic Neurotoxins -->
-    <section class="service-category" id="neurotoxins">
-        <div class="category-header">
-            <h2 class="category-title">Cosmetic Neurotoxins</h2>
-            <p class="category-description">Reduce fine lines and wrinkles with our selection of premium neurotoxin treatments. Achieve a smooth, youthful appearance with natural-looking results.</p>
-        </div>
-        <div class="pricing-grid">
-            <div class="pricing-card">
-                <h3>Daxxify</h3>
-                <div class="price">$8<span class="price-unit">/unit</span></div>
-                <p>Long-lasting neurotoxin for smoother, younger-looking skin</p>
-                <a href="neurotoxins.html#daxxify" class="learn-more">Learn More</a>
-            </div>
-            <div class="pricing-card">
-                <h3>Jeuveau</h3>
-                <div class="price">$12<span class="price-unit">/unit</span></div>
-                <p>Modern neurotoxin for reducing moderate to severe frown lines</p>
-                <a href="neurotoxins.html#jeuveau" class="learn-more">Learn More</a>
-            </div>
-            <div class="pricing-card">
-                <h3>Dysport</h3>
-                <div class="price">$12<span class="price-unit">/unit</span></div>
-                <p>Fast-acting treatment for facial lines and wrinkles</p>
-                <a href="neurotoxins.html#dysport" class="learn-more">Learn More</a>
-            </div>
-            <div class="pricing-card">
-                <h3>Lip Flip</h3>
-                <div class="price">$80</div>
-                <p>Subtle enhancement for a fuller-looking upper lip</p>
-                <a href="neurotoxins.html#lipflip" class="learn-more">Learn More</a>
-            </div>
-        </div>
-    </section>
+    <!-- Jump Nav -->
+    <div class="jump-nav" id="jumpNav">
+        <button data-slide="0">Neurotoxins</button>
+        <button data-slide="1">Therapeutic</button>
+        <button data-slide="2">Dermal Fillers</button>
+        <button data-slide="3">Sculptra</button>
+        <button data-slide="4">Derma PRP</button>
+        <button data-slide="5">Skin Pen</button>
+        <button data-slide="6">Skin Care</button>
+        <button data-slide="7">Botox Parties</button>
+        <button data-slide="8">Referrals</button>
+        <button data-slide="9">Gift Certs</button>
+        <button data-slide="10">Payment Plans</button>
+    </div>
 
-    <!-- Dermal Fillers -->
-    <section class="service-category" id="fillers">
-        <div class="category-header">
-            <h2 class="category-title">Dermal Fillers</h2>
-            <p class="category-description">Restore volume, smooth wrinkles, and enhance facial contours with our premium RHA filler treatments.</p>
-        </div>
-        <div class="pricing-grid">
-            <div class="pricing-card">
-                <h3>RHA Filler</h3>
-                <div class="price">$650<span class="price-unit">/syringe</span></div>
-                <p>Advanced hyaluronic acid filler designed to adapt to your facial expressions for natural-looking results</p>
-                <a href="fillers.html" class="learn-more">Learn More</a>
-            </div>
-        </div>
-    </section>
+    <!-- Carousel -->
+    <div class="carousel-outer" id="carouselOuter">
+        <button class="carousel-arrow left"  id="arrowLeft"  aria-label="Previous slide">&#8592;</button>
+        <button class="carousel-arrow right" id="arrowRight" aria-label="Next slide">&#8594;</button>
 
-    <!-- Therapeutic Treatments -->
-    <section class="service-category">
-        <div class="category-header">
-            <h2 class="category-title">Therapeutic Treatments</h2>
-            <p class="category-description">Medical-grade neurotoxin treatments for chronic migraines, excessive sweating (hyperhidrosis), and TMJ pain relief.</p>
-        </div>
-        <div class="pricing-grid">
-            <div class="pricing-card">
-                <h3>Botox for Migraines</h3>
-                <div class="price">$2,600</div>
-                <p>Full treatment protocol for chronic migraine relief</p>
-                <a href="neurotoxins.html#therapeutic" class="learn-more">Learn More</a>
-            </div>
-            <div class="pricing-card">
-                <h3>Botox for Hyperhidrosis</h3>
-                <div class="price">$13<span class="price-unit">/unit</span></div>
-                <p>Effective treatment for excessive sweating</p>
-                <a href="neurotoxins.html#therapeutic" class="learn-more">Learn More</a>
-            </div>
-            <div class="pricing-card">
-                <h3>Botox for TMJ</h3>
-                <div class="price">$13<span class="price-unit">/unit</span></div>
-                <p>Relief from jaw tension and TMJ-related pain</p>
-                <a href="neurotoxins.html#therapeutic" class="learn-more">Learn More</a>
-            </div>
-        </div>
-        
-        <div class="special-note" style="margin-top: 3rem;">
-            <h3>Alternative Neurotoxin Therapeutic Options</h3>
-            <p><strong>Jeuveau for Migraines:</strong> $12/unit (full or partial treatment)<br>
-            <strong>Jeuveau or Dysport for Hyperhidrosis:</strong> $12/unit | Daxxify: $8/unit<br>
-            <strong>Jeuveau for TMJ:</strong> $12/unit | Daxxify: $8/unit</p>
-        </div>
-    </section>
+        <div class="carousel-track" id="carouselTrack">
 
-    <!-- Skin Pen -->
-    <section class="service-category" id="skinpen">
-        <div class="category-header">
-            <h2 class="category-title">Skin Pen Microneedling</h2>
-            <p class="category-description">Stimulate natural collagen production for firmer, smoother, and more radiant skin with advanced microneedling technology.</p>
-        </div>
-        <div class="pricing-grid">
-            <div class="pricing-card">
-                <h3>Single Treatment</h3>
-                <div class="price">$350</div>
-                <p>One microneedling session for skin rejuvenation</p>
-                <a href="skinpen.html" class="learn-more">Learn More</a>
+            <!-- SLIDE 0 — Neurotoxins -->
+            <div class="carousel-slide">
+                <div class="category-header">
+                    <h2 class="category-title">Cosmetic Neurotoxins</h2>
+                    <p class="category-description">Reduce fine lines and wrinkles with our selection of premium neurotoxin treatments. Achieve a smooth, youthful appearance with natural-looking results.</p>
+                </div>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3>Botox</h3>
+                        <div class="price">$13<span class="price-unit">/unit</span></div>
+                        <p>The first and original neurotoxin that treats frown lines and facial wrinkles</p>
+                        <a href="neurotoxins.html" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Daxxify</h3>
+                        <div class="price">$8<span class="price-unit">/unit</span></div>
+                        <p>Long-lasting neurotoxin for smoother, younger-looking skin</p>
+                        <a href="neurotoxins.html#daxxify" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Jeuveau</h3>
+                        <div class="price">$12<span class="price-unit">/unit</span></div>
+                        <p>Modern neurotoxin for reducing moderate to severe frown lines and facial wrinkles</p>
+                        <a href="neurotoxins.html#jeuveau" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Dysport</h3>
+                        <div class="price">$12<span class="price-unit">/unit</span></div>
+                        <p>Fast-acting treatment for facial lines and wrinkles</p>
+                        <a href="neurotoxins.html#dysport" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Lip Flip</h3>
+                        <div class="price">$80</div>
+                        <p>Subtle enhancement for a fuller-looking upper lip</p>
+                        <a href="neurotoxins.html#lipflip" class="learn-more">Learn More</a>
+                    </div>
+                </div>
             </div>
-            <div class="pricing-card">
-                <h3>3 Treatment Package</h3>
-                <div class="price">$900</div>
-                <p>Recommended package for optimal results - Save $150!</p>
-                <a href="skinpen.html" class="learn-more">Learn More</a>
+
+            <!-- SLIDE 1 — Therapeutic Treatments -->
+            <div class="carousel-slide">
+                <div class="category-header">
+                    <h2 class="category-title">Therapeutic Treatments</h2>
+                    <p class="category-description">Medical-grade neurotoxin treatments for chronic migraines, excessive sweating, and TMJ pain relief.</p>
+                </div>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3>Botox for Migraines</h3>
+                        <div class="price">$2,600</div>
+                        <p>Full treatment protocol for chronic migraine relief</p>
+                        <a href="neurotoxins.html#therapeutic" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Botox for Hyperhidrosis</h3>
+                        <div class="price">$13<span class="price-unit">/unit</span></div>
+                        <p>Effective treatment for excessive sweating</p>
+                        <a href="neurotoxins.html#therapeutic" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Botox for TMJ</h3>
+                        <div class="price">$13<span class="price-unit">/unit</span></div>
+                        <p>Relief from jaw tension and TMJ-related pain</p>
+                        <a href="neurotoxins.html#therapeutic" class="learn-more">Learn More</a>
+                    </div>
+                </div>
+                <div class="sub-header"><h3>Alternative Therapeutic Treatment Options</h3></div>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3>Jeuveau for Migraines</h3>
+                        <div class="price">$12<span class="price-unit">/unit</span></div>
+                        <p>TBD</p>
+                        <a href="neurotoxins.html#therapeutic" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Jeuveau / Dysport for Hyperhidrosis</h3>
+                        <div class="price">$12<span class="price-unit">/unit</span></div>
+                        <p>TBD</p>
+                        <a href="neurotoxins.html#therapeutic" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Daxxify for Hyperhidrosis</h3>
+                        <div class="price">$8<span class="price-unit">/unit</span></div>
+                        <p>TBD</p>
+                        <a href="neurotoxins.html#therapeutic" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Jeuveau for TMJ</h3>
+                        <div class="price">$12<span class="price-unit">/unit</span></div>
+                        <p>TBD</p>
+                        <a href="neurotoxins.html#therapeutic" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Daxxify for TMJ</h3>
+                        <div class="price">$8<span class="price-unit">/unit</span></div>
+                        <p>TBD</p>
+                        <a href="neurotoxins.html#therapeutic" class="learn-more">Learn More</a>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="special-note">
-            <p><strong>Note:</strong> We recommend a series of 3 treatments for best results. Treatments are typically spaced 4-6 weeks apart.</p>
-        </div>
-    </section>
 
-    <!-- Skin Care Products -->
-    <section class="service-category" id="skincare">
-        <div class="category-header">
-            <h2 class="category-title">Professional Skin Care Products</h2>
-            <p class="category-description">Medical-grade skincare products to maintain and enhance your treatment results at home.</p>
-        </div>
-        <div class="pricing-grid">
-            <div class="pricing-card">
-                <h3>Customized Regimens</h3>
-                <div class="price">Varies</div>
-                <p>Personalized product recommendations tailored to your skin type and goals</p>
-                <a href="skincare.html" class="learn-more">Learn More</a>
+            <!-- SLIDE 2 — Dermal Fillers -->
+            <div class="carousel-slide">
+                <div class="category-header">
+                    <h2 class="category-title">Dermal Fillers</h2>
+                    <p class="category-description">Restore volume, smooth wrinkles, and enhance facial contours with our premium RHA filler treatments.</p>
+                </div>
+                <div class="pricing-grid" style="max-width:640px;margin:0 auto;">
+                    <div class="pricing-card">
+                        <h3>Half Syringe</h3>
+                        <div class="price">$325</div>
+                        <p>Ideal for subtle touch-ups and targeted volume restoration</p>
+                        <a href="fillers.html" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Full Syringe</h3>
+                        <div class="price">$650</div>
+                        <p>Advanced hyaluronic acid filler designed to adapt to your facial expressions for natural-looking results</p>
+                        <a href="fillers.html" class="learn-more">Learn More</a>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="special-note">
-            <p>Schedule a consultation to discuss which products are right for your skin. Our expert team will create a customized skincare routine to help you achieve and maintain beautiful, healthy skin.</p>
-        </div>
-    </section>
 
-    <!-- Botox Parties -->
-    <section class="service-category">
-        <div class="special-note">
-            <h3>🎉 We Host Botox Parties! 🎉</h3>
-            <p>Gather your friends for a fun, social aesthetic experience in a private setting. Perfect for birthdays, bachelorette parties, or just a girls' night out!</p>
-            <a href="contact.html">Contact Us for Details</a>
-        </div>
-    </section>
+            <!-- SLIDE 3 — Sculptra -->
+            <div class="carousel-slide">
+                <div class="category-header">
+                    <h2 class="category-title">Sculptra</h2>
+                    <p class="category-description">Sculptra is a biostimulatory aesthetic injectable that helps stimulate your own natural collagen production to smooth facial wrinkles and improve skin tightness, revealing a refreshed-looking you. Sculptra gradually helps restore your skin foundation, with results seen as early as 1 month after treatment and lasting up to 2 years.</p>
+                </div>
+                <div class="pricing-grid" style="max-width:420px;margin:0 auto;">
+                    <div class="pricing-card">
+                        <h3>Sculptra</h3>
+                        <div class="price">$799<span class="price-unit">/vial</span></div>
+                        <p>Natural collagen stimulation with results lasting up to 2 years</p>
+                        <a href="contact.html" class="learn-more">Book Appointment</a>
+                    </div>
+                </div>
+            </div>
 
-    <!-- CTA Section -->
+            <!-- SLIDE 4 — Cellenis Derma PRP -->
+            <div class="carousel-slide">
+                <div class="category-header">
+                    <h2 class="category-title">Cellenis Derma PRP</h2>
+                    <p class="category-description">Experience the next generation of facial rejuvenation. Derma PRP is an injectable filler derived from your own blood that offers immediate and lasting regenerative effects. This safe and effective natural filler stimulates collagen production and promotes new blood vessel growth for a more natural appearance.</p>
+                </div>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3>Derma PRP — Face</h3>
+                        <div class="price" style="font-size:1.8rem;">From $1,200</div>
+                        <p>All-natural filler for facial rejuvenation with immediate and lasting regenerative effects</p>
+                        <a href="contact.html" class="learn-more">Book Appointment</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Derma PRP — Body</h3>
+                        <div class="price" style="font-size:1.8rem;">From $2,000</div>
+                        <p>Body treatment areas using your own natural PRP for regenerative improvement</p>
+                        <a href="contact.html" class="learn-more">Book Appointment</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>PRP Under Eye</h3>
+                        <div class="price">$350</div>
+                        <p>Targeted PRP treatment to rejuvenate the delicate under-eye area</p>
+                        <a href="contact.html" class="learn-more">Book Appointment</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>PRP Scalp — Hair Restoration</h3>
+                        <div class="price">$550</div>
+                        <p>PRP injections to stimulate hair follicles. 3–6 sessions recommended for optimal results.</p>
+                        <a href="contact.html" class="learn-more">Book Appointment</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>PRP + Microneedling — Hair</h3>
+                        <div class="price">$700</div>
+                        <p>Combined PRP and microneedling for enhanced hair restoration. 3–6 sessions recommended.</p>
+                        <a href="contact.html" class="learn-more">Book Appointment</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Vampire Facial</h3>
+                        <div class="price">$500</div>
+                        <p>PRP microneedling facial for skin rejuvenation. Series of 3 available at $450/treatment.</p>
+                        <a href="contact.html" class="learn-more">Book Appointment</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Vampire Facial — Series of 3</h3>
+                        <div class="price">$450<span class="price-unit">/treatment</span></div>
+                        <p>Three-session package for optimal, long-lasting skin rejuvenation results</p>
+                        <a href="contact.html" class="learn-more">Book Appointment</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 5 — Skin Pen -->
+            <div class="carousel-slide">
+                <div class="category-header">
+                    <h2 class="category-title">Skin Pen Microneedling</h2>
+                    <p class="category-description">Stimulate natural collagen production for firmer, smoother, and more radiant skin with FDA-cleared microneedling technology.</p>
+                </div>
+                <div class="pricing-grid" style="max-width:900px;margin:0 auto;">
+                    <div class="pricing-card">
+                        <h3>Single Treatment</h3>
+                        <div class="price">$350</div>
+                        <p>One microneedling session for skin rejuvenation</p>
+                        <a href="skinpen.html" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Series of 3</h3>
+                        <div class="price">$900</div>
+                        <p>Recommended series for optimal results — Save $150! Add Vampire Facial for $150/treatment.</p>
+                        <a href="skinpen.html" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Series of 3 + Vampire Facial</h3>
+                        <div class="price" style="font-size:1.6rem;">$900 + $150<span class="price-unit">/tx</span></div>
+                        <p>Skin Pen series enhanced with Vampire Facial PRP for maximum rejuvenation results</p>
+                        <a href="skinpen.html" class="learn-more">Learn More</a>
+                    </div>
+                </div>
+                <div class="special-note">
+                    <p><strong>Note:</strong> Treatments are typically spaced 4–6 weeks apart. A series of 3 is recommended for best results.</p>
+                </div>
+            </div>
+
+            <!-- SLIDE 6 — Skin Care -->
+            <div class="carousel-slide">
+                <div class="category-header">
+                    <h2 class="category-title">Professional Skin Care</h2>
+                    <p class="category-description">Medical-grade skincare products to maintain and enhance your treatment results at home.</p>
+                </div>
+                <div class="pricing-grid" style="max-width:420px;margin:0 auto;">
+                    <div class="pricing-card">
+                        <h3>Customized Regimens</h3>
+                        <div class="price" style="font-size:1.8rem;">Varies</div>
+                        <p>Personalized product recommendations tailored to your skin type and goals</p>
+                        <a href="skincare.html" class="learn-more">Learn More</a>
+                    </div>
+                </div>
+                <div class="special-note">
+                    <p>Schedule a consultation to discuss which products are right for your skin. Our expert team will create a customized skincare routine tailored to you.</p>
+                </div>
+            </div>
+
+            <!-- SLIDE 7 — Botox Parties -->
+            <div class="carousel-slide">
+                <div class="category-header">
+                    <h2 class="category-title">🎉 Host a Botox Party</h2>
+                    <p class="category-description">Invite your friends, pick a date, and the more guests you bring — the more YOU save!</p>
+                </div>
+                <div class="tiers-grid">
+                    <div class="tier-card">
+                        <div class="tier-guests">4 Guests</div>
+                        <div class="tier-discount">25%</div>
+                        <div class="tier-label">off for the host</div>
+                        <p class="tier-desc">A great start — bring 4 friends and enjoy a quarter off your treatment.</p>
+                    </div>
+                    <div class="tier-card">
+                        <div class="tier-guests">5–6 Guests</div>
+                        <div class="tier-discount">50%</div>
+                        <div class="tier-label">off for the host</div>
+                        <p class="tier-desc">Half-price treatment when you bring a group of five or six.</p>
+                    </div>
+                    <div class="tier-card">
+                        <div class="tier-guests">7–9 Guests</div>
+                        <div class="tier-discount">75%</div>
+                        <div class="tier-label">off for the host</div>
+                        <p class="tier-desc">Nearly free — bring 7–9 friends and save three quarters.</p>
+                    </div>
+                    <div class="tier-card featured">
+                        <div class="tier-guests">10+ Guests</div>
+                        <div class="tier-discount">FREE</div>
+                        <div class="tier-label">treatment of your choice</div>
+                        <p class="tier-desc">Bring 10 or more and your entire treatment is on us!</p>
+                    </div>
+                </div>
+                <div class="special-note" style="margin-top:2rem;">
+                    <p>Contact us to book your party date. <a href="botox-parties.html" style="color:#E60790;font-weight:700;">Learn more →</a></p>
+                </div>
+            </div>
+
+            <!-- SLIDE 8 — Referral Program -->
+            <div class="carousel-slide">
+                <div class="category-header">
+                    <h2 class="category-title">💌 Referral Program</h2>
+                    <p class="category-description">Love your results? Share the love and earn rewards every time you refer a friend or family member.</p>
+                </div>
+                <div class="pricing-grid" style="max-width:500px;margin:0 auto;">
+                    <div class="pricing-card">
+                        <h3>Per Referral</h3>
+                        <div class="price">$50<span class="price-unit"> credit</span></div>
+                        <p>For every friend or family member you refer who comes in and receives a service, you earn a <strong>$50 credit</strong> toward your next visit. No limit on referrals.</p>
+                        <a href="referral-program.html" class="learn-more">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 9 — Gift Certificates -->
+            <div class="carousel-slide">
+                <div class="category-header">
+                    <h2 class="category-title">🎁 Gift Certificates</h2>
+                    <p class="category-description">Give the gift of confidence and beauty — available for any dollar amount, never expire, and redeemable for any service.</p>
+                </div>
+                <div class="pricing-grid" style="max-width:640px;margin:0 auto;">
+                    <div class="pricing-card">
+                        <h3>Purchase Online</h3>
+                        <div class="price" style="font-size:1.6rem;">Any Amount</div>
+                        <p>Buy instantly online and send directly to your recipient.</p>
+                        <a href="https://beautifulmindsmedaesthetics.janeapp.com/online_gift_cards/new" target="_blank" rel="noopener noreferrer" class="learn-more">Buy Now</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Buy In Person</h3>
+                        <div class="price" style="font-size:1.6rem;">Any Amount</div>
+                        <p>Visit us in the clinic to purchase a gift certificate in person.</p>
+                        <a href="contact.html" class="learn-more">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 10 — Payment Plans -->
+            <div class="carousel-slide">
+                <div class="category-header">
+                    <h2 class="category-title">💳 Flexible Payment Plans</h2>
+                    <p class="category-description">Beautiful, healthy skin should be accessible. We offer multiple financing options so you can get the treatments you want on a schedule that works for you.</p>
+                </div>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3>Affirm</h3>
+                        <div class="price" style="font-size:1.6rem;">Monthly</div>
+                        <p>Split your purchase into easy monthly payments with no hidden fees.</p>
+                        <a href="payment-plans.html" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Klarna</h3>
+                        <div class="price" style="font-size:1.6rem;">Pay in 4</div>
+                        <p>Pay in 4 interest-free installments or choose a longer-term plan.</p>
+                        <a href="payment-plans.html" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Afterpay</h3>
+                        <div class="price" style="font-size:1.6rem;">Interest-Free</div>
+                        <p>Always interest-free — pay over 6 weeks in 4 equal installments.</p>
+                        <a href="payment-plans.html" class="learn-more">Learn More</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Cherry</h3>
+                        <div class="price" style="font-size:1.6rem;">Seconds</div>
+                        <p>Aesthetic-focused financing — get approved in seconds, no hard credit pull.</p>
+                        <a href="payment-plans.html" class="learn-more">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- end track -->
+    </div><!-- end carousel-outer -->
+
+    <div class="carousel-controls">
+        <div class="carousel-dots" id="carouselDots"></div>
+        <button class="carousel-pause-btn" id="pauseBtn">⏸ Pause</button>
+    </div>
+
     <section class="cta-section">
         <h2>Ready to Begin Your Journey?</h2>
         <p>Schedule your personalized consultation today and let us help you achieve your aesthetic goals.</p>
-        <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" class="cta-button">Book Your Consultation</a>
+        <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="cta-button">Book Appointment</a>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-section">
                 <h4>Contact</h4>
-                <p>📞 (601) 533-8597</p>
-                <p>📧 kcollum@beautifulmindsmedaesthetics.com</p>
-                <p>📍 637 HWY 51 Suite B<br>Ridgeland, MS 39157</p>
+                <div class="footer-contact-item"><span class="footer-icon">📞</span><a href="tel:6015338597">(601) 533-8597</a></div>
+                <div class="footer-contact-item"><span class="footer-icon">📧</span><a href="mailto:kcollum@beautifulmindsmedaesthetics.com">kcollum@beautifulmindsmedaesthetics.com</a></div>
+                <div class="footer-contact-item"><span class="footer-icon">📍</span><span>637 Highway 51 South<br>Ridgeland, MS 39157</span></div>
             </div>
             <div class="footer-section">
                 <h4>Hours</h4>
-                <p>Monday: 8:00 AM - 5:00 PM</p>
-                <p>Tuesday: 8:00 AM - 5:00 PM</p>
+                <p>Monday: 8:00 AM – 5:00 PM</p>
+                <p>Tuesday: 8:00 AM – 5:00 PM</p>
                 <p>Wednesday: Closed</p>
-                <p>Thursday: 8:00 AM - 5:00 PM</p>
-                <p>Friday: 8:00 AM - 5:00 PM</p>
-                <p>Saturday: 8:00 AM - 1:00 PM</p>
+                <p>Thursday: 8:00 AM – 5:00 PM</p>
+                <p>Friday: 8:00 AM – 5:00 PM</p>
+                <p>Saturday: 8:00 AM – 1:00 PM</p>
                 <p>Sunday: Closed</p>
             </div>
             <div class="footer-section">
@@ -437,17 +652,24 @@
                 <a href="about.html">About</a>
                 <a href="services.html">Services</a>
                 <a href="before-after.html">Gallery</a>
-                <a href="pre-post-care.html">Pre & Post Care</a>
+                <a href="botox-parties.html">Botox Parties</a>
+                <a href="referral-program.html">Referral Program</a>
+                <a href="gift-certificates.html">Gift Certificates</a>
+                <a href="payment-plans.html">Payment Plans</a>
                 <a href="contact.html">Contact</a>
-                <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank">Book Now</a>
+                <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer">Book Now</a>
             </div>
             <div class="footer-section">
                 <h4>Follow Us</h4>
                 <div class="social-links">
-                    <a href="https://www.instagram.com/beautifulminds_medaesthetics/" target="_blank">📷</a>
-                    <a href="https://www.facebook.com/p/Beautiful-Minds-Medical-Aesthetics-61567757859137/" target="_blank">👍</a>
+                    <a href="https://www.instagram.com/beautifulminds_medaesthetics/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/p/Beautiful-Minds-Medical-Aesthetics-61567757859137/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
                 </div>
-                <p style="margin-top: 2rem;"><strong>Botox Parties Available!</strong><br>Contact us for details</p>
+                <p style="margin-top:2rem;"><strong>Botox Parties Available!</strong><br>Contact us for details</p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -455,6 +677,106 @@
         </div>
     </footer>
 
+    <script>
+        document.querySelectorAll('.dropdown-menu a[data-slide]').forEach(function(link) {
+            link.addEventListener('click', function() {
+                sessionStorage.setItem('bmma_slide', link.dataset.slide);
+            });
+        });
+    </script>
     <script src="js/main.js"></script>
+    <script>
+    (function () {
+        const SLIDE_COUNT = 11;
+        const AUTO_DELAY  = 10000;
+
+        const track    = document.getElementById('carouselTrack');
+        const dotsEl   = document.getElementById('carouselDots');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const arrowL   = document.getElementById('arrowLeft');
+        const arrowR   = document.getElementById('arrowRight');
+        const jumpBtns = document.querySelectorAll('.jump-nav button');
+
+        let current   = 0;
+        let paused    = false;
+        let autoTimer = null;
+
+        const stored = sessionStorage.getItem('bmma_slide');
+        if (stored !== null) {
+            current = parseInt(stored, 10);
+            sessionStorage.removeItem('bmma_slide');
+        }
+
+        for (let i = 0; i < SLIDE_COUNT; i++) {
+            const dot = document.createElement('button');
+            dot.className = 'carousel-dot';
+            dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+            dot.addEventListener('click', function() { userGoTo(i); });
+            dotsEl.appendChild(dot);
+        }
+
+        function render() {
+            track.style.transform = 'translateX(-' + (current * 100) + '%)';
+            document.querySelectorAll('.carousel-dot').forEach(function(d, i) {
+                d.classList.toggle('active', i === current);
+            });
+            jumpBtns.forEach(function(b) {
+                b.classList.toggle('active', parseInt(b.dataset.slide, 10) === current);
+            });
+        }
+
+        function userGoTo(index) {
+            current = ((index % SLIDE_COUNT) + SLIDE_COUNT) % SLIDE_COUNT;
+            render();
+            pauseAutoplay();
+        }
+
+        function autoNext() {
+            current = (current + 1) % SLIDE_COUNT;
+            render();
+        }
+
+        function startAutoplay() {
+            clearInterval(autoTimer);
+            autoTimer = setInterval(function() { if (!paused) autoNext(); }, AUTO_DELAY);
+        }
+
+        function pauseAutoplay() {
+            paused = true;
+            pauseBtn.textContent = '▶ Resume';
+            pauseBtn.classList.add('paused');
+            clearInterval(autoTimer);
+        }
+
+        function resumeAutoplay() {
+            paused = false;
+            pauseBtn.textContent = '⏸ Pause';
+            pauseBtn.classList.remove('paused');
+            startAutoplay();
+        }
+
+        jumpBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() { userGoTo(parseInt(btn.dataset.slide, 10)); });
+        });
+
+        arrowL.addEventListener('click', function() { userGoTo(current - 1); });
+        arrowR.addEventListener('click', function() { userGoTo(current + 1); });
+
+        pauseBtn.addEventListener('click', function() {
+            if (paused) { resumeAutoplay(); } else { pauseAutoplay(); }
+        });
+
+        document.querySelectorAll('.dropdown-menu a[data-slide]').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('carouselOuter').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                userGoTo(parseInt(link.dataset.slide, 10));
+            });
+        });
+
+        render();
+        startAutoplay();
+    })();
+    </script>
 </body>
 </html>

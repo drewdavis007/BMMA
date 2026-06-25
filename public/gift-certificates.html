@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' https:;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gift Certificates | Beautiful Minds Medical Aesthetics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .page-hero { height: 55vh; margin-top: 85px; }
+        .page-hero h1 { font-size: 4rem; }
+        .page-hero p  { margin-top: 1rem; font-size: 1.2rem; }
+        .content-wrap { max-width: 1200px; margin: 0 auto; padding: 5rem 6%; }
+        .section-label { text-align: center; margin-bottom: 4rem; }
+        .section-label h2 { font-size: 3rem; color: #720538; font-weight: 700; letter-spacing: 2px; margin-bottom: 0.8rem; }
+        .section-label p { font-size: 1.05rem; color: #000; max-width: 650px; margin: 0 auto; line-height: 1.9; font-weight: 400; }
+        .highlight-box { background: linear-gradient(135deg, #EADFE4 0%, #fafafa 100%); border-left: 4px solid #E60790; padding: 2.5rem; margin-bottom: 2rem; }
+        .highlight-box h3 { font-size: 1.6rem; color: #720538; font-weight: 700; margin-bottom: 0.8rem; }
+        .highlight-box p { font-size: 1rem; color: #000; line-height: 1.9; font-weight: 400; }
+        .cta-box { background: linear-gradient(135deg, #720538 0%, #AC658B 100%); padding: 4rem; text-align: center; color: white; }
+        .cta-box h3 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: white; }
+        .cta-box p { font-size: 1.05rem; opacity: 0.95; margin-bottom: 2rem; font-weight: 400; }
+        .cta-box .cta-button { background: white; color: #720538; border: 2px solid white; font-weight: 700; }
+        .cta-box .cta-button:hover { background: transparent; color: white; }
+        
+        .gift-block { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 5rem; }
+        .gift-visual { background: linear-gradient(135deg, #720538 0%, #E60790 100%); padding: 4rem 3rem; text-align: center; color: white; position: relative; overflow: hidden; }
+        .gift-visual::before { content: "🎁"; position: absolute; font-size: 10rem; opacity: 0.08; top: -1rem; right: -1rem; }
+        .gift-visual h3 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; color: white; position: relative; z-index: 1; }
+        .gift-visual p { font-size: 1rem; opacity: 0.9; line-height: 1.8; position: relative; z-index: 1; font-weight: 400; margin-bottom: 1.5rem; }
+        .gift-badge { display: inline-block; background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.5); color: white; padding: 0.6rem 1.5rem; border-radius: 30px; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin: 0.3rem; }
+        .gift-text h2 { font-size: 2.8rem; color: #720538; font-weight: 700; margin-bottom: 1rem; }
+        .gift-text p { font-size: 1rem; color: #000; line-height: 1.9; margin-bottom: 1rem; font-weight: 400; }
+        .gift-options { display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; }
+        .gift-option-btn { display: inline-block; padding: 0.9rem 2rem; background: linear-gradient(135deg, #720538 0%, #E60790 100%); color: white; text-decoration: none; border-radius: 30px; font-weight: 700; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s; }
+        .gift-option-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(230,7,144,0.4); }
+        .gift-option-btn.outline { background: transparent; border: 2px solid #720538; color: #720538; }
+        .gift-option-btn.outline:hover { background: #720538; color: white; }
+        @media (max-width: 768px) { .gift-block { grid-template-columns: 1fr; } }
+    
+        /* ── NAV SOCIAL ICONS ── */
+        .nav-social { display: flex; align-items: center; gap: 0.6rem; }
+        .nav-social-link { color: white; opacity: 0.8; transition: opacity 0.3s; display: flex; align-items: center; }
+        .nav-social-link:hover { opacity: 1; }
+        .nav-social-link::after { display: none !important; }
+    </style>
+</head>
+<body>
+    <nav id="nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">BEAUTIFUL MINDS MEDICAL AESTHETICS</a>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li class="nav-dropdown">
+                    <a href="services.html">Services <span class="dropdown-arrow">▾</span></a>
+                    <div class="dropdown-menu">
+                        <a href="services.html" data-slide="0">Neurotoxins</a>
+                        <a href="services.html" data-slide="1">Therapeutic Treatments</a>
+                        <a href="services.html" data-slide="2">Dermal Fillers</a>
+                        <a href="services.html" data-slide="3">Sculptra</a>
+                        <a href="services.html" data-slide="4">Cellenis Derma PRP</a>
+                        <a href="services.html" data-slide="5">Skin Pen Microneedling</a>
+                        <a href="services.html" data-slide="6">Skin Care</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="botox-parties.html">Botox Parties</a>
+                        <a href="referral-program.html">Referral Program</a>
+                        <a href="gift-certificates.html">Gift Certificates</a>
+                        <a href="payment-plans.html">Payment Plans</a>
+                    </div>
+                </li>
+                <li><a href="before-after.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="nav-social">
+                    <a href="https://www.instagram.com/beautifulminds_medaesthetics/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="nav-social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/p/Beautiful-Minds-Medical-Aesthetics-61567757859137/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="nav-social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                </li>
+                <li><a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="book-now-btn">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-hero"><div><h1>Gift Certificates</h1><p>Give the gift of confidence and beauty</p></div></section>
+    <div class="content-wrap">
+        <div class="gift-block">
+            <div class="gift-visual">
+                <h3>🎁 Give Beauty</h3>
+                <p>The perfect gift for any occasion — birthdays, anniversaries, Mother's Day, holidays, or just because.</p>
+                <span class="gift-badge">Online</span>
+                <span class="gift-badge">In Person</span>
+            </div>
+            <div class="gift-text">
+                <h2>Gift Certificates</h2>
+                <p>Not sure what to get someone special? A Beautiful Minds gift certificate lets them choose the treatment they love most, at a time that works for them.</p>
+                <p>Gift certificates are available for any dollar amount and can be used toward any service we offer — neurotoxins, fillers, microneedling, skincare, and more.</p>
+                <p><strong>Purchase online or visit us in person.</strong> Gift certificates never expire and make a thoughtful, luxurious gift for anyone on your list.</p>
+                <div class="gift-options">
+                    <a href="https://beautifulmindsmedaesthetics.janeapp.com/online_gift_cards/new" target="_blank" rel="noopener noreferrer" class="gift-option-btn">Purchase Online</a>
+                    <a href="contact.html" class="gift-option-btn outline">Buy In Person</a>
+                </div>
+            </div>
+        </div>
+        <div class="highlight-box">
+            <h3>Perfect for Any Occasion</h3>
+            <p>Gift certificates can be used for any of our services — from Botox and fillers to microneedling and medical-grade skincare. Let your loved one choose exactly what they want. Gift certificates never expire.</p>
+        </div>
+        <div class="cta-box">
+            <h3>Questions About Gift Certificates?</h3>
+            <p>Contact us and we'll help you find the perfect gift.</p>
+            <a href="contact.html" class="cta-button">Contact Us</a>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <div class="footer-contact-item">
+                    <span class="footer-icon">📞</span>
+                    <a href="tel:6015338597">(601) 533-8597</a>
+                </div>
+                <div class="footer-contact-item">
+                    <span class="footer-icon">📧</span>
+                    <a href="mailto:kcollum@beautifulmindsmedaesthetics.com">kcollum@beautifulmindsmedaesthetics.com</a>
+                </div>
+                <div class="footer-contact-item">
+                    <span class="footer-icon">📍</span>
+                    <span>637 Highway 51 South<br>Ridgeland, MS 39157</span>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Hours</h4>
+                <p>Monday: 8:00 AM – 5:00 PM</p>
+                <p>Tuesday: 8:00 AM – 5:00 PM</p>
+                <p>Wednesday: Closed</p>
+                <p>Thursday: 8:00 AM – 5:00 PM</p>
+                <p>Friday: 8:00 AM – 5:00 PM</p>
+                <p>Saturday: 8:00 AM – 1:00 PM</p>
+                <p>Sunday: Closed</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="before-after.html">Gallery</a>
+                <a href="botox-parties.html">Botox Parties</a>
+                <a href="referral-program.html">Referral Program</a>
+                <a href="gift-certificates.html">Gift Certificates</a>
+                <a href="payment-plans.html">Payment Plans</a>
+                <a href="contact.html">Contact</a>
+                <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer">Book Now</a>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/beautifulminds_medaesthetics/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/p/Beautiful-Minds-Medical-Aesthetics-61567757859137/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                </div>
+                <p style="margin-top:2rem;"><strong>Botox Parties Available!</strong><br>Contact us for details</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Beautiful Minds Medical Aesthetics. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        document.querySelectorAll('.dropdown-menu a[data-slide]').forEach(function(link) {
+            link.addEventListener('click', function() {
+                sessionStorage.setItem('bmma_slide', link.dataset.slide);
+            });
+        });
+    </script>
+    <script src="js/main.js"></script>
+</body>
+</html>

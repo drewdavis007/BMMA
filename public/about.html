@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' https:;">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | Beautiful Minds Medical Aesthetics</title>
@@ -9,7 +11,7 @@
     <style>
         .page-hero {
             height: 60vh;
-            margin-top: 90px;
+            margin-top: 85px;
             position: relative;
             display: flex;
             align-items: center;
@@ -307,22 +309,51 @@
                 padding: 4rem 2rem;
             }
         }
+    
+        /* ── NAV SOCIAL ICONS ── */
+        .nav-social { display: flex; align-items: center; gap: 0.6rem; }
+        .nav-social-link { color: white; opacity: 0.8; transition: opacity 0.3s; display: flex; align-items: center; }
+        .nav-social-link:hover { opacity: 1; }
+        .nav-social-link::after { display: none !important; }
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav id="nav">
         <div class="nav-container">
-            <div class="logo">
-                BEAUTIFUL MINDS MEDICAL AESTHETICS
-            </div>
-            <ul class="nav-links">
+            <a href="index.html" class="logo">BEAUTIFUL MINDS MEDICAL AESTHETICS</a>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
+                <li class="nav-dropdown">
+                    <a href="services.html">Services <span class="dropdown-arrow">&#9662;</span></a>
+                    <div class="dropdown-menu">
+                        <a href="services.html" data-slide="0">Neurotoxins</a>
+                        <a href="services.html" data-slide="1">Therapeutic Treatments</a>
+                        <a href="services.html" data-slide="2">Dermal Fillers</a>
+                        <a href="services.html" data-slide="3">Sculptra</a>
+                        <a href="services.html" data-slide="4">Cellenis Derma PRP</a>
+                        <a href="services.html" data-slide="5">Skin Pen Microneedling</a>
+                        <a href="services.html" data-slide="6">Skin Care</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="botox-parties.html">Botox Parties</a>
+                        <a href="referral-program.html">Referral Program</a>
+                        <a href="gift-certificates.html">Gift Certificates</a>
+                        <a href="payment-plans.html">Payment Plans</a>
+                    </div>
+                </li>
                 <li><a href="before-after.html">Gallery</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" class="book-now-btn">Book Now</a></li>
+                <li class="nav-social">
+                    <a href="https://www.instagram.com/beautifulminds_medaesthetics/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="nav-social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/p/Beautiful-Minds-Medical-Aesthetics-61567757859137/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="nav-social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                </li>
+                <li><a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="book-now-btn">Book Now</a></li>
             </ul>
         </div>
     </nav>
@@ -353,13 +384,11 @@
                 <!-- Insert Kayla's professional photo here -->
             </div>
             <div class="founder-text-side">
-                <h2>Meet Our Founder</h2>
+                <h2>Meet Our Founder and Nurse Practitioner!</h2>
                 <h3 style="font-size: 2.5rem; color: #840645; margin-bottom: 0.5rem; font-family: 'Cormorant Garamond', serif; font-weight: 400;">Kayla Collum Davis</h3>
                 <p class="credentials">DNP, FNP-C</p>
-                <p>Kayla Collum Davis is the Founder of Beautiful Minds Medical Aesthetics. She graduated from the University of Mississippi Medical Center in 2019 with her Bachelor of Science in Nursing degree. She then worked in multiple nursing specialties in the hospital setting while completing her Doctorate of Nurse Practitioner degree in Family Medicine at the University of Alabama at Birmingham in 2023.</p>
-                <p>Throughout her career, Kayla has always been passionate about two things: medical healthcare and cosmetic aesthetics. Rather than choosing one path, she decided to combine her dual passions to create something unique—a clinic that integrates both medical care and aesthetic services.</p>
-                <p>Her extensive background in family medicine gives her a comprehensive understanding of how overall health impacts appearance and well-being. This holistic perspective is what sets Beautiful Minds Medical Aesthetics apart from traditional med spas.</p>
-                <p><strong>Kayla's philosophy is simple: beautiful skin is healthy skin, and true beauty begins with proper care from the inside out.</strong></p>
+                <p>Kayla Collum Davis is the Founder of Beautiful Minds Medical Aesthetics. She graduated from the University of Mississippi Medical Center in 2019 with her Bachelor of Science in Nursing. She then worked in multiple nursing specialties in the hospital setting while completing her Doctorate of Nurse Practitioner degree in Family Medicine at the University of Alabama at Birmingham in 2023. She has always been passionate about medical healthcare as well as cosmetic aesthetics and skin care, so she created a clinic that incorporated both.</p>
+                <p>Beautiful Minds Medical Aesthetics is a medical spa that focuses on our patients' mental and physical health. True health starts from within the body and reflects on the outside. Our mission is to improve our patients' health from the inside out.</p>
             </div>
         </div>
     </section>
@@ -450,7 +479,7 @@
     <section class="cta-section">
         <h2>Ready to Start Your Journey?</h2>
         <p>Experience the Beautiful Minds difference. Schedule your personalized consultation today and discover how we can help you look and feel your absolute best.</p>
-        <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" class="cta-button">Book Your Consultation</a>
+        <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="cta-button">Book Appointment</a>
     </section>
 
     <!-- Footer -->
@@ -458,9 +487,18 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h4>Contact</h4>
-                <p>📞 (601) 533-8597</p>
-                <p>📧 kcollum@beautifulmindsmedaesthetics.com</p>
-                <p>📍 637 HWY 51 Suite B<br>Ridgeland, MS 39157</p>
+                <div class="footer-contact-item">
+                    <span class="footer-icon">📞</span>
+                    <a href="tel:6015338597">(601) 533-8597</a>
+                </div>
+                <div class="footer-contact-item">
+                    <span class="footer-icon">📧</span>
+                    <a href="mailto:kcollum@beautifulmindsmedaesthetics.com">kcollum@beautifulmindsmedaesthetics.com</a>
+                </div>
+                <div class="footer-contact-item">
+                    <span class="footer-icon">📍</span>
+                    <span>637 Highway 51 South<br>Ridgeland, MS 39157</span>
+                </div>
             </div>
             <div class="footer-section">
                 <h4>Hours</h4>
@@ -479,13 +517,17 @@
                 <a href="before-after.html">Gallery</a>
                 <a href="pre-post-care.html">Pre & Post Care</a>
                 <a href="contact.html">Contact</a>
-                <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank">Book Now</a>
+                <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer">Book Now</a>
             </div>
             <div class="footer-section">
                 <h4>Follow Us</h4>
                 <div class="social-links">
-                    <a href="https://www.instagram.com/beautifulminds_medaesthetics/" target="_blank">📷</a>
-                    <a href="https://www.facebook.com/p/Beautiful-Minds-Medical-Aesthetics-61567757859137/" target="_blank">👍</a>
+                    <a href="https://www.instagram.com/beautifulminds_medaesthetics/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/p/Beautiful-Minds-Medical-Aesthetics-61567757859137/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
                 </div>
                 <p style="margin-top: 2rem;"><strong>Botox Parties Available!</strong><br>Contact us for details</p>
             </div>
@@ -495,6 +537,15 @@
         </div>
     </footer>
 
+        <script>
+        // Dropdown links with data-slide store target and navigate
+        document.querySelectorAll('.dropdown-menu a[data-slide]').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                var slideIndex = link.dataset.slide;
+                sessionStorage.setItem('bmma_slide', slideIndex);
+            });
+        });
+    </script>
     <script src="js/main.js"></script>
 </body>
 </html>
