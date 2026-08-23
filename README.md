@@ -1,6 +1,6 @@
 # Beautiful Minds Medical Aesthetics Website
 
-Professional website for Beautiful Minds Medical Aesthetics - a premier medical aesthetics clinic in Brandon, Mississippi.
+Professional website for Beautiful Minds Medical Aesthetics - a premier medical aesthetics clinic in Ridgeland, Mississippi.
 
 ## Features
 
@@ -96,4 +96,4 @@ This site can be deployed to:
 
 ## Contact
 
-For questions or support, contact: info@beautifulmindsmedaesthetics.com
+For questions or support, contact: williamandrewdavis15@gmail.com
