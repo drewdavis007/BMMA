@@ -167,12 +167,6 @@
         .tier-desc { font-size: 0.85rem; color: #000; line-height: 1.6; font-weight: 400; }
 
         /* ── CONTROLS ── */
-        .carousel-controls { display: flex; align-items: center; justify-content: center; gap: 1.2rem; padding: 1.4rem 2rem; background: #1a1a1a; }
-        .carousel-dots { display: flex; gap: 0.6rem; }
-        .carousel-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.3); border: none; cursor: pointer; transition: all 0.3s; padding: 0; }
-        .carousel-dot.active { background: #FB64C3; transform: scale(1.35); }
-        .carousel-pause-btn { background: transparent; border: 2px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.7); padding: 0.45rem 1.1rem; border-radius: 20px; font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
-        .carousel-pause-btn:hover, .carousel-pause-btn.paused { background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.6); }
 
         /* ── CTA ── */
         .cta-section { padding: 5rem 6%; background: linear-gradient(135deg, #720538 0%, #AC658B 100%); text-align: center; color: white; }
@@ -623,10 +617,7 @@
         </div><!-- end track -->
     </div><!-- end carousel-outer -->
 
-    <div class="carousel-controls">
-        <div class="carousel-dots" id="carouselDots"></div>
-        <button class="carousel-pause-btn" id="pauseBtn">⏸ Pause</button>
-    </div>
+
 
     <section class="cta-section">
         <h2>Ready to Begin Your Journey?</h2>
@@ -693,94 +684,53 @@
     <script>
     (function () {
         const SLIDE_COUNT = 11;
-        const AUTO_DELAY  = 10000;
 
         const track    = document.getElementById('carouselTrack');
-        const dotsEl   = document.getElementById('carouselDots');
-        const pauseBtn = document.getElementById('pauseBtn');
         const arrowL   = document.getElementById('arrowLeft');
         const arrowR   = document.getElementById('arrowRight');
         const jumpBtns = document.querySelectorAll('.jump-nav button');
 
-        let current   = 0;
-        let paused    = false;
-        let autoTimer = null;
+        let current = 0;
 
+        // Restore slide from sessionStorage (cross-page deep links)
         const stored = sessionStorage.getItem('bmma_slide');
         if (stored !== null) {
             current = parseInt(stored, 10);
             sessionStorage.removeItem('bmma_slide');
         }
 
-        for (let i = 0; i < SLIDE_COUNT; i++) {
-            const dot = document.createElement('button');
-            dot.className = 'carousel-dot';
-            dot.setAttribute('aria-label', 'Slide ' + (i + 1));
-            dot.addEventListener('click', function() { userGoTo(i); });
-            dotsEl.appendChild(dot);
-        }
-
         function render() {
             track.style.transform = 'translateX(-' + (current * 100) + '%)';
-            document.querySelectorAll('.carousel-dot').forEach(function(d, i) {
-                d.classList.toggle('active', i === current);
-            });
             jumpBtns.forEach(function(b) {
                 b.classList.toggle('active', parseInt(b.dataset.slide, 10) === current);
             });
         }
 
-        function userGoTo(index) {
+        function goTo(index) {
+            // Wrap: left on first goes to last, right on last goes to first
             current = ((index % SLIDE_COUNT) + SLIDE_COUNT) % SLIDE_COUNT;
             render();
-            pauseAutoplay();
         }
 
-        function autoNext() {
-            current = (current + 1) % SLIDE_COUNT;
-            render();
-        }
+        // Arrow clicks
+        arrowL.addEventListener('click', function() { goTo(current - 1); });
+        arrowR.addEventListener('click', function() { goTo(current + 1); });
 
-        function startAutoplay() {
-            clearInterval(autoTimer);
-            autoTimer = setInterval(function() { if (!paused) autoNext(); }, AUTO_DELAY);
-        }
-
-        function pauseAutoplay() {
-            paused = true;
-            pauseBtn.textContent = '▶ Resume';
-            pauseBtn.classList.add('paused');
-            clearInterval(autoTimer);
-        }
-
-        function resumeAutoplay() {
-            paused = false;
-            pauseBtn.textContent = '⏸ Pause';
-            pauseBtn.classList.remove('paused');
-            startAutoplay();
-        }
-
+        // Jump nav buttons
         jumpBtns.forEach(function(btn) {
-            btn.addEventListener('click', function() { userGoTo(parseInt(btn.dataset.slide, 10)); });
+            btn.addEventListener('click', function() { goTo(parseInt(btn.dataset.slide, 10)); });
         });
 
-        arrowL.addEventListener('click', function() { userGoTo(current - 1); });
-        arrowR.addEventListener('click', function() { userGoTo(current + 1); });
-
-        pauseBtn.addEventListener('click', function() {
-            if (paused) { resumeAutoplay(); } else { pauseAutoplay(); }
-        });
-
+        // Dropdown deep links (cross-page navigation into a specific slide)
         document.querySelectorAll('.dropdown-menu a[data-slide]').forEach(function(link) {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 document.getElementById('carouselOuter').scrollIntoView({ behavior: 'smooth', block: 'start' });
-                userGoTo(parseInt(link.dataset.slide, 10));
+                goTo(parseInt(link.dataset.slide, 10));
             });
         });
 
         render();
-        startAutoplay();
     })();
     </script>
 </body>
