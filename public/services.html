@@ -48,44 +48,107 @@
             background: rgba(255,255,255,0.08);
         }
 
-        /* ── CAROUSEL ── */
-        .carousel-outer { position: relative; overflow: hidden; background: #fafafa; }
+        /* ── SLIDE PANEL APPROACH ──────────────────────────────────────
+           Each .carousel-slide is a full-width panel. Only the active
+           slide is shown (display:block); all others are hidden. This
+           gives each slide its own natural height and keeps the arrow
+           controls inside the slide so they move with the content.
+           A CSS fade handles the transition — no translateX needed.
+        ─────────────────────────────────────────────────────────────── */
 
-        .carousel-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 10;
-            width: 52px; height: 52px;
-            border-radius: 50%;
-            background: rgba(114,5,56,0.85);
-            border: 2px solid rgba(255,255,255,0.4);
-            color: white;
-            font-size: 1.3rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-            backdrop-filter: blur(4px);
-        }
-        .carousel-arrow:hover { background: #E60790; border-color: white; box-shadow: 0 8px 25px rgba(230,7,144,0.5); }
-        .carousel-arrow.left  { left: 1.5rem; }
-        .carousel-arrow.right { right: 1.5rem; }
-
-        .carousel-track {
-            display: flex;
-            transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
-            will-change: transform;
+        .carousel-outer {
+            background: #fafafa;
+            position: relative; /* overlay anchor */
         }
 
+        /* All slides hidden by default; JS adds .active to the current one */
         .carousel-slide {
-            min-width: 100%;
-            padding: 4.5rem 8%;
+            display: none;
+            padding: 3rem 5% 3rem;
             box-sizing: border-box;
+            animation: slideIn 0.35s ease;
+        }
+        .carousel-slide.active {
+            display: block;
         }
         .carousel-slide:nth-child(even) { background: white; }
         .carousel-slide:nth-child(odd)  { background: #fafafa; }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to   { opacity: 1; transform: translateY(0);   }
+        }
+
+        /* ── CAROUSEL CONTROLS OVERLAY ─────────────────────────────────
+           .carousel-controls is position:absolute over .carousel-outer.
+           pointer-events:none on the overlay; pointer-events:auto on buttons.
+           Left arrow anchored with left:, right arrow anchored with right:.
+           They CANNOT collapse onto each other — independent anchors.
+           Vertical center is set by JS measuring the active slide's card group.
+        ─────────────────────────────────────────────────────────────── */
+
+        .carousel-controls {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Single authoritative arrow definition */
+        .carousel-arrow {
+            position: absolute;
+            pointer-events: auto;
+            /* Size — visible circle */
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            /* Style — matches site aesthetic */
+            background: white;
+            border: 2px solid #E60790;
+            color: #E60790;
+            box-shadow: 0 2px 8px rgba(114,5,56,0.12);
+            /* Center the SVG icon */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Vertical position set by JS via --arrow-top */
+            top: var(--arrow-top, 50%);
+            transform: translateY(-50%);
+            cursor: pointer;
+            transition: background 0.2s, box-shadow 0.2s, transform 0.18s;
+        }
+        .carousel-arrow svg {
+            display: block;
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+        /* Independent horizontal anchors — these CANNOT be on the same side */
+        .carousel-arrow.left  { left: 24px; }
+        .carousel-arrow.right { right: 24px; }
+
+        .carousel-arrow:hover {
+            background: rgba(230,7,144,0.06);
+            box-shadow: 0 0 0 4px rgba(230,7,144,0.15), 0 2px 10px rgba(114,5,56,0.15);
+            transform: translateY(-50%) scale(1.06);
+        }
+        .carousel-arrow:focus-visible {
+            outline: 2px solid #E60790;
+            outline-offset: 3px;
+        }
+        /* Brief fade during slide transition — set by JS */
+        .carousel-arrow.transitioning {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-arrow        { width: 44px; height: 44px; }
+            .carousel-arrow svg    { width: 20px; height: 20px; }
+            .carousel-arrow.left   { left: 8px; }
+            .carousel-arrow.right  { right: 8px; }
+            .carousel-slide        { padding: 2.5rem 3% 2.5rem; }
+        }
 
         /* ── HEADERS ── */
         .category-header { max-width: 1200px; margin: 0 auto 2.5rem; text-align: center; }
@@ -182,9 +245,7 @@
         .nav-social-link::after { display: none !important; }
 
         @media (max-width: 768px) {
-            .carousel-slide { padding: 3rem 5%; }
             .pricing-grid { grid-template-columns: 1fr; }
-            .carousel-arrow { display: none; }
             .tiers-grid { grid-template-columns: repeat(2,1fr); }
         }
         @media (max-width: 480px) { .tiers-grid { grid-template-columns: 1fr; } }
@@ -254,10 +315,23 @@
 
     <!-- Carousel -->
     <div class="carousel-outer" id="carouselOuter">
-        <button class="carousel-arrow left"  id="arrowLeft"  aria-label="Previous slide">&#8592;</button>
-        <button class="carousel-arrow right" id="arrowRight" aria-label="Next slide">&#8594;</button>
 
-        <div class="carousel-track" id="carouselTrack">
+        <!-- Dedicated control overlay — never inside the track -->
+        <div class="carousel-controls">
+            <button class="carousel-arrow left" id="arrowLeft" aria-label="Previous slide">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+            </button>
+            <button class="carousel-arrow right" id="arrowRight" aria-label="Next slide">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </button>
+        </div>
+
 
             <!-- SLIDE 0 — Neurotoxins -->
             <div class="carousel-slide">
@@ -614,7 +688,6 @@
                 </div>
             </div>
 
-        </div><!-- end track -->
     </div><!-- end carousel-outer -->
 
 
@@ -667,6 +740,7 @@
                 </div>
                 <p style="margin-top:2rem;"><strong>Botox Parties Available!</strong><br>Contact us for details</p>
             </div>
+            </div>
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 Beautiful Minds Medical Aesthetics. All rights reserved.</p>
@@ -683,51 +757,96 @@
     <script src="js/main.js"></script>
     <script>
     (function () {
-        const SLIDE_COUNT = 11;
+        var SLIDE_COUNT = 11;
+        var outer    = document.getElementById('carouselOuter');
+        var arrowL   = document.getElementById('arrowLeft');
+        var arrowR   = document.getElementById('arrowRight');
+        var jumpBtns = document.querySelectorAll('.jump-nav button');
+        var slides   = outer.querySelectorAll('.carousel-slide');
 
-        const track    = document.getElementById('carouselTrack');
-        const arrowL   = document.getElementById('arrowLeft');
-        const arrowR   = document.getElementById('arrowRight');
-        const jumpBtns = document.querySelectorAll('.jump-nav button');
+        var current = 0;
 
-        let current = 0;
-
-        // Restore slide from sessionStorage (cross-page deep links)
-        const stored = sessionStorage.getItem('bmma_slide');
+        // Restore from sessionStorage (cross-page deep links)
+        var stored = sessionStorage.getItem('bmma_slide');
         if (stored !== null) {
             current = parseInt(stored, 10);
             sessionStorage.removeItem('bmma_slide');
         }
 
+        /* positionArrows()
+           Measures the active slide's card group and sets --arrow-top
+           on .carousel-outer so both arrows vertically center on the cards.
+           Reference: .pricing-grid / .tiers-grid elements.
+           For multi-grid slides spans first-grid-top to last-grid-bottom. */
+        function positionArrows() {
+            var slide     = slides[current];
+            var outerRect = outer.getBoundingClientRect();
+            var grids     = slide.querySelectorAll('.pricing-grid, .tiers-grid');
+            var refTop, refBottom;
+
+            if (grids.length > 0) {
+                refTop    = grids[0].getBoundingClientRect().top;
+                refBottom = grids[grids.length - 1].getBoundingClientRect().bottom;
+            } else {
+                // Fallback: center on category-header
+                var hdr = slide.querySelector('.category-header');
+                if (hdr) {
+                    var r = hdr.getBoundingClientRect();
+                    refTop = r.top; refBottom = r.bottom;
+                } else {
+                    refTop = outerRect.top; refBottom = outerRect.bottom;
+                }
+            }
+
+            var midRelative = ((refTop + refBottom) / 2) - outerRect.top;
+            outer.style.setProperty('--arrow-top', midRelative + 'px');
+        }
+
         function render() {
-            track.style.transform = 'translateX(-' + (current * 100) + '%)';
+            slides.forEach(function(s, i) {
+                s.classList.toggle('active', i === current);
+            });
             jumpBtns.forEach(function(b) {
                 b.classList.toggle('active', parseInt(b.dataset.slide, 10) === current);
             });
+            requestAnimationFrame(positionArrows);
         }
 
         function goTo(index) {
-            // Wrap: left on first goes to last, right on last goes to first
-            current = ((index % SLIDE_COUNT) + SLIDE_COUNT) % SLIDE_COUNT;
-            render();
+            // Brief fade so arrows feel attached to the changing service
+            arrowL.classList.add('transitioning');
+            arrowR.classList.add('transitioning');
+            setTimeout(function() {
+                current = ((index % SLIDE_COUNT) + SLIDE_COUNT) % SLIDE_COUNT;
+                render();
+                arrowL.classList.remove('transitioning');
+                arrowR.classList.remove('transitioning');
+            }, 180);
         }
 
-        // Arrow clicks
+        // Arrow buttons — wired directly by ID, NOT event delegation on track
         arrowL.addEventListener('click', function() { goTo(current - 1); });
         arrowR.addEventListener('click', function() { goTo(current + 1); });
 
-        // Jump nav buttons
+        // Jump nav
         jumpBtns.forEach(function(btn) {
-            btn.addEventListener('click', function() { goTo(parseInt(btn.dataset.slide, 10)); });
+            btn.addEventListener('click', function() {
+                goTo(parseInt(btn.dataset.slide, 10));
+            });
         });
 
-        // Dropdown deep links (cross-page navigation into a specific slide)
+        // Dropdown deep links
         document.querySelectorAll('.dropdown-menu a[data-slide]').forEach(function(link) {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
-                document.getElementById('carouselOuter').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                outer.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 goTo(parseInt(link.dataset.slide, 10));
             });
+        });
+
+        // Re-measure on resize
+        window.addEventListener('resize', function() {
+            requestAnimationFrame(positionArrows);
         });
 
         render();
