@@ -84,7 +84,16 @@
            pointer-events:none on the overlay; pointer-events:auto on buttons.
            Left arrow anchored with left:, right arrow anchored with right:.
            They CANNOT collapse onto each other — independent anchors.
-           Vertical center is set by JS measuring the active slide's card group.
+
+           Vertical position is a FIXED value (top: Npx), intentionally NOT
+           calculated from card/grid height, row count, or content length.
+           .carousel-outer only ever contains the one active .carousel-slide
+           (inactive slides are display:none), so this overlay's top edge
+           always equals the top edge of whichever slide is showing —
+           meaning a fixed top offset here lands in the same relative spot
+           (just under the title/description, above the cards) on every
+           slide, short or tall. Do not reintroduce JS-based measurement
+           (getBoundingClientRect on the grid, --arrow-top, etc.) here.
         ─────────────────────────────────────────────────────────────── */
 
         .carousel-controls {
@@ -111,9 +120,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            /* Vertical position set by JS via --arrow-top */
-            top: var(--arrow-top, 50%);
-            transform: translateY(-50%);
+            /* Fixed upper position — same on every slide, regardless of
+               that slide's card count/height. See comment block above. */
+            top: 180px;
             cursor: pointer;
             transition: background 0.2s, box-shadow 0.2s, transform 0.18s;
         }
@@ -130,7 +139,7 @@
         .carousel-arrow:hover {
             background: rgba(230,7,144,0.06);
             box-shadow: 0 0 0 4px rgba(230,7,144,0.15), 0 2px 10px rgba(114,5,56,0.15);
-            transform: translateY(-50%) scale(1.06);
+            transform: scale(1.06);
         }
         .carousel-arrow:focus-visible {
             outline: 2px solid #E60790;
@@ -143,7 +152,7 @@
         }
 
         @media (max-width: 768px) {
-            .carousel-arrow        { width: 44px; height: 44px; }
+            .carousel-arrow        { width: 44px; height: 44px; top: 130px; }
             .carousel-arrow svg    { width: 20px; height: 20px; }
             .carousel-arrow.left   { left: 8px; }
             .carousel-arrow.right  { right: 8px; }
@@ -263,13 +272,13 @@
                 <li class="nav-dropdown">
                     <a href="services.html">Services <span class="dropdown-arrow">▾</span></a>
                     <div class="dropdown-menu">
-                        <a href="services.html" data-slide="0">Neurotoxins</a>
-                        <a href="services.html" data-slide="1">Therapeutic Treatments</a>
-                        <a href="services.html" data-slide="2">Dermal Fillers</a>
-                        <a href="services.html" data-slide="3">Sculptra</a>
-                        <a href="services.html" data-slide="4">Derma PRP &amp; PRP</a>
-                        <a href="services.html" data-slide="5">Skin Pen Microneedling</a>
-                        <a href="services.html" data-slide="6">Skin Care</a>
+                        <a href="services.html#neurotoxins">Neurotoxins</a>
+                        <a href="services.html#therapeutic">Therapeutic Treatments</a>
+                        <a href="services.html#fillers">Dermal Fillers</a>
+                        <a href="services.html#sculptra">Sculptra</a>
+                        <a href="services.html#derma-prp">Derma PRP &amp; PRP</a>
+                        <a href="services.html#skinpen">Skin Pen Microneedling</a>
+                        <a href="services.html#skincare">Skin Care</a>
                         <div class="dropdown-divider"></div>
                         <a href="botox-parties.html">Botox Parties</a>
                         <a href="referral-program.html">Referral Program</a>
@@ -747,17 +756,23 @@
         </div>
     </footer>
 
-    <script>
-        document.querySelectorAll('.dropdown-menu a[data-slide]').forEach(function(link) {
-            link.addEventListener('click', function() {
-                sessionStorage.setItem('bmma_slide', link.dataset.slide);
-            });
-        });
-    </script>
     <script src="js/main.js"></script>
     <script>
     (function () {
         var SLIDE_COUNT = 11;
+
+        // Index-aligned with the 11 .carousel-slide elements below and the
+        // 11 jump-nav buttons (data-slide="0"..."10"). This is the single
+        // source of truth mapping a slide index to the URL hash / slug used
+        // by dropdown links on every page (services.html#sculptra, etc.).
+        var SLIDE_SLUGS = [
+            'neurotoxins', 'therapeutic', 'fillers', 'sculptra', 'derma-prp',
+            'skinpen', 'skincare', 'botox-parties', 'referral-program',
+            'gift-certificates', 'payment-plans'
+        ];
+
+        var nav      = document.getElementById('nav');
+        var jumpNav  = document.getElementById('jumpNav');
         var outer    = document.getElementById('carouselOuter');
         var arrowL   = document.getElementById('arrowLeft');
         var arrowR   = document.getElementById('arrowRight');
@@ -766,42 +781,6 @@
 
         var current = 0;
 
-        // Restore from sessionStorage (cross-page deep links)
-        var stored = sessionStorage.getItem('bmma_slide');
-        if (stored !== null) {
-            current = parseInt(stored, 10);
-            sessionStorage.removeItem('bmma_slide');
-        }
-
-        /* positionArrows()
-           Measures the active slide's card group and sets --arrow-top
-           on .carousel-outer so both arrows vertically center on the cards.
-           Reference: .pricing-grid / .tiers-grid elements.
-           For multi-grid slides spans first-grid-top to last-grid-bottom. */
-        function positionArrows() {
-            var slide     = slides[current];
-            var outerRect = outer.getBoundingClientRect();
-            var grids     = slide.querySelectorAll('.pricing-grid, .tiers-grid');
-            var refTop, refBottom;
-
-            if (grids.length > 0) {
-                refTop    = grids[0].getBoundingClientRect().top;
-                refBottom = grids[grids.length - 1].getBoundingClientRect().bottom;
-            } else {
-                // Fallback: center on category-header
-                var hdr = slide.querySelector('.category-header');
-                if (hdr) {
-                    var r = hdr.getBoundingClientRect();
-                    refTop = r.top; refBottom = r.bottom;
-                } else {
-                    refTop = outerRect.top; refBottom = outerRect.bottom;
-                }
-            }
-
-            var midRelative = ((refTop + refBottom) / 2) - outerRect.top;
-            outer.style.setProperty('--arrow-top', midRelative + 'px');
-        }
-
         function render() {
             slides.forEach(function(s, i) {
                 s.classList.toggle('active', i === current);
@@ -809,7 +788,62 @@
             jumpBtns.forEach(function(b) {
                 b.classList.toggle('active', parseInt(b.dataset.slide, 10) === current);
             });
-            requestAnimationFrame(positionArrows);
+        }
+
+        /* getStickyOffset()
+           Measures the ACTUAL height of the fixed nav + sticky jump-nav
+           bars at runtime (rather than a guessed/arbitrary constant) so
+           scrolling never hides a service's title underneath them. */
+        function getStickyOffset() {
+            var navH  = nav ? nav.getBoundingClientRect().height : 85;
+            var jumpH = jumpNav ? jumpNav.getBoundingClientRect().height : 0;
+            return navH + jumpH + 16; // small breathing room below the bars
+        }
+
+        /* scrollToActiveServiceTop()
+           Scrolls the page so the ACTIVE slide's title/description sits
+           just below the sticky nav + jump-nav — never to the absolute
+           top of the whole site, and never left at the user's prior
+           scroll position. Waits two animation frames so layout from the
+           just-applied .active class (display:none -> block) has settled
+           before measuring. */
+        function scrollToActiveServiceTop(smooth) {
+            requestAnimationFrame(function () {
+                requestAnimationFrame(function () {
+                    var slide  = slides[current];
+                    var anchor = slide.querySelector('.category-header') || slide;
+                    var rect   = anchor.getBoundingClientRect();
+                    var offset = getStickyOffset();
+                    var targetY = window.scrollY + rect.top - offset;
+                    if (targetY < 0) targetY = 0;
+                    window.scrollTo({ top: targetY, behavior: smooth ? 'smooth' : 'auto' });
+                });
+            });
+        }
+
+        /* selectService(index, options)
+           THE single function every service-selection path goes through:
+           arrows, jump nav, dropdown links (via hashchange), and direct
+           cross-page links (via the initial-load hash check below).
+             options.updateHash — write the new slug into the URL (default true)
+             options.smooth     — animate the scroll (default true) */
+        function selectService(index, options) {
+            options = options || {};
+            var updateHash = options.updateHash !== false;
+            var smooth     = options.smooth !== false;
+
+            current = ((index % SLIDE_COUNT) + SLIDE_COUNT) % SLIDE_COUNT;
+            render();
+
+            if (updateHash) {
+                // replaceState (not location.hash=) so this never fires a
+                // 'hashchange' event itself — only real link/back-button
+                // navigation does, which is exactly what the listener below
+                // is meant to catch.
+                history.replaceState(null, '', '#' + SLIDE_SLUGS[current]);
+            }
+
+            scrollToActiveServiceTop(smooth);
         }
 
         function goTo(index) {
@@ -817,8 +851,7 @@
             arrowL.classList.add('transitioning');
             arrowR.classList.add('transitioning');
             setTimeout(function() {
-                current = ((index % SLIDE_COUNT) + SLIDE_COUNT) % SLIDE_COUNT;
-                render();
+                selectService(index, { smooth: true });
                 arrowL.classList.remove('transitioning');
                 arrowR.classList.remove('transitioning');
             }, 180);
@@ -828,28 +861,44 @@
         arrowL.addEventListener('click', function() { goTo(current - 1); });
         arrowR.addEventListener('click', function() { goTo(current + 1); });
 
-        // Jump nav
+        // Jump nav (purple service navigation)
         jumpBtns.forEach(function(btn) {
             btn.addEventListener('click', function() {
                 goTo(parseInt(btn.dataset.slide, 10));
             });
         });
 
-        // Dropdown deep links
-        document.querySelectorAll('.dropdown-menu a[data-slide]').forEach(function(link) {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                outer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                goTo(parseInt(link.dataset.slide, 10));
-            });
+        // Dropdown links (in THIS page's own nav, or any link on any other
+        // page pointing to services.html#slug) change the URL hash using
+        // normal browser navigation. When that happens while services.html
+        // is already loaded, the browser fires 'hashchange' rather than a
+        // full reload — this is the single hook that handles it.
+        window.addEventListener('hashchange', function () {
+            var slug = location.hash.replace('#', '');
+            var idx  = SLIDE_SLUGS.indexOf(slug);
+            if (idx === -1) return;
+            selectService(idx, { updateHash: false, smooth: true });
         });
 
-        // Re-measure on resize
-        window.addEventListener('resize', function() {
-            requestAnimationFrame(positionArrows);
-        });
-
-        render();
+        // Initial load: honor a hash if one was provided (e.g. a fresh
+        // navigation from another page's "Services → Sculptra" link, or a
+        // bookmarked/shared services.html#sculptra URL). Land on that
+        // service's title immediately, beneath the sticky nav, with no
+        // animation (it's a page load, not a user-triggered transition).
+        // If there is no hash, do nothing extra — the page opens at its
+        // natural top, showing the intro and jump nav, per the "Services"
+        // link (as opposed to an individual service link) behaving as a
+        // plain link to the top of this page.
+        var initialSlug  = location.hash.replace('#', '');
+        var initialIndex = SLIDE_SLUGS.indexOf(initialSlug);
+        if (initialIndex !== -1) {
+            current = initialIndex;
+            render();
+            scrollToActiveServiceTop(false);
+        } else {
+            current = 0;
+            render();
+        }
     })();
     </script>
 </body>

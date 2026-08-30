@@ -47,12 +47,3 @@ document.querySelectorAll('.nav-dropdown > a').forEach(function(trigger) {
         }
     });
 });
-
-// ── Cross-page dropdown navigation (store target slide in sessionStorage)
-// Dropdown links that point to services.html with a data-slide attribute
-document.querySelectorAll('.dropdown-menu a[data-slide]').forEach(function(link) {
-    link.addEventListener('click', function() {
-        sessionStorage.setItem('bmma_slide', link.dataset.slide);
-        // Allow normal navigation to services.html
-    });
-});

@@ -29,9 +29,10 @@
         }
 
         .page-hero p {
-            font-size: 1.3rem;
-            font-weight: 700;
+            font-size: 1.2rem;
+            font-weight: 300;
             opacity: 0.95;
+            margin-top: 0.8rem;
         }
 
         .mission-section {
@@ -329,13 +330,13 @@
                 <li class="nav-dropdown">
                     <a href="services.html">Services <span class="dropdown-arrow">&#9662;</span></a>
                     <div class="dropdown-menu">
-                        <a href="services.html" data-slide="0">Neurotoxins</a>
-                        <a href="services.html" data-slide="1">Therapeutic Treatments</a>
-                        <a href="services.html" data-slide="2">Dermal Fillers</a>
-                        <a href="services.html" data-slide="3">Sculptra</a>
-                        <a href="services.html" data-slide="4">Derma PRP &amp; PRP</a>
-                        <a href="services.html" data-slide="5">Skin Pen Microneedling</a>
-                        <a href="services.html" data-slide="6">Skin Care</a>
+                        <a href="services.html#neurotoxins">Neurotoxins</a>
+                        <a href="services.html#therapeutic">Therapeutic Treatments</a>
+                        <a href="services.html#fillers">Dermal Fillers</a>
+                        <a href="services.html#sculptra">Sculptra</a>
+                        <a href="services.html#derma-prp">Derma PRP &amp; PRP</a>
+                        <a href="services.html#skinpen">Skin Pen Microneedling</a>
+                        <a href="services.html#skincare">Skin Care</a>
                         <div class="dropdown-divider"></div>
                         <a href="botox-parties.html">Botox Parties</a>
                         <a href="referral-program.html">Referral Program</a>
@@ -470,7 +471,7 @@
                 <p style="margin-bottom: 1rem;">✓ <strong>Personalized Plans:</strong> Every treatment is customized to your unique needs</p>
                 <p style="margin-bottom: 1rem;">✓ <strong>Comfortable Environment:</strong> A welcoming, spa-like setting in Ridgeland, MS</p>
                 <p style="margin-bottom: 1rem;">✓ <strong>Transparent Pricing:</strong> Clear, upfront pricing with no hidden fees</p>
-                <p style="margin-bottom: 1rem;">✓ <strong>Convenient Location:</strong> Easily accessible in the West Medical Tower</p>
+                <p style="margin-bottom: 1rem;">✓ <strong>Convenient Location:</strong> Easily accessible from Highway 51 in Ridgeland</p>
             </div>
         </div>
     </section>
@@ -537,15 +538,6 @@
         </div>
     </footer>
 
-        <script>
-        // Dropdown links with data-slide store target and navigate
-        document.querySelectorAll('.dropdown-menu a[data-slide]').forEach(function(link) {
-            link.addEventListener('click', function(e) {
-                var slideIndex = link.dataset.slide;
-                sessionStorage.setItem('bmma_slide', slideIndex);
-            });
-        });
-    </script>
-    <script src="js/main.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
