@@ -80,20 +80,31 @@
         }
 
         /* ── CAROUSEL CONTROLS OVERLAY ─────────────────────────────────
-           .carousel-controls is position:absolute over .carousel-outer.
-           pointer-events:none on the overlay; pointer-events:auto on buttons.
-           Left arrow anchored with left:, right arrow anchored with right:.
-           They CANNOT collapse onto each other — independent anchors.
+           .carousel-controls is position:absolute over .carousel-outer,
+           spanning exactly the height of the current active .carousel-slide
+           (inactive slides are display:none, so .carousel-outer's rendered
+           height always equals whichever slide is showing).
 
-           Vertical position is a FIXED value (top: Npx), intentionally NOT
-           calculated from card/grid height, row count, or content length.
-           .carousel-outer only ever contains the one active .carousel-slide
-           (inactive slides are display:none), so this overlay's top edge
-           always equals the top edge of whichever slide is showing —
-           meaning a fixed top offset here lands in the same relative spot
-           (just under the title/description, above the cards) on every
-           slide, short or tall. Do not reintroduce JS-based measurement
-           (getBoundingClientRect on the grid, --arrow-top, etc.) here.
+           Each side has an .arrow-track: position:absolute, top:0/bottom:0,
+           so ITS height also always equals the current slide's height —
+           this is what constrains the arrow's travel range to "this
+           service only", short or tall, without ever measuring card/grid
+           height in JS. The track is anchored left:/right: to the edges;
+           it never depends on card width/count.
+
+           The .carousel-arrow itself is position:sticky (not absolute).
+           - `margin-top` sets where it rests before any scrolling happens
+             (near the top of the service, below the title/description —
+             same visual spot as before).
+           - `top` (set inline by JS, see applyArrowStickyOffset()) is the
+             sticky-catch threshold: the arrow won't tuck under the site's
+             fixed nav + sticky jump-nav, whatever their real height is.
+           - Because its containing block is the .arrow-track (height =
+             current service height), the browser's native sticky
+             bottom-boundary behavior stops the arrow at the bottom of
+             THIS service — it can never drift into the next one. This is
+             deliberate; do not swap this for `position: fixed`, which has
+             no such boundary.
         ─────────────────────────────────────────────────────────────── */
 
         .carousel-controls {
@@ -103,9 +114,26 @@
             z-index: 10;
         }
 
+        .arrow-track {
+            position: absolute;
+            top: 0;
+            bottom: 0;      /* height == current active slide's height — the service boundary */
+            width: 56px;
+            pointer-events: none;
+        }
+        .arrow-track.left  { left: 24px; }
+        .arrow-track.right { right: 24px; }
+
         /* Single authoritative arrow definition */
         .carousel-arrow {
-            position: absolute;
+            position: sticky;
+            /* Fallback before JS measures the real sticky-nav height;
+               applyArrowStickyOffset() overwrites this inline. */
+            top: 120px;
+            /* Initial resting offset within the current service — same
+               visual spot ("near the top, below the description") as
+               before this behaved as a fixed position. */
+            margin-top: 180px;
             pointer-events: auto;
             /* Size — visible circle */
             width: 56px;
@@ -120,9 +148,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            /* Fixed upper position — same on every slide, regardless of
-               that slide's card count/height. See comment block above. */
-            top: 180px;
             cursor: pointer;
             transition: background 0.2s, box-shadow 0.2s, transform 0.18s;
         }
@@ -132,9 +157,6 @@
             height: 24px;
             flex-shrink: 0;
         }
-        /* Independent horizontal anchors — these CANNOT be on the same side */
-        .carousel-arrow.left  { left: 24px; }
-        .carousel-arrow.right { right: 24px; }
 
         .carousel-arrow:hover {
             background: rgba(230,7,144,0.06);
@@ -152,11 +174,12 @@
         }
 
         @media (max-width: 768px) {
-            .carousel-arrow        { width: 44px; height: 44px; top: 130px; }
-            .carousel-arrow svg    { width: 20px; height: 20px; }
-            .carousel-arrow.left   { left: 8px; }
-            .carousel-arrow.right  { right: 8px; }
-            .carousel-slide        { padding: 2.5rem 3% 2.5rem; }
+            .arrow-track            { width: 44px; }
+            .arrow-track.left       { left: 8px; }
+            .arrow-track.right      { right: 8px; }
+            .carousel-arrow         { width: 44px; height: 44px; margin-top: 130px; }
+            .carousel-arrow svg     { width: 20px; height: 20px; }
+            .carousel-slide         { padding: 2.5rem 3% 2.5rem; }
         }
 
         /* ── HEADERS ── */
@@ -325,20 +348,28 @@
     <!-- Carousel -->
     <div class="carousel-outer" id="carouselOuter">
 
-        <!-- Dedicated control overlay — never inside the track -->
+        <!-- Dedicated control overlay — never inside the track.
+             Each .arrow-track spans exactly the active slide's height
+             (its top/bottom are both 0 relative to .carousel-controls,
+             which itself spans the active slide) — that's the arrow's
+             scroll boundary. The button inside is position:sticky. -->
         <div class="carousel-controls">
-            <button class="carousel-arrow left" id="arrowLeft" aria-label="Previous slide">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <line x1="19" y1="12" x2="5" y2="12"></line>
-                    <polyline points="12 19 5 12 12 5"></polyline>
-                </svg>
-            </button>
-            <button class="carousel-arrow right" id="arrowRight" aria-label="Next slide">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-            </button>
+            <div class="arrow-track left">
+                <button class="carousel-arrow" id="arrowLeft" aria-label="Previous slide">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                </button>
+            </div>
+            <div class="arrow-track right">
+                <button class="carousel-arrow" id="arrowRight" aria-label="Next slide">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </div>
         </div>
 
 
@@ -793,11 +824,25 @@
         /* getStickyOffset()
            Measures the ACTUAL height of the fixed nav + sticky jump-nav
            bars at runtime (rather than a guessed/arbitrary constant) so
-           scrolling never hides a service's title underneath them. */
+           scrolling never hides a service's title underneath them. Also
+           reused below for the arrows' own sticky "catch" threshold, so
+           both behaviors always agree on the same real header height. */
         function getStickyOffset() {
             var navH  = nav ? nav.getBoundingClientRect().height : 85;
             var jumpH = jumpNav ? jumpNav.getBoundingClientRect().height : 0;
             return navH + jumpH + 16; // small breathing room below the bars
+        }
+
+        /* applyArrowStickyOffset()
+           Sets the sticky arrows' `top` (their catch threshold) to the
+           real, current header height, so they always stop just below
+           the fixed nav + jump-nav rather than sliding underneath them.
+           Re-run on resize since nav height can change responsively
+           (e.g. mobile hamburger layout vs. desktop). */
+        function applyArrowStickyOffset() {
+            var offset = getStickyOffset() + 'px';
+            arrowL.style.top = offset;
+            arrowR.style.top = offset;
         }
 
         /* scrollToActiveServiceTop()
@@ -860,6 +905,11 @@
         // Arrow buttons — wired directly by ID, NOT event delegation on track
         arrowL.addEventListener('click', function() { goTo(current - 1); });
         arrowR.addEventListener('click', function() { goTo(current + 1); });
+
+        // Keep the arrows' sticky catch-threshold matched to the real,
+        // current header height (it can change responsively on resize).
+        applyArrowStickyOffset();
+        window.addEventListener('resize', applyArrowStickyOffset);
 
         // Jump nav (purple service navigation)
         jumpBtns.forEach(function(btn) {
