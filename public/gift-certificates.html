@@ -58,13 +58,13 @@
                 <li class="nav-dropdown">
                     <a href="services.html">Services <span class="dropdown-arrow">▾</span></a>
                     <div class="dropdown-menu">
-                        <a href="services.html" data-slide="0">Neurotoxins</a>
-                        <a href="services.html" data-slide="1">Therapeutic Treatments</a>
-                        <a href="services.html" data-slide="2">Dermal Fillers</a>
-                        <a href="services.html" data-slide="3">Sculptra</a>
-                        <a href="services.html" data-slide="4">Cellenis Derma PRP</a>
-                        <a href="services.html" data-slide="5">Skin Pen Microneedling</a>
-                        <a href="services.html" data-slide="6">Skin Care</a>
+                        <a href="services.html#neurotoxins">Neurotoxins</a>
+                        <a href="services.html#therapeutic">Therapeutic Treatments</a>
+                        <a href="services.html#fillers">Dermal Fillers</a>
+                        <a href="services.html#sculptra">Sculptra</a>
+                        <a href="services.html#derma-prp">Cellenis Derma PRP</a>
+                        <a href="services.html#skinpen">Skin Pen Microneedling</a>
+                        <a href="services.html#skincare">Skin Care</a>
                         <div class="dropdown-divider"></div>
                         <a href="botox-parties.html">Botox Parties</a>
                         <a href="referral-program.html">Referral Program</a>
@@ -173,13 +173,6 @@
             <p>&copy; 2026 Beautiful Minds Medical Aesthetics. All rights reserved.</p>
         </div>
     </footer>
-    <script>
-        document.querySelectorAll('.dropdown-menu a[data-slide]').forEach(function(link) {
-            link.addEventListener('click', function() {
-                sessionStorage.setItem('bmma_slide', link.dataset.slide);
-            });
-        });
-    </script>
-    <script src="js/main.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
