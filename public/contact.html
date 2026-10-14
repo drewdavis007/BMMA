@@ -317,24 +317,39 @@
             }
         }
 
+        /* MOBILE COMPACTING (<= 768px). Also fixes a horizontal overflow: the
+           single-column grid items couldn't shrink below the long email
+           address. Hero size now comes from the shared rule in css/styles.css. */
         @media (max-width: 768px) {
-            .page-hero h1 {
-                font-size: 3rem;
-            }
+            .contact-container { padding: 2.5rem 5%; }
+            .contact-grid { gap: 1.5rem; margin-bottom: 2rem; }
+            .contact-grid > * { min-width: 0; }
 
             .contact-info,
-            .contact-form-section {
-                padding: 2rem;
-            }
+            .contact-form-section { padding: 1.5rem; }
+            .contact-info h2,
+            .contact-form-section h2 { font-size: 2rem; letter-spacing: 1px; margin-bottom: 1.25rem; }
+            .info-item { margin-bottom: 1.25rem; padding-bottom: 1rem; }
+            .info-item a { overflow-wrap: anywhere; }
+            /* day | hours side by side (7 rows) instead of 14 stacked rows */
+            .hours-grid { grid-template-columns: auto 1fr; gap: 0.25rem 1rem; }
+            .hours-grid p { margin-bottom: 0.25rem; }
+            .contact-form-section p { margin-bottom: 1.25rem; }
 
-            .map-section {
-                padding: 2rem;
-            }
+            .map-section { padding: 2rem 1.25rem; margin-top: 2rem; }
+            .map-section h2 { font-size: 2rem; letter-spacing: 1px; }
+            .map-section p { margin-bottom: 1.25rem; }
+            .map-container { height: 320px; }
+            .map-container iframe { height: 100%; }
 
-            .social-buttons {
-                flex-direction: column;
-                align-items: stretch;
-            }
+            .social-connect { padding: 2.5rem 6%; }
+            .social-connect h2 { font-size: 2rem; letter-spacing: 1px; }
+            .social-connect p { margin-bottom: 1.5rem; }
+            .social-buttons { flex-direction: column; align-items: stretch; gap: 1rem; }
+
+            .booking-cta { padding: 3rem 6%; }
+            .booking-cta h2 { font-size: 2rem; letter-spacing: 1px; margin-bottom: 1rem; }
+            .booking-cta p { font-size: 1.05rem; margin-bottom: 1.75rem; }
         }
     
         /* ── NAV SOCIAL ICONS ── */

@@ -276,15 +276,44 @@
             box-shadow: 0 15px 40px rgba(230, 7, 144, 0.4);
         }
 
+        /* ── MOBILE COMPACTING (<= 768px) ──
+           Long-form page: 6rem section padding, 3rem/2rem headings and
+           line-height:2 made this page 2x taller on phones than needed. */
         @media (max-width: 768px) {
-            .timeline-item {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
+            .content-section { padding: 2.5rem 5%; }
+            .content-section h2 { font-size: 1.9rem; letter-spacing: 1px; line-height: 1.2; margin: 2rem 0 1rem; }
+            .content-section h2:first-child { margin-top: 0; }
+            .content-section h3 { font-size: 1.45rem; line-height: 1.25; margin: 1.75rem 0 0.75rem; }
+            .content-section p { font-size: 1rem; line-height: 1.7; margin-bottom: 1rem; }
+            .content-section ul { margin: 1.25rem 0; }
+            .content-section ul li { font-size: 1rem; line-height: 1.65; padding-left: 1.75rem; margin-bottom: 0.5rem; }
+            .content-section ul li:before { font-size: 1.1rem; }
+            .treatment-box,
+            .highlight-box { padding: 1.5rem; margin: 1.5rem 0; }
+            .highlight-box h3 { margin-top: 0; }
+            .treatment-box h4 { font-size: 1.35rem; margin-bottom: 0.5rem; }
+            .treatment-box .price { font-size: 1.6rem; margin-bottom: 0.5rem; }
+            .cta-box { padding: 2rem 1.25rem; margin: 2rem 0 0; }
+            .cta-box h3 { font-size: 1.7rem; margin: 0 0 0.75rem; }
+            .cta-box .cta-button { padding: 1rem 2rem; font-size: 0.85rem; }
 
-            .timeline-marker {
-                margin: 0 auto 1rem;
-            }
+            /* pricing cards: minmax(300px) + the featured card's scale(1.05)
+               overflowed the screen at every phone width */
+            .pricing-options { grid-template-columns: 1fr; gap: 1.25rem; margin: 1.5rem 0; }
+            .pricing-card { padding: 1.75rem 1.25rem; }
+            .pricing-card.featured { transform: none; }
+            .pricing-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+            .pricing-card .price { font-size: 2.3rem; margin-bottom: 0.5rem; }
+            .pricing-card p { margin-bottom: 1.25rem; }
+            .benefits-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; margin: 1.5rem 0; }
+            .benefit-item { padding: 1rem 0.75rem; }
+            .benefit-item h4 { font-size: 1.05rem; margin-bottom: 0.4rem; }
+            .benefit-item p { font-size: 0.9rem; line-height: 1.5; margin-bottom: 0; }
+            /* timeline: was a stacked, centered 100px circle above every step */
+            .timeline { margin: 1.5rem 0; padding: 0.5rem 0; }
+            .timeline-item { grid-template-columns: 72px 1fr; gap: 1rem; text-align: left; margin-bottom: 1.25rem; }
+            .timeline-marker { width: 72px; height: 72px; margin: 0; font-size: 0.78rem; line-height: 1.2; text-align: center; }
+            .timeline-content h4 { font-size: 1.25rem; margin-bottom: 0.25rem; }
         }
     </style>
 </head>

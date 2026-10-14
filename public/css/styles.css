@@ -1134,3 +1134,102 @@ footer {
     .review-card { padding: 2.5rem 1.5rem; }
     .reviews-arrow { width: 36px; height: 36px; font-size: 1rem; }
 }
+
+
+/* =====================================================================
+   MOBILE COMPACTING (<= 768px)
+   Reduces excess vertical scrolling on phones. Desktop/tablet (>768px)
+   is untouched. This block is intentionally LAST in the file: some of
+   the base rules it refines (e.g. .review-card, .reviews-arrow) are
+   defined above, so these must come after them to take effect.
+   ===================================================================== */
+@media (max-width: 768px) {
+
+    /* ---- Fixed nav: logo was wrapping to 3-4 lines (120-161px tall).
+       Fixed 64px bar; --nav-h is reused so hero offsets always match. ---- */
+    :root { --nav-h: 64px; }
+    nav { padding: 0 5%; height: var(--nav-h); }
+    .nav-container { height: 100%; }
+    .logo { font-size: clamp(0.78rem, 3.6vw, 0.95rem); letter-spacing: 1px; line-height: 1.2; }
+    /* larger tap area; visual size of the icon is unchanged */
+    .hamburger { padding: 0.8rem 0.6rem; margin-right: -0.6rem; }
+
+    /* ---- Homepage hero: was a full 100vh screen ---- */
+    .hero { height: auto; min-height: 60vh; margin-top: var(--nav-h); padding: 3rem 0; }
+    .hero h1 { margin-bottom: 1rem; letter-spacing: 1px; }
+    .hero p { font-size: 1.05rem; line-height: 1.6; margin-bottom: 2rem; }
+
+    /* ---- Homepage section rhythm: 8rem (128px) top/bottom -> 3.5rem ---- */
+    .intro-statement,
+    .services,
+    .before-after,
+    .testimonials,
+    .instagram { padding: 3.5rem 6%; }
+    .section-header { margin-bottom: 2.25rem; }
+
+    .intro-content h2 { font-size: 2rem; line-height: 1.3; margin-bottom: 1.25rem; }
+    .intro-content p { font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem; }
+
+    /* ---- Homepage service cards: 4 x 450px stacked -> 280px ---- */
+    .service-card { height: 280px; }
+    .service-overlay { padding: 1.5rem; }
+    .service-card h3 { font-size: 1.9rem; margin-bottom: 0.5rem; letter-spacing: 1px; }
+    .service-card p { font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.25rem; }
+
+    /* ---- Homepage before/after: images 350px -> 240px.
+       Scoped to .before-after because .ba-grid/.ba-caption names are
+       also used (with their own styles) on the Gallery page. ---- */
+    .before-after .ba-grid { margin-top: 2rem; gap: 1.25rem; }
+    .before-after .ba-image { height: 240px; }
+    .before-after .ba-caption { padding: 1.25rem; }
+    .before-after .ba-caption h4 { font-size: 1.3rem; }
+
+    /* ---- Homepage "Meet Kayla": photo had no mobile height; shorter text padding ---- */
+    .team-split { min-height: 0; }
+    .team-image-side { height: 380px; }
+    .team-image-side img { object-position: center 20%; }
+    .team-text-side { padding: 2.5rem 1.5rem; }
+    .team-text-side h2 { font-size: 2.25rem; letter-spacing: 1px; }
+    .team-credentials { font-size: 1rem; margin-bottom: 1.25rem; }
+    .team-text-side p { font-size: 1rem; line-height: 1.75; margin-bottom: 1rem; }
+
+    /* ---- Homepage reviews: the side arrows squeezed text to ~207px wide,
+       making the (tallest-card-sized) carousel very tall. Arrows move
+       beneath the card so the text uses the full width. DOM/JS unchanged. ---- */
+    .testimonials { padding-left: 4%; padding-right: 4%; }
+    .reviews-carousel-outer { flex-wrap: wrap; justify-content: center; gap: 0.75rem 1rem; margin-top: 2rem; }
+    .reviews-track-wrap { order: -1; flex: 0 0 100%; }
+    .reviews-arrow { width: 40px; height: 40px; }
+    .review-card { padding: 2rem 1.25rem 1.75rem; }
+    .review-stars { font-size: 1.15rem; margin-bottom: 1rem; }
+    .review-text { font-size: 1rem; line-height: 1.7; margin-bottom: 1.25rem; }
+    .review-author { font-size: 0.95rem; }
+    .reviews-dots { gap: 0.4rem; margin-top: 1rem; }
+
+    /* ---- Homepage social block: 4 x 350px posts -> square tiles; also fixes
+       a horizontal overflow (the long handle forced the grid column wide) ---- */
+    .instagram-grid { margin-top: 1.25rem; gap: 0.75rem; }
+    .instagram-post { height: auto; aspect-ratio: 1 / 1; }
+    .social-skeletons-wrap { gap: 2.5rem; }
+    .social-skeleton-block { min-width: 0; gap: 1rem; }
+    .social-skeleton-header { font-size: 1.15rem; padding-bottom: 0.75rem; overflow-wrap: anywhere; }
+    .facebook-post-skeleton { padding: 1rem; }
+    .instagram-link { margin-top: 1.5rem; }
+    .instagram-button { padding: 1rem 2rem; font-size: 0.85rem; }
+
+    /* ---- Footer (identical on all pages) ---- */
+    footer { padding: 3rem 6% 2rem; }
+    .footer-content { gap: 2rem; margin-bottom: 2rem; }
+    .footer-section h4 { margin-bottom: 1rem; }
+    .footer-section p,
+    .footer-section > a { margin-bottom: 0.6rem; }
+    .footer-bottom { padding-top: 1.5rem; }
+
+    /* ---- Inner-page hero (shared class, but every page also repeats its own
+       desktop .page-hero rules inline, which load after this file; the
+       leading "body" raises specificity just enough to win on mobile). ---- */
+    body .page-hero { height: auto; min-height: 0; margin-top: var(--nav-h); padding: 2.5rem 6% 2.25rem; }
+    body .page-hero > div { max-width: 100%; }
+    body .page-hero h1 { font-size: clamp(2rem, 9.5vw, 2.6rem); letter-spacing: 1px; line-height: 1.15; margin-bottom: 0; overflow-wrap: anywhere; }
+    body .page-hero p { font-size: 1rem; margin-top: 0.6rem; }
+}

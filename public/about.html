@@ -29,10 +29,9 @@
         }
 
         .page-hero p {
-            font-size: 1.2rem;
-            font-weight: 300;
+            font-size: 1.3rem;
+            font-weight: 700;
             opacity: 0.95;
-            margin-top: 0.8rem;
         }
 
         .mission-section {
@@ -293,22 +292,47 @@
             }
         }
 
+        /* MOBILE COMPACTING (<= 768px): five sections used 8rem (128px)
+           top/bottom padding and 3.5rem headings. Hero size now comes from
+           the shared rule in css/styles.css. */
         @media (max-width: 768px) {
-            .page-hero h1 {
-                font-size: 3rem;
-            }
+            .mission-section,
+            .values-section,
+            .approach-section,
+            .cta-section { padding: 3rem 6%; }
 
             .mission-content h2,
             .founder-text-side h2,
             .values-header h2,
             .approach-content h2,
-            .cta-section h2 {
-                font-size: 2.5rem;
-            }
+            .cta-section h2 { font-size: 2rem; letter-spacing: 1px; }
 
-            .founder-text-side {
-                padding: 4rem 2rem;
-            }
+            .mission-content h2 { margin-bottom: 1.25rem; }
+            .mission-content p { font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem; }
+            .mission-highlight { font-size: 1.2rem; margin: 1.5rem 0; }
+
+            .founder-split { min-height: 0; }
+            .founder-image-side { height: 380px; }
+            .founder-image-side img { object-position: center 20%; }
+            .founder-text-side { padding: 2.5rem 1.5rem; }
+            .founder-text-side p { font-size: 1rem; line-height: 1.75; margin-bottom: 1rem; }
+
+            .values-header { margin-bottom: 2rem; }
+            .values-header h2 { margin-bottom: 0.5rem; }
+            .values-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .value-card { padding: 1.75rem 1.25rem; }
+            .value-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+            .value-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+            .value-card p { font-size: 1rem; line-height: 1.65; }
+
+            .approach-content h2 { margin-bottom: 1.5rem; }
+            .approach-items { gap: 1rem; }
+            .approach-item { padding: 1.5rem; }
+            .approach-item h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+            .approach-item p { font-size: 1rem; line-height: 1.7; }
+
+            .cta-section h2 { margin-bottom: 1rem; }
+            .cta-section p { font-size: 1.05rem; margin-bottom: 1.75rem; }
         }
     
         /* ── NAV SOCIAL ICONS ── */
@@ -471,7 +495,7 @@
                 <p style="margin-bottom: 1rem;">✓ <strong>Personalized Plans:</strong> Every treatment is customized to your unique needs</p>
                 <p style="margin-bottom: 1rem;">✓ <strong>Comfortable Environment:</strong> A welcoming, spa-like setting in Ridgeland, MS</p>
                 <p style="margin-bottom: 1rem;">✓ <strong>Transparent Pricing:</strong> Clear, upfront pricing with no hidden fees</p>
-                <p style="margin-bottom: 1rem;">✓ <strong>Convenient Location:</strong> Easily accessible from Highway 51 in Ridgeland</p>
+                <p style="margin-bottom: 1rem;">✓ <strong>Convenient Location:</strong> Easily accessible in the West Medical Tower</p>
             </div>
         </div>
     </section>

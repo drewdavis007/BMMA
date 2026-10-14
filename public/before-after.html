@@ -234,10 +234,24 @@
         .cta-section .cta-button { background: white; color: #720538; border: 2px solid white; font-weight: 700; }
         .cta-section .cta-button:hover { background: transparent; color: white; }
 
+        /* MOBILE COMPACTING (<= 768px): 21 cards x 260px images plus a 4rem
+           gap above every grid. Hero size comes from css/styles.css. */
         @media (max-width: 768px) {
-            .ba-grid { grid-template-columns: 1fr; }
-            .filter-bar { gap: 0.5rem; }
+            .gallery-wrap { padding: 2.5rem 5%; }
+            .filter-bar { gap: 0.5rem; margin-bottom: 2rem; }
             .filter-btn { font-size: 0.7rem; padding: 0.5rem 1rem; }
+            .gallery-category { margin-bottom: 2.5rem; }
+            .category-heading { font-size: 1.6rem; letter-spacing: 1px; }
+            .category-sub { margin-bottom: 1.25rem; }
+            .ba-grid { grid-template-columns: 1fr; gap: 1.25rem; margin-top: 0; }
+            .ba-side,
+            .coming-soon-block { height: 200px; }
+            .ba-caption { padding: 1rem 1.25rem; }
+            .ba-caption h4 { font-size: 1.1rem; }
+            .gallery-disclaimer { padding: 1.5rem 6%; }
+            .cta-section { padding: 3rem 6%; }
+            .cta-section h2 { font-size: 2rem; }
+            .cta-section p { margin-bottom: 1.75rem; }
         }
     </style>
 </head>

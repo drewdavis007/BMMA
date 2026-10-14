@@ -180,6 +180,32 @@
             .carousel-arrow         { width: 44px; height: 44px; margin-top: 130px; }
             .carousel-arrow svg     { width: 20px; height: 20px; }
             .carousel-slide         { padding: 2.5rem 3% 2.5rem; }
+
+            /* MOBILE COMPACTING: the 11 jump-nav buttons wrapped into 4+ rows
+               (229px of sticky bar, sitting at top:85px under a taller nav).
+               Now a single swipeable row pinned directly under the 64px nav;
+               render() in the script below keeps the active tab centred. */
+            .jump-nav { top: var(--nav-h, 85px); flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+            .jump-nav::-webkit-scrollbar { display: none; }
+            .jump-nav button { flex: 0 0 auto; padding: 0.85rem 0.9rem; }
+
+            .services-intro { padding: 2rem 6%; }
+            .services-intro p { font-size: 1rem; line-height: 1.7; }
+            /* side gutters = arrow column (8px + 44px) so heading text never runs under the arrows */
+            .category-header { margin-bottom: 1.5rem; padding: 0 2.75rem; }
+            .category-title { font-size: 1.9rem; letter-spacing: 1px; }
+            .category-description { font-size: 0.95rem; line-height: 1.65; }
+            .sub-header { margin: 2rem auto 1rem; }
+            .sub-header h3 { font-size: 1.6rem; }
+            .pricing-grid { gap: 1rem; }
+            .pricing-card { padding: 1.5rem 1.25rem; }
+            .pricing-card h3 { font-size: 1.4rem; }
+            .pricing-card .price { font-size: 2rem; margin-bottom: 0.6rem; }
+            .pricing-card p { font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem; }
+            .special-note { padding: 1.25rem 1.5rem; }
+            .cta-section { padding: 3rem 6%; }
+            .cta-section h2 { font-size: 2rem; }
+            .cta-section p { margin-bottom: 1.75rem; }
         }
 
         /* ── HEADERS ── */
@@ -819,6 +845,15 @@
             jumpBtns.forEach(function(b) {
                 b.classList.toggle('active', parseInt(b.dataset.slide, 10) === current);
             });
+            // Mobile: jump nav is a horizontally scrolling strip — centre the
+            // active tab inside it (scrolls only the strip, never the page).
+            var activeBtn = jumpNav && jumpNav.querySelector('button.active');
+            if (activeBtn && jumpNav.scrollWidth > jumpNav.clientWidth) {
+                jumpNav.scrollTo({
+                    left: activeBtn.offsetLeft - (jumpNav.clientWidth - activeBtn.offsetWidth) / 2,
+                    behavior: 'smooth'
+                });
+            }
         }
 
         /* getStickyOffset()

@@ -208,6 +208,39 @@
             font-weight: 600;
             font-size: 1.3rem;
         }
+        /* ── MOBILE COMPACTING (<= 768px) ──
+           Long-form page: 6rem section padding, 3rem/2rem headings and
+           line-height:2 made this page 2x taller on phones than needed. */
+        @media (max-width: 768px) {
+            .content-section { padding: 2.5rem 5%; }
+            .content-section h2 { font-size: 1.9rem; letter-spacing: 1px; line-height: 1.2; margin: 2rem 0 1rem; }
+            .content-section h2:first-child { margin-top: 0; }
+            .content-section h3 { font-size: 1.45rem; line-height: 1.25; margin: 1.75rem 0 0.75rem; }
+            .content-section p { font-size: 1rem; line-height: 1.7; margin-bottom: 1rem; }
+            .content-section ul { margin: 1.25rem 0; }
+            .content-section ul li { font-size: 1rem; line-height: 1.65; padding-left: 1.75rem; margin-bottom: 0.5rem; }
+            .content-section ul li:before { font-size: 1.1rem; }
+            .treatment-box,
+            .highlight-box { padding: 1.5rem; margin: 1.5rem 0; }
+            .highlight-box h3 { margin-top: 0; }
+            .treatment-box h4 { font-size: 1.35rem; margin-bottom: 0.5rem; }
+            .treatment-box .price { font-size: 1.6rem; margin-bottom: 0.5rem; }
+            .cta-box { padding: 2rem 1.25rem; margin: 2rem 0 0; }
+            .cta-box h3 { font-size: 1.7rem; margin: 0 0 0.75rem; }
+            .cta-box .cta-button { padding: 1rem 2rem; font-size: 0.85rem; }
+
+            .product-categories { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; margin: 1.5rem 0; }
+            .category-card { padding: 1.25rem 0.75rem; }
+            .category-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+            .category-card h4 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+            .category-card p { font-size: 0.9rem; line-height: 1.5; margin-bottom: 0; }
+            .skin-types { gap: 1rem; margin: 1.5rem 0; }
+            .skin-type { padding: 1.25rem; }
+            .skin-type h4 { margin-bottom: 0.5rem; }
+            .skin-type p { font-size: 0.95rem; margin-bottom: 0; }
+            .benefits-list { padding: 1.25rem; margin: 1.5rem 0; }
+            .benefits-list li { font-size: 1rem; line-height: 1.65; padding-left: 1.75rem; margin-bottom: 0.5rem; }
+        }
     </style>
 </head>
 <body>
