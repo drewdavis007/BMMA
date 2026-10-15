@@ -282,6 +282,20 @@
             box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
 
+        /* "Our Mission" button: the white .cta-button above would be invisible on this white section */
+        .about-mission .cta-button {
+            background: linear-gradient(135deg, #E60790 0%, #FB64C3 100%);
+            color: white;
+            border-color: transparent;
+            margin-top: 0.5rem;
+        }
+
+        .about-mission .cta-button:hover {
+            background: linear-gradient(135deg, #E60790 0%, #FB64C3 100%);
+            color: white;
+            box-shadow: 0 15px 40px rgba(230, 7, 144, 0.4);
+        }
+
         @media (max-width: 1024px) {
             .founder-split {
                 grid-template-columns: 1fr;
@@ -368,7 +382,7 @@
                         <a href="payment-plans.html">Payment Plans</a>
                     </div>
                 </li>
-                <li><a href="before-after.html">Gallery</a></li>
+                <li><a href="before-after.html"><span class="nav-stack">Befores<br>&amp; Afters</span></a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li class="nav-social">
                     <a href="https://www.instagram.com/beautifulminds_medaesthetics/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="nav-social-link">
@@ -392,12 +406,13 @@
     </section>
 
     <!-- Mission Section -->
-    <section class="mission-section">
+    <section class="mission-section about-mission">
         <div class="mission-content">
             <h2>Our Mission</h2>
             <p>At Beautiful Minds Medical Aesthetics, we believe that true beauty radiates from within. Our mission is to help you achieve your aesthetic goals while prioritizing your overall health and well-being.</p>
             <p>We understand that looking good and feeling good are deeply connected. That's why we've created a medical spa that focuses on both your mental and physical health, providing comprehensive care that addresses the whole person—not just your appearance.</p>
             <p class="mission-highlight">"True health starts from within the body and reflects on the outside. Our mission is to improve our patients' health from the inside out."</p>
+            <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="cta-button">Book Appointment</a>
         </div>
     </section>
 
@@ -539,7 +554,7 @@
                 <h4>Quick Links</h4>
                 <a href="about.html">About</a>
                 <a href="services.html">Services</a>
-                <a href="before-after.html">Gallery</a>
+                <a href="before-after.html">Befores &amp; Afters</a>
                 <a href="pre-post-care.html">Pre & Post Care</a>
                 <a href="contact.html">Contact</a>
                 <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer">Book Now</a>

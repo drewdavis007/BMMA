@@ -116,6 +116,36 @@
             margin-bottom: 1rem;
         }
 
+        /* "$2,600  or  $13/unit for partial treatment" pricing stack (migraine box) */
+        .treatment-box .price-or {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin: 0 0 0.6rem;
+            color: #AC658B;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .treatment-box .price-or::before,
+        .treatment-box .price-or::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #E4CBD6;
+        }
+
+        .treatment-box .price-partial { margin-bottom: 0.2rem; }
+
+        .treatment-box .price-note {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #720538;
+            margin-bottom: 0.8rem;
+        }
+
         .cta-box {
             background: linear-gradient(135deg, #EADFE4 0%, #fafafa 100%);
             padding: 4rem;
@@ -199,7 +229,7 @@
                         <a href="payment-plans.html">Payment Plans</a>
                     </div>
                 </li>
-                <li><a href="before-after.html">Gallery</a></li>
+                <li><a href="before-after.html"><span class="nav-stack">Befores<br>&amp; Afters</span></a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li class="nav-social">
                     <a href="https://www.instagram.com/beautifulminds_medaesthetics/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="nav-social-link">
@@ -247,7 +277,7 @@
         <h3 id="daxxify">Daxxify</h3>
         <div class="treatment-box">
             <h4>Pricing</h4>
-            <div class="price">$8/unit</div>
+            <div class="price">$6/unit</div>
             <p>Daxxify is the newest FDA-approved neurotoxin, known for its long-lasting results. Clinical studies have shown that Daxxify can last up to 6 months or longer in some patients, making it an excellent choice for those seeking extended results from their treatments.</p>
         </div>
 
@@ -316,11 +346,15 @@
             <div>
                 <div class="treatment-box" id="migraines">
                     <h4>Botox for Chronic Migraines</h4>
-                    <div class="price">$2,600</div>
+                    <div class="price price-partial">$2,600</div>
+                    <div class="price-note">Full treatment</div>
+                    <div class="price-or"><span>or</span></div>
+                    <div class="price price-partial">$13/unit</div>
+                    <div class="price-note">for partial treatment / problem area</div>
                     <p>FDA-approved treatment for chronic migraine sufferers. Involves multiple injection sites around the head and neck to prevent migraine headaches before they start.</p>
                     <p><strong>Alternatives:</strong><br>
                     Jeuveau: $12/unit<br>
-                    Daxxify: $8/unit</p>
+                    Daxxify: $6/unit</p>
                 </div>
             </div>
             <div>
@@ -330,7 +364,7 @@
                     <p>Effectively reduces excessive sweating in underarms, hands, feet, or face by temporarily blocking sweat gland signals.</p>
                     <p><strong>Alternatives:</strong><br>
                     Jeuveau or Dysport: $12/unit<br>
-                    Daxxify: $8/unit</p>
+                    Daxxify: $6/unit</p>
                 </div>
             </div>
         </div>
@@ -341,7 +375,7 @@
             <p>Relieves jaw tension, teeth grinding (bruxism), and TMJ-related pain by relaxing the masseter muscles.</p>
             <p><strong>Alternatives:</strong><br>
             Jeuveau: $12/unit<br>
-            Daxxify: $8/unit</p>
+            Daxxify: $6/unit</p>
         </div>
 
         <h2>What to Expect</h2>
@@ -425,7 +459,7 @@
                 <h4>Quick Links</h4>
                 <a href="about.html">About</a>
                 <a href="services.html">Services</a>
-                <a href="before-after.html">Gallery</a>
+                <a href="before-after.html">Befores &amp; Afters</a>
                 <a href="botox-parties.html">Botox Parties</a>
                 <a href="referral-program.html">Referral Program</a>
                 <a href="gift-certificates.html">Gift Certificates</a>
