@@ -207,25 +207,6 @@
             max-width: 220px;
         }
 
-        /* ── CHERRY PANEL — widget container, constrained ── */
-        .cherry-panel-wrap {
-            max-width: 100%;
-            overflow: hidden;
-        }
-
-        /* Force Cherry widget to fit within our layout */
-        .cherry-panel-wrap #hero,
-        .cherry-panel-wrap #calculator,
-        .cherry-panel-wrap #howitworks,
-        .cherry-panel-wrap #faq,
-        .cherry-panel-wrap #all {
-            max-width: 100% !important;
-            box-sizing: border-box;
-        }
-
-        /* Hide Cherry sections we don't need to keep it compact */
-        .cherry-panel-wrap #all { display: none; }
-
         /* ── HOW IT WORKS BOX ── */
         .highlight-box {
             background: linear-gradient(135deg, #EADFE4 0%, #fafafa 100%);
@@ -398,7 +379,7 @@
             <!-- CHERRY -->
             <div class="provider-panel active" id="panel-cherry">
                 <div class="panel-inner">
-                    <div class="panel-info" style="margin-bottom:1.5rem;">
+                    <div class="panel-info">
                         <h3>Cherry</h3>
                         <p>Cherry is built specifically for aesthetic and wellness practices. Get approved in seconds with no hard credit pull and choose a repayment plan that fits your life — from 3 to 24 months.</p>
                         <ul>
@@ -406,44 +387,11 @@
                             <li>Plans from 3 to 24 months</li>
                             <li>Designed for med spa &amp; aesthetic treatments</li>
                             <li>0% APR promotional options available</li>
-                            <li>Use the calculator below to estimate your payments</li>
                         </ul>
                     </div>
                     <div class="panel-visual">
                         <span class="big-logo cherry">Cherry</span>
                         <p class="badge-tagline">Aesthetic-focused financing — instant approval, no hard credit pull, plans from 3 to 24 months.</p>
-                    </div>
-                    <!-- Cherry widget — constrained to panel width -->
-                    <div class="cherry-panel-wrap">
-                        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200..900&display=swap" rel="stylesheet">
-                        <script>
-                            (function (w, d, s, o, f, js, fjs) {
-                                w[o] = w[o] || function () { (w[o].q = w[o].q || []).push(arguments); };
-                                (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
-                                js.id = o; js.src = f; js.async = 1;
-                                fjs.parentNode.insertBefore(js, fjs);
-                            })(window, document, "script", "_hw", "https://files.withcherry.com/widgets/widget.js");
-                            _hw("init", {
-                                debug: false,
-                                variables: {
-                                    slug: 'beautiful-minds-medical-aesthetics',
-                                    name: 'Beautiful Minds Medical Aesthetics',
-                                    images: [26],
-                                    customLogo: '',
-                                    defaultPurchaseAmount: 750,
-                                    customImage: '',
-                                    imageCategory: 'medspa',
-                                    language: 'en',
-                                },
-                                styles: {
-                                    primaryColor: '#fe66c4',
-                                    secondaryColor: '#fe66c410',
-                                    fontFamily: 'Montserrat',
-                                    headerFontFamily: 'Montserrat',
-                                }
-                            }, ['calculator']);
-                        </script>
-                        <div id="calculator"></div>
                     </div>
                 </div>
             </div>

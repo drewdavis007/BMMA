@@ -172,6 +172,7 @@ nav {
 }
 
 .book-now-btn {
+    white-space: nowrap;
     background: white;
     color: #720538 !important;
     padding: 0.8rem 1.8rem;
@@ -925,8 +926,20 @@ footer {
     .footer-content { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 768px) {
-    .hamburger { display: flex; }
+/* Laptop widths: tighten the desktop nav so the logo, six links and the
+   one-line "Book Now" button fit on a single row (no 120-200px tall bar). */
+@media (min-width: 1025px) and (max-width: 1599px) {
+    nav { padding-left: 4%; padding-right: 4%; }
+    .logo { font-size: 1.15rem; letter-spacing: 1.5px; line-height: 1.3; }
+    .nav-links { gap: 1.4rem; }
+    .nav-links a { font-size: 0.82rem; letter-spacing: 0.8px; }
+    .book-now-btn { padding: 0.7rem 1.4rem; }
+}
+
+/* Hamburger menu: the full desktop nav (long logo + 6 links + a one-line
+   "Book Now") needs ~1100px, so below 1025px it collapses into the menu. */
+@media (max-width: 1024px) {
+    .hamburger { display: flex; padding: 0.8rem 0.6rem; margin-right: -0.6rem; }
     .nav-links {
         display: none;
         position: absolute;
@@ -940,6 +953,7 @@ footer {
         align-items: flex-start;
     }
     .nav-links.open { display: flex; }
+    .nav-stack { text-align: left; }
     .dropdown-menu {
         position: static;
         transform: none;
@@ -953,6 +967,9 @@ footer {
     }
     .dropdown-menu.open { display: block; }
     .dropdown-menu a { color: white !important; border-color: rgba(255,255,255,0.2); }
+}
+
+@media (max-width: 768px) {
     .hero h1 { font-size: 2.5rem; }
     .section-title { font-size: 2.5rem; }
     .footer-content { grid-template-columns: 1fr; }
@@ -1186,10 +1203,7 @@ footer {
     :root { --nav-h: 64px; }
     nav { padding: 0 5%; height: var(--nav-h); }
     .nav-container { height: 100%; }
-    .nav-stack { text-align: left; }
     .logo { font-size: clamp(0.78rem, 3.6vw, 0.95rem); letter-spacing: 1px; line-height: 1.2; }
-    /* larger tap area; visual size of the icon is unchanged */
-    .hamburger { padding: 0.8rem 0.6rem; margin-right: -0.6rem; }
 
     /* ---- Homepage hero: was a full 100vh screen ---- */
     .hero { height: auto; min-height: 60vh; margin-top: var(--nav-h); padding: 3rem 0; }

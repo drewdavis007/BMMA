@@ -18,6 +18,9 @@ window.addEventListener('scroll', function() {
         : '0 2px 10px rgba(0,0,0,0.15)';
 });
 
+// Must match the max-width of the hamburger-menu media query in css/styles.css
+var NAV_BREAKPOINT = 1024;
+
 // ── Hamburger menu toggle
 var hamburger = document.getElementById('hamburger');
 var navLinks  = document.getElementById('navLinks');
@@ -30,7 +33,10 @@ if (hamburger && navLinks) {
     // Close menu when a top-level link (not dropdown trigger) is clicked on mobile
     navLinks.querySelectorAll('a').forEach(function(link) {
         link.addEventListener('click', function() {
-            if (window.innerWidth <= 768) {
+            // The "Services" trigger only expands its submenu (handled below);
+            // every other link closes the menu.
+            if (link.matches('.nav-dropdown > a')) return;
+            if (window.innerWidth <= NAV_BREAKPOINT) {
                 navLinks.classList.remove('open');
             }
         });
@@ -40,7 +46,7 @@ if (hamburger && navLinks) {
 // ── Dropdown: toggle on mobile tap, hover handled by CSS on desktop
 document.querySelectorAll('.nav-dropdown > a').forEach(function(trigger) {
     trigger.addEventListener('click', function(e) {
-        if (window.innerWidth <= 768) {
+        if (window.innerWidth <= NAV_BREAKPOINT) {
             e.preventDefault();
             var menu = trigger.parentElement.querySelector('.dropdown-menu');
             if (menu) menu.classList.toggle('open');

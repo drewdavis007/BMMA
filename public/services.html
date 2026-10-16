@@ -193,7 +193,7 @@
             .services-intro p { font-size: 1rem; line-height: 1.7; }
             /* side gutters = arrow column (8px + 44px) so heading text never runs under the arrows */
             .category-header { margin-bottom: 1.5rem; padding: 0 2.75rem; }
-            .category-title { font-size: 1.9rem; letter-spacing: 1px; }
+            .category-title { font-size: 1.7rem; letter-spacing: 0; line-height: 1.25; overflow-wrap: anywhere; }
             .category-description { font-size: 0.95rem; line-height: 1.65; }
             .sub-header { margin: 2rem auto 1rem; }
             .sub-header h3 { font-size: 1.6rem; }
@@ -292,20 +292,34 @@
         .pricing-card .price-or::before,
         .pricing-card .price-or::after { content: ''; flex: 1; height: 1px; background: #E4CBD6; }
 
-        /* ── Single, low-key "Learn more" link under each section's description ── */
+        /* ── Single "Learn more" pill under each section's description ──
+           Outline pill (same shape as the other buttons) so it stays secondary to the
+           filled "Book Appointment" buttons inside the cards. ── */
         .category-learn-more {
             display: inline-block;
-            margin-top: 0.7rem;
+            margin-top: 1rem;
+            padding: 0.7rem 1.7rem;
+            border: 2px solid #E60790;
+            border-radius: 30px;
+            background: transparent;
             font-size: 0.82rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            color: #840645;
-            text-decoration: underline;
-            text-decoration-color: rgba(132, 6, 69, 0.35);
-            text-underline-offset: 3px;
-            transition: color 0.2s, text-decoration-color 0.2s;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #720538;
+            text-decoration: none;
+            transition: all 0.3s;
         }
-        .category-learn-more:hover { color: #E60790; text-decoration-color: #E60790; }
+        .category-learn-more:hover {
+            background: linear-gradient(135deg, #720538, #E60790);
+            border-color: transparent;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(230,7,144,0.4);
+        }
+
+        /* cards with no button (Referral, Payment Plans): no dead space under the text */
+        .pricing-card p:last-child { margin-bottom: 0; }
 
         /* ── SPECIAL NOTE ── */
         .special-note {
@@ -608,7 +622,7 @@
                     <div class="pricing-card">
                         <h3>Derma PRP — Large Package</h3>
                         <div class="price" style="font-size:1.8rem;">From $2,000</div>
-                        <p><strong>Makes 12 syringes of filler.</strong> Body treatment areas using your own natural PRP for regenerative improvement. Facial rejuvenation &amp; larger areas on the body.</p>
+                        <p><strong>Makes 12 syringes of filler.</strong> All-natural filler for facial and/or body rejuvenation. Best for multiple or larger areas of treatment.</p>
                         <a href="contact.html" class="card-book-btn">Book Appointment</a>
                     </div>
                 </div>
@@ -617,11 +631,41 @@
                     <h3 style="font-size:1.6rem;color:#720538;font-weight:700;letter-spacing:1px;margin-bottom:0.4rem;">PRP</h3>
                     <p style="font-size:0.93rem;color:#000;line-height:1.7;font-weight:400;max-width:800px;">Standard Platelet-Rich Plasma treatments harness your body's own growth factors for natural rejuvenation. Unlike Cellenis Derma PRP, these treatments are not used as a filler — they stimulate your skin's repair process to improve tone, texture, and volume over time without heating, cooling, or volumizing additives.</p>
                 </div>
-                <div class="pricing-grid" style="max-width:1200px;margin:0 auto;">
+                <div class="pricing-grid" style="max-width:894px;margin:0 auto;">
                     <div class="pricing-card">
                         <h3>PRP Under Eye</h3>
                         <div class="price">$350</div>
-                        <p>Targeted PRP treatment to rejuvenate the delicate under-eye area</p>
+                        <p>Targeted PRP treatment to rejuvenate the delicate under-eye area and help treat dark circles</p>
+                        <a href="contact.html" class="card-book-btn">Book Appointment</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Vampire Facial</h3>
+                        <div class="price">$550</div>
+                        <p>PRP microneedling facial for skin rejuvenation. Series of 3 available at $500/treatment.</p>
+                        <a href="contact.html" class="card-book-btn">Book Appointment</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Vampire Facial — Series of 3</h3>
+                        <div class="price">$500<span class="price-unit">/treatment</span></div>
+                        <p>Three-session package for optimal, long-lasting skin rejuvenation results</p>
+                        <a href="contact.html" class="card-book-btn">Book Appointment</a>
+                    </div>
+                </div>
+
+                <div class="sub-header" style="max-width:1200px;margin:3rem auto 1.5rem;text-align:left;border-left:4px solid #E60790;padding-left:1.2rem;">
+                    <h3 style="font-size:1.6rem;color:#720538;font-weight:700;letter-spacing:1px;margin-bottom:0;">Hair Restoration</h3>
+                </div>
+                <div class="pricing-grid" style="max-width:1200px;margin:0 auto;">
+                    <div class="pricing-card">
+                        <h3>PRP Scalp Injections</h3>
+                        <div class="price">$550</div>
+                        <p>PRP injections to the scalp to support hair restoration</p>
+                        <a href="contact.html" class="card-book-btn">Book Appointment</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>PRP Scalp Injections — Series</h3>
+                        <div class="price">$500<span class="price-unit">/treatment</span></div>
+                        <p>Series pricing for PRP scalp injections</p>
                         <a href="contact.html" class="card-book-btn">Book Appointment</a>
                     </div>
                     <div class="pricing-card">
@@ -631,20 +675,15 @@
                         <a href="contact.html" class="card-book-btn">Book Appointment</a>
                     </div>
                     <div class="pricing-card">
-                        <h3>Vampire Facial</h3>
-                        <div class="price">$500</div>
-                        <p>PRP microneedling facial for skin rejuvenation. Series of 3 available at $450/treatment.</p>
-                        <a href="contact.html" class="card-book-btn">Book Appointment</a>
-                    </div>
-                    <div class="pricing-card">
-                        <h3>Vampire Facial — Series of 3</h3>
-                        <div class="price">$450<span class="price-unit">/treatment</span></div>
-                        <p>Three-session package for optimal, long-lasting skin rejuvenation results</p>
+                        <h3>Series of PRP + Microneedling — Hair</h3>
+                        <div class="price">$650<span class="price-unit">/treatment</span></div>
+                        <p>Series pricing for combined PRP and microneedling hair restoration</p>
                         <a href="contact.html" class="card-book-btn">Book Appointment</a>
                     </div>
                 </div>
             </div>
 
+            
             <!-- SLIDE 5 — Skin Pen -->
             <div class="carousel-slide">
                 <div class="category-header">
@@ -662,12 +701,12 @@
                     <div class="pricing-card">
                         <h3>Series of 3</h3>
                         <div class="price">$900</div>
-                        <p>Recommended series for optimal results — Save $150! Add Vampire Facial for $150/treatment.</p>
+                        <p>Recommended series for optimal results — Save $150! Add Vampire Facial for $200/treatment.</p>
                         <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="card-book-btn">Book Appointment</a>
                     </div>
                     <div class="pricing-card">
                         <h3>Series of 3 + Vampire Facial</h3>
-                        <div class="price" style="font-size:1.6rem;">$900 + $150<span class="price-unit">/tx</span></div>
+                        <div class="price" style="font-size:1.6rem;">$900 + $200<span class="price-unit">/tx</span></div>
                         <p>Skin Pen series enhanced with Vampire Facial PRP for maximum rejuvenation results</p>
                         <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="card-book-btn">Book Appointment</a>
                     </div>
@@ -730,7 +769,7 @@
                     </div>
                 </div>
                 <div class="special-note" style="margin-top:2rem;">
-                    <p>Contact us to book your party date. <a href="botox-parties.html" style="color:#E60790;font-weight:700;">Learn more →</a></p>
+                    <p>Call or text my office number: <a href="tel:6015338597" style="color:#E60790;font-weight:700;">(601) 533-8597</a> to book your party date. <a href="botox-parties.html" style="color:#E60790;font-weight:700;">Learn more →</a></p>
                 </div>
             </div>
 
@@ -745,8 +784,7 @@
                     <div class="pricing-card">
                         <h3>Per Referral</h3>
                         <div class="price">$50<span class="price-unit"> credit</span></div>
-                        <p>For every friend or family member you refer who comes in and receives a service, you earn a <strong>$50 credit</strong> toward your next visit. No limit on referrals.</p>
-                        <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="card-book-btn">Book Appointment</a>
+                        <p><strong>You</strong> earn a <strong>$50 credit</strong> toward your next visit for every friend or family member you refer who comes in and receives a service. <strong>They</strong> get <strong>$50 off</strong> their treatment. No limit on referrals.</p>
                     </div>
                 </div>
             </div>
@@ -785,25 +823,21 @@
                         <h3>Affirm</h3>
                         <div class="price" style="font-size:1.6rem;">Monthly</div>
                         <p>Split your purchase into easy monthly payments with no hidden fees.</p>
-                        <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="card-book-btn">Book Appointment</a>
                     </div>
                     <div class="pricing-card">
                         <h3>Klarna</h3>
                         <div class="price" style="font-size:1.6rem;">Pay in 4</div>
                         <p>Pay in 4 interest-free installments or choose a longer-term plan.</p>
-                        <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="card-book-btn">Book Appointment</a>
                     </div>
                     <div class="pricing-card">
                         <h3>Afterpay</h3>
                         <div class="price" style="font-size:1.6rem;">Interest-Free</div>
                         <p>Always interest-free — pay over 6 weeks in 4 equal installments.</p>
-                        <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="card-book-btn">Book Appointment</a>
                     </div>
                     <div class="pricing-card">
                         <h3>Cherry</h3>
                         <div class="price" style="font-size:1.6rem;">Seconds</div>
                         <p>Aesthetic-focused financing — get approved in seconds, no hard credit pull.</p>
-                        <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="card-book-btn">Book Appointment</a>
                     </div>
                 </div>
             </div>
