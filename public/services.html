@@ -208,6 +208,12 @@
             .cta-section p { margin-bottom: 1.75rem; }
         }
 
+        @supports (grid-template-rows: subgrid) {
+            @media (max-width: 768px) {
+                .pricing-card { margin-bottom: 1rem; }
+            }
+        }
+
         /* ── HEADERS ── */
         .category-header { max-width: 1200px; margin: 0 auto 2.5rem; text-align: center; }
         .category-title { font-size: 2.6rem; color: #720538; margin-bottom: 0.6rem; font-weight: 700; letter-spacing: 2px; }
@@ -319,7 +325,27 @@
         }
 
         /* cards with no button (Referral, Payment Plans): no dead space under the text */
-        .pricing-card p:last-child { margin-bottom: 0; }
+        .pricing-card .card-body:last-child p { margin-bottom: 0; }
+
+        /* ── Aligned card rows ──
+           Every card is a 3-row subgrid of the card grid: title / body (price + description) / button.
+           Rows are sized by the TALLEST card on that line, so the Book Appointment buttons
+           sit in one straight line just beneath the deepest content of the row, instead of
+           each card pinning its button to its own bottom. Inside its body, a card's description
+           stays right under its price (toward the top), never pulled down to the button. */
+        @supports (grid-template-rows: subgrid) {
+            .pricing-grid { row-gap: 0; }
+            .pricing-card {
+                display: grid;
+                grid-template-rows: subgrid;
+                grid-template-columns: minmax(0, 1fr);
+                grid-row: span 3;
+                row-gap: 0;
+                align-content: start;
+                margin-bottom: 1.5rem;
+            }
+            .pricing-card .card-book-btn { justify-self: center; align-self: start; }
+        }
 
         /* ── SPECIAL NOTE ── */
         .special-note {
@@ -466,32 +492,42 @@
                 <div class="pricing-grid">
                     <div class="pricing-card">
                         <h3>Botox</h3>
-                        <div class="price">$13<span class="price-unit">/unit</span></div>
-                        <p>The first and original neurotoxin that treats frown lines and facial wrinkles</p>
+                        <div class="card-body">
+                            <div class="price">$13<span class="price-unit">/unit</span></div>
+                            <p>The first and original neurotoxin that treats frown lines and facial wrinkles</p>
+                        </div>
                         <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="card-book-btn">Book Appointment</a>
                     </div>
                     <div class="pricing-card">
                         <h3>Daxxify</h3>
-                        <div class="price">$6<span class="price-unit">/unit</span></div>
-                        <p>Long-lasting neurotoxin for smoother, younger-looking skin</p>
+                        <div class="card-body">
+                            <div class="price">$6<span class="price-unit">/unit</span></div>
+                            <p>Long-lasting neurotoxin for smoother, younger-looking skin</p>
+                        </div>
                         <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="card-book-btn">Book Appointment</a>
                     </div>
                     <div class="pricing-card">
                         <h3>Jeuveau</h3>
-                        <div class="price">$12<span class="price-unit">/unit</span></div>
-                        <p>Modern neurotoxin for reducing moderate to severe frown lines and facial wrinkles</p>
+                        <div class="card-body">
+                            <div class="price">$12<span class="price-unit">/unit</span></div>
+                            <p>Modern neurotoxin for reducing moderate to severe frown lines and facial wrinkles</p>
+                        </div>
                         <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="card-book-btn">Book Appointment</a>
                     </div>
                     <div class="pricing-card">
                         <h3>Dysport</h3>
-                        <div class="price">$12<span class="price-unit">/unit</span></div>
-                        <p>Fast-acting treatment for facial lines and wrinkles</p>
+                        <div class="card-body">
+                            <div class="price">$12<span class="price-unit">/unit</span></div>
+                            <p>Fast-acting treatment for facial lines and wrinkles</p>
+                        </div>
                         <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="card-book-btn">Book Appointment</a>
                     </div>
                     <div class="pricing-card">
                         <h3>Lip Flip</h3>
-                        <div class="price">$80</div>
-                        <p>Subtle enhancement for a fuller-looking upper lip</p>
+                        <div class="card-body">
+                            <div class="price">$80</div>
+                            <p>Subtle enhancement for a fuller-looking upper lip</p>
+                        </div>
                         <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="card-book-btn">Book Appointment</a>
                     </div>
                 </div>
@@ -507,24 +543,32 @@
                 <div class="pricing-grid">
                     <div class="pricing-card">
                         <h3>Botox for Migraines</h3>
-                        <div class="price price-full">$2,600</div>
-                        <div class="price-note">Full treatment</div>
-                        <div class="price-or"><span>or</span></div>
-                        <div class="price price-partial">$13<span class="price-unit">/unit</span></div>
-                        <div class="price-note">for partial treatment / problem area</div>
-                        <p>Treatment protocol for chronic migraine relief</p>
+                        <div class="card-body">
+                            <div class="price-stack">
+                                <div class="price price-full">$2,600</div>
+                                <div class="price-note">Full treatment</div>
+                                <div class="price-or"><span>or</span></div>
+                                <div class="price price-partial">$13<span class="price-unit">/unit</span></div>
+                                <div class="price-note">for partial treatment / problem area</div>
+                            </div>
+                            <p>Treatment protocol for chronic migraine relief</p>
+                        </div>
                         <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="card-book-btn">Book Appointment</a>
                     </div>
                     <div class="pricing-card">
                         <h3>Botox for Hyperhidrosis</h3>
-                        <div class="price">$13<span class="price-unit">/unit</span></div>
-                        <p>Effective treatment for excessive sweating</p>
+                        <div class="card-body">
+                            <div class="price">$13<span class="price-unit">/unit</span></div>
+                            <p>Effective treatment for excessive sweating</p>
+                        </div>
                         <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="card-book-btn">Book Appointment</a>
                     </div>
                     <div class="pricing-card">
                         <h3>Botox for TMJ</h3>
-                        <div class="price">$13<span class="price-unit">/unit</span></div>
-                        <p>Relief from jaw tension and TMJ-related pain</p>
+                        <div class="card-body">
+                            <div class="price">$13<span class="price-unit">/unit</span></div>
+                            <p>Relief from jaw tension and TMJ-related pain</p>
+                        </div>
                         <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="card-book-btn">Book Appointment</a>
                     </div>
                 </div>
@@ -532,32 +576,42 @@
                 <div class="pricing-grid">
                     <div class="pricing-card">
                         <h3>Jeuveau for Migraines</h3>
-                        <div class="price">$12<span class="price-unit">/unit</span></div>
-                        <p>Jeuveau offers effective migraine prevention at a competitive per-unit price, with the same proven protocol as Botox.</p>
+                        <div class="card-body">
+                            <div class="price">$12<span class="price-unit">/unit</span></div>
+                            <p>Jeuveau offers effective migraine prevention at a competitive per-unit price, with the same proven protocol as Botox.</p>
+                        </div>
                         <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="card-book-btn">Book Appointment</a>
                     </div>
                     <div class="pricing-card">
                         <h3>Jeuveau / Dysport for Hyperhidrosis</h3>
-                        <div class="price">$12<span class="price-unit">/unit</span></div>
-                        <p>A cost-effective alternative to Botox for reducing excessive sweating in the underarms, hands, or feet.</p>
+                        <div class="card-body">
+                            <div class="price">$12<span class="price-unit">/unit</span></div>
+                            <p>A cost-effective alternative to Botox for reducing excessive sweating in the underarms, hands, or feet.</p>
+                        </div>
                         <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="card-book-btn">Book Appointment</a>
                     </div>
                     <div class="pricing-card">
                         <h3>Daxxify for Hyperhidrosis</h3>
-                        <div class="price">$6<span class="price-unit">/unit</span></div>
-                        <p>Longer-lasting hyperhidrosis relief — Daxxify's extended duration means fewer treatments per year.</p>
+                        <div class="card-body">
+                            <div class="price">$6<span class="price-unit">/unit</span></div>
+                            <p>Longer-lasting hyperhidrosis relief — Daxxify's extended duration means fewer treatments per year.</p>
+                        </div>
                         <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="card-book-btn">Book Appointment</a>
                     </div>
                     <div class="pricing-card">
                         <h3>Jeuveau for TMJ</h3>
-                        <div class="price">$12<span class="price-unit">/unit</span></div>
-                        <p>Relieves jaw tension and bruxism with the same targeted masseter injection protocol as Botox.</p>
+                        <div class="card-body">
+                            <div class="price">$12<span class="price-unit">/unit</span></div>
+                            <p>Relieves jaw tension with the same targeted masseter injection protocol as Botox.</p>
+                        </div>
                         <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="card-book-btn">Book Appointment</a>
                     </div>
                     <div class="pricing-card">
                         <h3>Daxxify for TMJ</h3>
-                        <div class="price">$6<span class="price-unit">/unit</span></div>
-                        <p>Extended TMJ and teeth-grinding relief — Daxxify's longer-lasting formula means up to 6 months of jaw muscle relaxation per treatment.</p>
+                        <div class="card-body">
+                            <div class="price">$6<span class="price-unit">/unit</span></div>
+                            <p>Extended TMJ and teeth-grinding relief — Daxxify's longer-lasting formula means up to 6 months of jaw muscle relaxation per treatment.</p>
+                        </div>
                         <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="card-book-btn">Book Appointment</a>
                     </div>
                 </div>
@@ -573,14 +627,18 @@
                 <div class="pricing-grid" style="max-width:640px;margin:0 auto;">
                     <div class="pricing-card">
                         <h3>Half Syringe</h3>
-                        <div class="price">$400</div>
-                        <p>Ideal for subtle touch-ups and targeted volume restoration</p>
+                        <div class="card-body">
+                            <div class="price">$400</div>
+                            <p>Ideal for subtle touch-ups and targeted volume restoration</p>
+                        </div>
                         <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="card-book-btn">Book Appointment</a>
                     </div>
                     <div class="pricing-card">
                         <h3>Full Syringe</h3>
-                        <div class="price">$700</div>
-                        <p>Advanced hyaluronic acid filler designed to adapt to your facial expressions for natural-looking results</p>
+                        <div class="card-body">
+                            <div class="price">$700</div>
+                            <p>Advanced hyaluronic acid filler designed to adapt to your facial expressions for natural-looking results</p>
+                        </div>
                         <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="card-book-btn">Book Appointment</a>
                     </div>
                 </div>
@@ -590,13 +648,15 @@
             <div class="carousel-slide">
                 <div class="category-header">
                     <h2 class="category-title">Sculptra</h2>
-                    <p class="category-description">Sculptra is a biostimulatory aesthetic injectable that helps stimulate your own natural collagen production to smooth facial wrinkles and improve skin tightness, revealing a refreshed-looking you. Sculptra gradually helps restore your skin foundation, with results seen as early as 1 month after treatment and lasting up to 2 years.</p>
+                    <p class="category-description">Sculptra is a biostimulatory aesthetic injectable that helps stimulate your own natural collagen production to smooth facial wrinkles and improve skin tightness, revealing a refreshed-looking you. Sculptra gradually helps restore your skin foundation. You may notice results as early as 1 month after treatment, with improvements becoming more noticeable and more prominent around the 3–6 month mark and lasting up to 2 years.</p>
                 </div>
                 <div class="pricing-grid" style="max-width:420px;margin:0 auto;">
                     <div class="pricing-card">
                         <h3>Sculptra</h3>
-                        <div class="price">$799<span class="price-unit">/vial</span></div>
-                        <p>Natural collagen stimulation with results lasting up to 2 years</p>
+                        <div class="card-body">
+                            <div class="price">$799<span class="price-unit">/vial</span></div>
+                            <p>Natural collagen stimulation with results lasting up to 2 years</p>
+                        </div>
                         <a href="contact.html" class="card-book-btn">Book Appointment</a>
                     </div>
                 </div>
@@ -615,14 +675,18 @@
                 <div class="pricing-grid" style="max-width:1200px;margin:0 auto 3rem;">
                     <div class="pricing-card">
                         <h3>Derma PRP — Small Package</h3>
-                        <div class="price" style="font-size:1.8rem;">From $1,200</div>
-                        <p><strong>Makes 6 syringes of filler.</strong> All-natural filler for facial rejuvenation with immediate and lasting regenerative effects. Best for facial rejuvenation or small areas on the body.</p>
+                        <div class="card-body">
+                            <div class="price" style="font-size:1.8rem;">From $1,200</div>
+                            <p><strong>Makes 6 syringes of filler.</strong> All-natural filler for facial rejuvenation with immediate and lasting regenerative effects. Best for facial rejuvenation or small areas on the body.</p>
+                        </div>
                         <a href="contact.html" class="card-book-btn">Book Appointment</a>
                     </div>
                     <div class="pricing-card">
                         <h3>Derma PRP — Large Package</h3>
-                        <div class="price" style="font-size:1.8rem;">From $2,000</div>
-                        <p><strong>Makes 12 syringes of filler.</strong> All-natural filler for facial and/or body rejuvenation. Best for multiple or larger areas of treatment.</p>
+                        <div class="card-body">
+                            <div class="price" style="font-size:1.8rem;">From $2,000</div>
+                            <p><strong>Makes 12 syringes of filler.</strong> Best for multiple or larger areas of treatment.</p>
+                        </div>
                         <a href="contact.html" class="card-book-btn">Book Appointment</a>
                     </div>
                 </div>
@@ -634,20 +698,26 @@
                 <div class="pricing-grid" style="max-width:894px;margin:0 auto;">
                     <div class="pricing-card">
                         <h3>PRP Under Eye</h3>
-                        <div class="price">$350</div>
-                        <p>Targeted PRP treatment to rejuvenate the delicate under-eye area and help treat dark circles</p>
+                        <div class="card-body">
+                            <div class="price">$350</div>
+                            <p>Targeted PRP treatment to rejuvenate the delicate under-eye area and help treat dark circles</p>
+                        </div>
                         <a href="contact.html" class="card-book-btn">Book Appointment</a>
                     </div>
                     <div class="pricing-card">
                         <h3>Vampire Facial</h3>
-                        <div class="price">$550</div>
-                        <p>PRP microneedling facial for skin rejuvenation. Series of 3 available at $500/treatment.</p>
+                        <div class="card-body">
+                            <div class="price">$550</div>
+                            <p>PRP microneedling facial for skin rejuvenation. Series of 3 available at $500/treatment.</p>
+                        </div>
                         <a href="contact.html" class="card-book-btn">Book Appointment</a>
                     </div>
                     <div class="pricing-card">
                         <h3>Vampire Facial — Series of 3</h3>
-                        <div class="price">$500<span class="price-unit">/treatment</span></div>
-                        <p>Three-session package for optimal, long-lasting skin rejuvenation results</p>
+                        <div class="card-body">
+                            <div class="price">$500<span class="price-unit">/treatment</span></div>
+                            <p>Three-session package for optimal, long-lasting skin rejuvenation results</p>
+                        </div>
                         <a href="contact.html" class="card-book-btn">Book Appointment</a>
                     </div>
                 </div>
@@ -658,26 +728,34 @@
                 <div class="pricing-grid" style="max-width:1200px;margin:0 auto;">
                     <div class="pricing-card">
                         <h3>PRP Scalp Injections</h3>
-                        <div class="price">$550</div>
-                        <p>PRP injections to the scalp to support hair restoration</p>
+                        <div class="card-body">
+                            <div class="price">$550</div>
+                            <p>PRP injections to the scalp to support hair restoration</p>
+                        </div>
                         <a href="contact.html" class="card-book-btn">Book Appointment</a>
                     </div>
                     <div class="pricing-card">
                         <h3>PRP Scalp Injections — Series</h3>
-                        <div class="price">$500<span class="price-unit">/treatment</span></div>
-                        <p>Series pricing for PRP scalp injections</p>
+                        <div class="card-body">
+                            <div class="price">$500<span class="price-unit">/treatment</span></div>
+                            <p>Series pricing for PRP scalp injections</p>
+                        </div>
                         <a href="contact.html" class="card-book-btn">Book Appointment</a>
                     </div>
                     <div class="pricing-card">
                         <h3>PRP + Microneedling — Hair</h3>
-                        <div class="price">$700</div>
-                        <p>Combined PRP and microneedling for enhanced hair restoration. 3–6 sessions recommended.</p>
+                        <div class="card-body">
+                            <div class="price">$700</div>
+                            <p>Combined PRP and microneedling for enhanced hair restoration. 3–6 sessions recommended.</p>
+                        </div>
                         <a href="contact.html" class="card-book-btn">Book Appointment</a>
                     </div>
                     <div class="pricing-card">
                         <h3>Series of PRP + Microneedling — Hair</h3>
-                        <div class="price">$650<span class="price-unit">/treatment</span></div>
-                        <p>Series pricing for combined PRP and microneedling hair restoration</p>
+                        <div class="card-body">
+                            <div class="price">$650<span class="price-unit">/treatment</span></div>
+                            <p>Series pricing for combined PRP and microneedling hair restoration</p>
+                        </div>
                         <a href="contact.html" class="card-book-btn">Book Appointment</a>
                     </div>
                 </div>
@@ -694,20 +772,26 @@
                 <div class="pricing-grid" style="max-width:900px;margin:0 auto;">
                     <div class="pricing-card">
                         <h3>Single Treatment</h3>
-                        <div class="price">$350</div>
-                        <p>One microneedling session for skin rejuvenation</p>
+                        <div class="card-body">
+                            <div class="price">$350</div>
+                            <p>One microneedling session for skin rejuvenation</p>
+                        </div>
                         <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="card-book-btn">Book Appointment</a>
                     </div>
                     <div class="pricing-card">
                         <h3>Series of 3</h3>
-                        <div class="price">$900</div>
-                        <p>Recommended series for optimal results — Save $150! Add Vampire Facial for $200/treatment.</p>
+                        <div class="card-body">
+                            <div class="price">$900</div>
+                            <p>Recommended series for optimal results — Save $150! Add Vampire Facial for $200/treatment.</p>
+                        </div>
                         <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="card-book-btn">Book Appointment</a>
                     </div>
                     <div class="pricing-card">
                         <h3>Series of 3 + Vampire Facial</h3>
-                        <div class="price" style="font-size:1.6rem;">$900 + $200<span class="price-unit">/tx</span></div>
-                        <p>Skin Pen series enhanced with Vampire Facial PRP for maximum rejuvenation results</p>
+                        <div class="card-body">
+                            <div class="price" style="font-size:1.6rem;">$900 + $200<span class="price-unit">/tx</span></div>
+                            <p>Skin Pen series enhanced with Vampire Facial PRP for maximum rejuvenation results</p>
+                        </div>
                         <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="card-book-btn">Book Appointment</a>
                     </div>
                 </div>
@@ -726,8 +810,10 @@
                 <div class="pricing-grid" style="max-width:420px;margin:0 auto;">
                     <div class="pricing-card">
                         <h3>Customized Regimens</h3>
-                        <div class="price" style="font-size:1.8rem;">Varies</div>
-                        <p>Personalized product recommendations tailored to your skin type and goals</p>
+                        <div class="card-body">
+                            <div class="price" style="font-size:1.8rem;">Varies</div>
+                            <p>Personalized product recommendations tailored to your skin type and goals</p>
+                        </div>
                         <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="card-book-btn">Book Appointment</a>
                     </div>
                 </div>
@@ -783,8 +869,10 @@
                 <div class="pricing-grid" style="max-width:500px;margin:0 auto;">
                     <div class="pricing-card">
                         <h3>Per Referral</h3>
-                        <div class="price">$50<span class="price-unit"> credit</span></div>
-                        <p><strong>You</strong> earn a <strong>$50 credit</strong> toward your next visit for every friend or family member you refer who comes in and receives a service. <strong>They</strong> get <strong>$50 off</strong> their treatment. No limit on referrals.</p>
+                        <div class="card-body">
+                            <div class="price">$50<span class="price-unit"> credit</span></div>
+                            <p><strong>You</strong> earn a <strong>$50 credit</strong> toward your next visit for every friend or family member you refer who comes in and receives a service. <strong>They</strong> get <strong>$50 off</strong> their treatment. No limit on referrals.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -798,14 +886,18 @@
                 <div class="pricing-grid" style="max-width:640px;margin:0 auto;">
                     <div class="pricing-card">
                         <h3>Purchase Online</h3>
-                        <div class="price" style="font-size:1.6rem;">Any Amount</div>
-                        <p>Buy instantly online and send directly to your recipient.</p>
+                        <div class="card-body">
+                            <div class="price" style="font-size:1.6rem;">Any Amount</div>
+                            <p>Buy instantly online and send directly to your recipient.</p>
+                        </div>
                         <a href="https://beautifulmindsmedaesthetics.janeapp.com/online_gift_cards/new" target="_blank" rel="noopener noreferrer" class="card-book-btn">Buy Now</a>
                     </div>
                     <div class="pricing-card">
                         <h3>Buy In Person</h3>
-                        <div class="price" style="font-size:1.6rem;">Any Amount</div>
-                        <p>Visit us in the clinic to purchase a gift certificate in person.</p>
+                        <div class="card-body">
+                            <div class="price" style="font-size:1.6rem;">Any Amount</div>
+                            <p>Visit us in the clinic to purchase a gift certificate in person.</p>
+                        </div>
                         <a href="contact.html" class="card-book-btn">Contact Us</a>
                     </div>
                 </div>
@@ -821,23 +913,31 @@
                 <div class="pricing-grid">
                     <div class="pricing-card">
                         <h3>Affirm</h3>
-                        <div class="price" style="font-size:1.6rem;">Monthly</div>
-                        <p>Split your purchase into easy monthly payments with no hidden fees.</p>
+                        <div class="card-body">
+                            <div class="price" style="font-size:1.3rem;">4–6 Weeks</div>
+                            <p>Split your purchase into easy payments over 4–6 weeks with no hidden fees. Not interest-free.</p>
+                        </div>
                     </div>
                     <div class="pricing-card">
                         <h3>Klarna</h3>
-                        <div class="price" style="font-size:1.6rem;">Pay in 4</div>
-                        <p>Pay in 4 interest-free installments or choose a longer-term plan.</p>
+                        <div class="card-body">
+                            <div class="price" style="font-size:1.3rem;">4–6 Weeks</div>
+                            <p>Pay in 4 installments over 4–6 weeks. Not interest-free.</p>
+                        </div>
                     </div>
                     <div class="pricing-card">
                         <h3>Afterpay</h3>
-                        <div class="price" style="font-size:1.6rem;">Interest-Free</div>
-                        <p>Always interest-free — pay over 6 weeks in 4 equal installments.</p>
+                        <div class="card-body">
+                            <div class="price" style="font-size:1.3rem;">4–6 Weeks</div>
+                            <p>Pay over 4–6 weeks in 4 equal installments. Not interest-free.</p>
+                        </div>
                     </div>
                     <div class="pricing-card">
                         <h3>Cherry</h3>
-                        <div class="price" style="font-size:1.6rem;">Seconds</div>
-                        <p>Aesthetic-focused financing — get approved in seconds, no hard credit pull.</p>
+                        <div class="card-body">
+                            <div class="price" style="font-size:1.3rem;">Up to 6 Months</div>
+                            <p>Aesthetic-focused financing for up to 6 months — get approved in seconds, no hard credit pull. Not 0% interest.</p>
+                        </div>
                     </div>
                 </div>
             </div>

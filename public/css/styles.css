@@ -1254,7 +1254,7 @@ footer {
     /* ---- Inner-page hero (shared class, but every page also repeats its own
        desktop .page-hero rules inline, which load after this file; the
        leading "body" raises specificity just enough to win on mobile). ---- */
-    body .page-hero { height: auto; min-height: 0; margin-top: var(--nav-h); padding: 2.5rem 6% 2.25rem; }
+    body .page-hero { height: auto; min-height: 0; margin-top: var(--nav-h); padding: 2.4rem 6%; }
     body .page-hero > div { max-width: 100%; }
     body .page-hero h1 { font-size: clamp(2rem, 9.5vw, 2.6rem); letter-spacing: 1px; line-height: 1.15; margin-bottom: 0; overflow-wrap: anywhere; }
     body .page-hero p { font-size: 1rem; margin-top: 0.6rem; }
