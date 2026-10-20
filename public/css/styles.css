@@ -40,6 +40,9 @@ nav {
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.6rem;
     font-weight: 600;
@@ -50,8 +53,13 @@ nav {
 }
 
 .logo img {
-    height: 60px;
+    height: 52px;
     width: auto;
+    flex-shrink: 0;
+    /* the logo is a JPG (no transparency): seat it on a clean white tile so it reads on the burgundy bar */
+    background: white;
+    border-radius: 10px;
+    padding: 3px;
 }
 
 .nav-links {
@@ -260,10 +268,14 @@ nav {
     transform: translate(-50%, -50%);
     width: 55%;
     max-width: 600px;
-    opacity: 0.10;
+    opacity: 0.28;
     z-index: 2;
     pointer-events: none;
-    filter: brightness(10) saturate(0);
+    /* The logo is a JPG, so it has a white background. "multiply" makes pure white
+       vanish completely (white x anything = anything) and tints the hero only where the
+       logo artwork is, so it reads as a soft, see-through logo in its own colours. It sits
+       behind the text and buttons (hero-content is z-index 3). */
+    mix-blend-mode: multiply;
 }
 
 .hero-content {
@@ -928,9 +940,10 @@ footer {
 
 /* Laptop widths: tighten the desktop nav so the logo, six links and the
    one-line "Book Now" button fit on a single row (no 120-200px tall bar). */
-@media (min-width: 1025px) and (max-width: 1599px) {
+@media (min-width: 1025px) and (max-width: 1799px) {
     nav { padding-left: 4%; padding-right: 4%; }
-    .logo { font-size: 1.15rem; letter-spacing: 1.5px; line-height: 1.3; }
+    .logo { font-size: 1.15rem; letter-spacing: 1.5px; line-height: 1.3; gap: 0.7rem; }
+    .logo img { height: 46px; }
     .nav-links { gap: 1.4rem; }
     .nav-links a { font-size: 0.82rem; letter-spacing: 0.8px; }
     .book-now-btn { padding: 0.7rem 1.4rem; }
@@ -939,6 +952,7 @@ footer {
 /* Hamburger menu: the full desktop nav (long logo + 6 links + a one-line
    "Book Now") needs ~1100px, so below 1025px it collapses into the menu. */
 @media (max-width: 1024px) {
+    .logo img { height: 46px; }
     .hamburger { display: flex; padding: 0.8rem 0.6rem; margin-right: -0.6rem; }
     .nav-links {
         display: none;
@@ -1203,7 +1217,8 @@ footer {
     :root { --nav-h: 64px; }
     nav { padding: 0 5%; height: var(--nav-h); }
     .nav-container { height: 100%; }
-    .logo { font-size: clamp(0.78rem, 3.6vw, 0.95rem); letter-spacing: 1px; line-height: 1.2; }
+    .logo { font-size: clamp(0.78rem, 3.6vw, 0.95rem); letter-spacing: 1px; line-height: 1.2; gap: 0.6rem; }
+    .logo img { height: 40px; border-radius: 8px; padding: 2px; }
 
     /* ---- Homepage hero: was a full 100vh screen ---- */
     .hero { height: auto; min-height: 60vh; margin-top: var(--nav-h); padding: 3rem 0; }

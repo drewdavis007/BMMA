@@ -276,6 +276,16 @@
         }
 
         /* "Our Mission" button: the white .cta-button above would be invisible on this white section */
+        /* logo in place of the former "Our Mission" text */
+        .about-mission { padding: 5rem 6%; }
+
+        .about-logo {
+            display: block;
+            width: min(360px, 80%);
+            height: auto;
+            margin: 0 auto 2rem;
+        }
+
         .about-mission .cta-button {
             background: linear-gradient(135deg, #E60790 0%, #FB64C3 100%);
             color: white;
@@ -303,6 +313,9 @@
            top/bottom padding and 3.5rem headings. Hero size now comes from
            the shared rule in css/styles.css. */
         @media (max-width: 768px) {
+            .about-mission { padding: 2.5rem 6%; }
+            .about-logo { width: min(280px, 75%); margin-bottom: 1.5rem; }
+
             .mission-section,
             .values-section,
             .approach-section,
@@ -353,7 +366,7 @@
     <!-- Navigation -->
     <nav id="nav">
         <div class="nav-container">
-            <a href="index.html" class="logo">BEAUTIFUL MINDS MEDICAL AESTHETICS</a>
+            <a href="index.html" class="logo"><img src="images/bmma-logo_face.png" alt="" class="logo-img"><span>BEAUTIFUL MINDS MEDICAL AESTHETICS</span></a>
             <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
@@ -397,13 +410,10 @@
         </div>
     </section>
 
-    <!-- Mission Section -->
+    <!-- Logo (replaces the former "Our Mission" text) -->
     <section class="mission-section about-mission">
         <div class="mission-content">
-            <h2>Our Mission</h2>
-            <p>At Beautiful Minds Medical Aesthetics, we believe that true beauty radiates from within. Our mission is to help you achieve your aesthetic goals while prioritizing your overall health and well-being.</p>
-            <p>We understand that looking good and feeling good are deeply connected. That's why we've created a medical spa that focuses on both your mental and physical health, providing comprehensive care that addresses the whole person—not just your appearance.</p>
-            <p class="mission-highlight">"True health starts from within the body and reflects on the outside. Our mission is to improve our patients' health from the inside out."</p>
+            <img src="images/bmma-logo.jpg" alt="Beautiful Minds Medical Aesthetics logo" class="about-logo">
             <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="cta-button">Book Appointment</a>
         </div>
     </section>
