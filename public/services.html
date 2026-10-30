@@ -396,7 +396,7 @@
 
     <nav id="nav">
         <div class="nav-container">
-            <a href="index.html" class="logo"><img src="images/bmma-logo_face.png" alt="" class="logo-img"><span>BEAUTIFUL MINDS MEDICAL AESTHETICS</span></a>
+            <a href="index.html" class="logo"><img src="images/bmma-logo.jpg" alt="" class="logo-img"><span>BEAUTIFUL MINDS MEDICAL AESTHETICS</span></a>
             <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
@@ -409,6 +409,7 @@
                         <a href="services.html#fillers">Dermal Fillers</a>
                         <a href="services.html#sculptra">Sculptra</a>
                         <a href="services.html#derma-prp">Derma PRP &amp; PRP</a>
+                        <a href="services.html#hair-restoration">Hair Restoration</a>
                         <a href="services.html#skinpen">Skin Pen Microneedling</a>
                         <a href="services.html#skincare">Skin Care</a>
                         <div class="dropdown-divider"></div>
@@ -446,12 +447,13 @@
         <button data-slide="2">Dermal Fillers</button>
         <button data-slide="3">Sculptra</button>
         <button data-slide="4">Derma PRP &amp; PRP</button>
-        <button data-slide="5">Skin Pen</button>
-        <button data-slide="6">Skin Care</button>
-        <button data-slide="7">Botox Parties</button>
-        <button data-slide="8">Referrals</button>
-        <button data-slide="9">Gift Certs</button>
-        <button data-slide="10">Payment Plans</button>
+        <button data-slide="5">Hair Restoration</button>
+        <button data-slide="6">Skin Pen</button>
+        <button data-slide="7">Skin Care</button>
+        <button data-slide="8">Botox Parties</button>
+        <button data-slide="9">Referrals</button>
+        <button data-slide="10">Gift Certs</button>
+        <button data-slide="11">Payment Plans</button>
     </div>
 
     <!-- Carousel -->
@@ -762,7 +764,18 @@
             </div>
 
             
-            <!-- SLIDE 5 — Skin Pen -->
+            <!-- SLIDE 5 — Hair Restoration (info TBD) -->
+            <div class="carousel-slide">
+                <div class="category-header">
+                    <h2 class="category-title">Hair Restoration</h2>
+                    <p class="category-description">Details for this service are coming soon.</p>
+                </div>
+                <div class="special-note">
+                    <p><strong>Coming soon.</strong> Information and pricing for Hair Restoration will be added here. In the meantime, <a href="contact.html" style="color:#E60790;font-weight:700;">contact us</a> to learn more.</p>
+                </div>
+            </div>
+
+            <!-- SLIDE 6 — Skin Pen -->
             <div class="carousel-slide">
                 <div class="category-header">
                     <h2 class="category-title">Skin Pen Microneedling</h2>
@@ -800,7 +813,7 @@
                 </div>
             </div>
 
-            <!-- SLIDE 6 — Skin Care -->
+            <!-- SLIDE 7 — Skin Care -->
             <div class="carousel-slide">
                 <div class="category-header">
                     <h2 class="category-title">Professional Skin Care</h2>
@@ -822,7 +835,7 @@
                 </div>
             </div>
 
-            <!-- SLIDE 7 — Botox Parties -->
+            <!-- SLIDE 8 — Botox Parties -->
             <div class="carousel-slide">
                 <div class="category-header">
                     <h2 class="category-title">🎉 Host a Botox Party</h2>
@@ -859,7 +872,7 @@
                 </div>
             </div>
 
-            <!-- SLIDE 8 — Referral Program -->
+            <!-- SLIDE 9 — Referral Program -->
             <div class="carousel-slide">
                 <div class="category-header">
                     <h2 class="category-title">💌 Referral Program</h2>
@@ -877,7 +890,7 @@
                 </div>
             </div>
 
-            <!-- SLIDE 9 — Gift Certificates -->
+            <!-- SLIDE 10 — Gift Certificates -->
             <div class="carousel-slide">
                 <div class="category-header">
                     <h2 class="category-title">🎁 Gift Certificates</h2>
@@ -903,7 +916,7 @@
                 </div>
             </div>
 
-            <!-- SLIDE 10 — Payment Plans -->
+            <!-- SLIDE 11 — Payment Plans -->
             <div class="carousel-slide">
                 <div class="category-header">
                     <h2 class="category-title">💳 Flexible Payment Plans</h2>
@@ -1004,15 +1017,15 @@
     <script src="js/main.js"></script>
     <script>
     (function () {
-        var SLIDE_COUNT = 11;
+        var SLIDE_COUNT = 12;
 
-        // Index-aligned with the 11 .carousel-slide elements below and the
-        // 11 jump-nav buttons (data-slide="0"..."10"). This is the single
+        // Index-aligned with the 12 .carousel-slide elements below and the
+        // 12 jump-nav buttons (data-slide="0"..."11"). This is the single
         // source of truth mapping a slide index to the URL hash / slug used
         // by dropdown links on every page (services.html#sculptra, etc.).
         var SLIDE_SLUGS = [
             'neurotoxins', 'therapeutic', 'fillers', 'sculptra', 'derma-prp',
-            'skinpen', 'skincare', 'botox-parties', 'referral-program',
+            'hair-restoration', 'skinpen', 'skincare', 'botox-parties', 'referral-program',
             'gift-certificates', 'payment-plans'
         ];
 

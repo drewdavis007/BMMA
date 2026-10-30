@@ -138,6 +138,13 @@ nav {
     transition: all 0.3s ease;
     z-index: 999;
     border-top: 3px solid #E60790;
+    /* If the list is taller than the window (short laptop windows), scroll the LIST,
+       not the page behind it. 100px = nav bar + breathing room. */
+    max-height: calc(100vh - 100px);
+    max-height: calc(100dvh - 100px);
+    overflow-y: auto;
+    overscroll-behavior: contain; /* wheel/touch at the ends must not "chain" to the page */
+    scrollbar-width: thin;
 }
 
 .nav-dropdown:hover .dropdown-menu {
@@ -967,8 +974,21 @@ footer {
         align-items: flex-start;
     }
     .nav-links.open { display: flex; }
+    /* An open menu (esp. with Services expanded) is taller than a phone screen: confine it
+       to the space below the nav bar and let it scroll on its own. */
+    .nav-links {
+        max-height: calc(100vh - 84px);
+        max-height: calc(100dvh - 84px); /* dynamic units follow mobile browser toolbars */
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+    .nav-links > li { flex-shrink: 0; }
     .nav-stack { text-align: left; }
     .dropdown-menu {
+        /* inside the scrolling menu the submenu must NOT be its own scroll area */
+        max-height: none;
+        overflow: visible;
         position: static;
         transform: none;
         box-shadow: none;
@@ -1215,6 +1235,7 @@ footer {
     /* ---- Fixed nav: logo was wrapping to 3-4 lines (120-161px tall).
        Fixed 64px bar; --nav-h is reused so hero offsets always match. ---- */
     :root { --nav-h: 64px; }
+    .nav-links { max-height: calc(100vh - var(--nav-h)); max-height: calc(100dvh - var(--nav-h)); }
     nav { padding: 0 5%; height: var(--nav-h); }
     .nav-container { height: 100%; }
     .logo { font-size: clamp(0.78rem, 3.6vw, 0.95rem); letter-spacing: 1px; line-height: 1.2; gap: 0.6rem; }
