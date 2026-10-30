@@ -21,6 +21,10 @@
             background: linear-gradient(135deg, rgba(114, 5, 56, 0.9) 0%, rgba(251, 100, 195, 0.9) 100%);
         }
 
+        /* Logo watermark sits behind the "About Us" heading (uses the shared .hero-watermark rule in styles.css) */
+        .page-hero { overflow: hidden; }
+        .page-hero-content { position: relative; z-index: 3; }
+
         .page-hero h1 {
             font-size: 4.5rem;
             font-weight: 700;
@@ -275,30 +279,6 @@
             box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
 
-        /* "Our Mission" button: the white .cta-button above would be invisible on this white section */
-        /* logo in place of the former "Our Mission" text */
-        .about-mission { padding: 5rem 6%; }
-
-        .about-logo {
-            display: block;
-            width: min(360px, 80%);
-            height: auto;
-            margin: 0 auto 2rem;
-        }
-
-        .about-mission .cta-button {
-            background: linear-gradient(135deg, #E60790 0%, #FB64C3 100%);
-            color: white;
-            border-color: transparent;
-            margin-top: 0.5rem;
-        }
-
-        .about-mission .cta-button:hover {
-            background: linear-gradient(135deg, #E60790 0%, #FB64C3 100%);
-            color: white;
-            box-shadow: 0 15px 40px rgba(230, 7, 144, 0.4);
-        }
-
         @media (max-width: 1024px) {
             .founder-split {
                 grid-template-columns: 1fr;
@@ -313,8 +293,6 @@
            top/bottom padding and 3.5rem headings. Hero size now comes from
            the shared rule in css/styles.css. */
         @media (max-width: 768px) {
-            .about-mission { padding: 2.5rem 6%; }
-            .about-logo { width: min(280px, 75%); margin-bottom: 1.5rem; }
 
             .mission-section,
             .values-section,
@@ -406,16 +384,9 @@
 
     <!-- Page Hero -->
     <section class="page-hero">
-        <div>
+        <img class="hero-watermark" src="images/bmma-logo.jpg" alt="">
+        <div class="page-hero-content">
             <h1>About Us</h1>
-        </div>
-    </section>
-
-    <!-- Logo (replaces the former "Our Mission" text) -->
-    <section class="mission-section about-mission">
-        <div class="mission-content">
-            <img src="images/bmma-logo.jpg" alt="Beautiful Minds Medical Aesthetics logo" class="about-logo">
-            <a href="https://beautifulmindsmedaesthetics.janeapp.com/" target="_blank" rel="noopener noreferrer" class="cta-button">Book Appointment</a>
         </div>
     </section>
 
