@@ -8,6 +8,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
     color: #2c2c2c;
+    background: #fff;           /* explicit, so no page can show the browser's dark default */
     overflow-x: hidden;
 }
 
@@ -1222,6 +1223,235 @@ footer {
     .reviews-arrow { width: 36px; height: 36px; font-size: 1rem; }
 }
 
+
+/* =====================
+   LIVE REVIEWS & SOCIAL FEEDS
+   (filled in by js/reviews.js and js/social.js)
+   ===================== */
+
+/* Homepage: "5.0 ★ · 209 Google reviews" line and the small credit under the carousel */
+.reviews-summary {
+    text-align: center;
+    margin-top: 0.75rem;
+    color: #720538;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+.reviews-credit {
+    text-align: center;
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: #AC658B;
+    letter-spacing: 0.5px;
+}
+
+.reviews-credit a { color: inherit; }
+
+/* Homepage carousel: each slide (.review-card) holds 1-3 reviews (.review-item),
+   grouped by the script in index.html so every slide is similarly full. */
+.review-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.review-item + .review-item {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #EADFE4;
+}
+
+.review-item .review-stars { margin-bottom: 0.9rem; }
+.review-item .review-text { margin-bottom: 1rem; }
+
+/* Homepage social section: headers are now links to the profiles */
+a.social-skeleton-header { text-decoration: none; }
+a.social-skeleton-header:hover span { color: #E60790; }
+
+/* Keep the two "Follow" buttons level with each other */
+.social-skeleton-block .instagram-link { margin-top: auto; padding-top: 1.5rem; }
+
+/* Instagram photo grid */
+.ig-feed {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+}
+
+.ig-tile {
+    position: relative;
+    display: block;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 6px;
+    background: #EADFE4;
+}
+
+.ig-tile img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.ig-tile:hover img { transform: scale(1.06); }
+
+.ig-tile-skeleton { animation: shimmer 1.8s ease-in-out infinite; }
+
+.ig-badge {
+    position: absolute;
+    top: 8px;
+    right: 9px;
+    color: white;
+    font-size: 0.9rem;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+.ig-caption {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 0.75rem;
+    color: white;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    background: linear-gradient(to top, rgba(114, 5, 56, 0.9) 0%, rgba(114, 5, 56, 0) 75%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.ig-tile:hover .ig-caption,
+.ig-tile:focus-visible .ig-caption { opacity: 1; }
+
+/* Phones/tablets have no hover, so captions stay hidden there */
+@media (hover: none) {
+    .ig-caption { display: none; }
+}
+
+/* Facebook timeline box (Facebook's own plugin, 180-500px wide) */
+.fb-feed {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    min-height: 500px;
+}
+
+.fb-feed.is-loading {
+    background: #fafafa;
+    border: 1px solid #EADFE4;
+    animation: shimmer 1.8s ease-in-out infinite;
+}
+
+.fb-feed iframe {
+    border: none;
+    overflow: hidden;
+    max-width: 100%;
+}
+
+/* Floating review card (every page except those with <body data-no-review-float>) */
+.review-float {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    z-index: 900;              /* under the nav (1000) and its menus */
+    width: 320px;
+    max-width: calc(100vw - 32px);
+    background: white;
+    border-left: 4px solid #E60790;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(114, 5, 56, 0.18);
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.review-float.is-visible {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+}
+
+.review-float-body {
+    display: block;
+    padding: 0.9rem 2.4rem 0.9rem 1rem;
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.35s ease;
+}
+
+.review-float.is-switching .review-float-body { opacity: 0; }
+
+.review-float-stars {
+    color: #FB64C3;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.3rem;
+}
+
+.review-float-text {
+    margin: 0 0 0.4rem;
+    font-size: 0.88rem;
+    font-style: italic;
+    line-height: 1.5;
+    color: #222;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.review-float-meta {
+    margin: 0;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #720538;
+}
+
+.review-float-close {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: #AC658B;
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.review-float-close:hover { background: #EADFE4; color: #720538; }
+
+@media (max-width: 768px) {
+    .ig-feed { gap: 0.5rem; }
+    .fb-feed { min-height: 480px; }
+
+    .review-float {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        width: auto;
+        max-width: none;
+    }
+    .review-float-body { padding: 0.7rem 2.4rem 0.7rem 0.9rem; }
+    .review-float-text { -webkit-line-clamp: 2; font-size: 0.85rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .review-float,
+    .review-float-body { transition: none; }
+}
 
 /* =====================================================================
    MOBILE COMPACTING (<= 768px)

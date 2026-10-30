@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body data-no-review-float>
 
     <!-- Navigation -->
     <nav id="nav">
@@ -73,6 +73,7 @@
         <div class="section-header">
             <h2 class="section-title">Client Love</h2>
             <p class="section-subtitle">What our clients are saying</p>
+            <p class="reviews-summary" id="reviewsSummary" hidden></p>
         </div>
         <div class="reviews-carousel-outer">
             <button class="reviews-arrow reviews-arrow-left" id="reviewsArrowLeft" aria-label="Previous review">&#8592;</button>
@@ -260,63 +261,40 @@
         </div>
         <div class="reviews-dots" id="reviewsDots"></div>
         <div style="text-align:center;margin-top:2rem;">
-            <a href="https://www.google.com/search?q=beautiful+minds+medical+aesthetics+ridgeland+ms" target="_blank" rel="noopener noreferrer" class="instagram-button" style="background:linear-gradient(135deg,#E60790,#FB64C3);">See All Reviews on Google</a>
+            <a href="https://maps.google.com/?cid=6348847216280246981" target="_blank" rel="noopener noreferrer" class="instagram-button" style="background:linear-gradient(135deg,#E60790,#FB64C3);">See All Reviews on Google</a>
         </div>
     </section>
 
-    <!-- Social Media -->
-    <section class="instagram">
+    <!-- Social Media (live feeds - filled in by js/social.js) -->
+    <section class="instagram" id="social">
         <div class="section-header">
             <h2 class="section-title">Follow Our Journey</h2>
             <p class="section-subtitle">Stay connected with us on social media</p>
         </div>
         <div class="social-skeletons-wrap">
             <div class="social-skeleton-block">
-                <div class="social-skeleton-header">
+                <a class="social-skeleton-header" href="https://www.instagram.com/beautifulminds_medaesthetics/" target="_blank" rel="noopener noreferrer">
                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
                     <span>@beautifulminds_medaesthetics</span>
-                </div>
-                <div class="instagram-grid">
-                    <div class="instagram-post"><div class="instagram-overlay"><span style="font-size:2rem;color:white;">&#128247;</span></div></div>
-                    <div class="instagram-post"><div class="instagram-overlay"><span style="font-size:2rem;color:white;">&#128247;</span></div></div>
-                    <div class="instagram-post"><div class="instagram-overlay"><span style="font-size:2rem;color:white;">&#128247;</span></div></div>
-                    <div class="instagram-post"><div class="instagram-overlay"><span style="font-size:2rem;color:white;">&#128247;</span></div></div>
+                </a>
+                <div class="ig-feed is-loading" id="igFeed">
+                    <span class="ig-tile ig-tile-skeleton"></span>
+                    <span class="ig-tile ig-tile-skeleton"></span>
+                    <span class="ig-tile ig-tile-skeleton"></span>
+                    <span class="ig-tile ig-tile-skeleton"></span>
+                    <span class="ig-tile ig-tile-skeleton"></span>
+                    <span class="ig-tile ig-tile-skeleton"></span>
                 </div>
                 <div class="instagram-link">
                     <a href="https://www.instagram.com/beautifulminds_medaesthetics/" target="_blank" rel="noopener noreferrer" class="instagram-button">Follow on Instagram</a>
                 </div>
             </div>
             <div class="social-skeleton-block">
-                <div class="social-skeleton-header">
+                <a class="social-skeleton-header" href="https://www.facebook.com/p/Beautiful-Minds-Medical-Aesthetics-61567757859137/" target="_blank" rel="noopener noreferrer">
                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
                     <span>Beautiful Minds Medical Aesthetics</span>
-                </div>
-                <div class="facebook-post-grid">
-                    <div class="facebook-post-skeleton">
-                        <div class="fb-post-avatar"></div>
-                        <div class="fb-post-lines">
-                            <div class="fb-line fb-line-short"></div>
-                            <div class="fb-line fb-line-long"></div>
-                            <div class="fb-line fb-line-med"></div>
-                        </div>
-                    </div>
-                    <div class="facebook-post-skeleton">
-                        <div class="fb-post-avatar"></div>
-                        <div class="fb-post-lines">
-                            <div class="fb-line fb-line-short"></div>
-                            <div class="fb-line fb-line-long"></div>
-                            <div class="fb-line fb-line-med"></div>
-                        </div>
-                    </div>
-                    <div class="facebook-post-skeleton">
-                        <div class="fb-post-avatar"></div>
-                        <div class="fb-post-lines">
-                            <div class="fb-line fb-line-short"></div>
-                            <div class="fb-line fb-line-long"></div>
-                            <div class="fb-line fb-line-med"></div>
-                        </div>
-                    </div>
-                </div>
+                </a>
+                <div class="fb-feed is-loading" id="fbFeed"></div>
                 <div class="instagram-link">
                     <a href="https://www.facebook.com/p/Beautiful-Minds-Medical-Aesthetics-61567757859137/" target="_blank" rel="noopener noreferrer" class="instagram-button" style="background:#1877F2;">Follow on Facebook</a>
                 </div>
@@ -383,57 +361,42 @@
     </footer>
 
 <script src="js/main.js"></script>
+<script src="js/reviews.js"></script>
+<script src="js/social.js"></script>
     <script>
     // ── Reviews Carousel
+    // Each slide (".review-card") holds one to three reviews. Short reviews are
+    // grouped together so every slide is about as full as the longest single
+    // review - no big empty cards for one-line reviews. Grouping is based on how
+    // tall each review actually renders, and is redone if the window is resized.
+    //
+    // It starts with the reviews written into the HTML above, then swaps in the
+    // live Google reviews from js/reviews.js once they arrive. If Google reviews
+    // can't be loaded, the written-in reviews simply stay.
     (function() {
         var track = document.getElementById('reviewsTrack');
+        var wrap = track ? track.parentNode : null;
+        var outer = document.querySelector('.reviews-carousel-outer');
         var dotsEl = document.getElementById('reviewsDots');
         var arrowL = document.getElementById('reviewsArrowLeft');
         var arrowR = document.getElementById('reviewsArrowRight');
         if (!track) return;
 
-        var cards = track.querySelectorAll('.review-card');
-        var total = cards.length;
+        // ---- Settings ----
+        var MAX_PER_SLIDE = 3;
+        var MIN_SECONDS = 8;        // shortest time a slide stays up
+        var MAX_SECONDS = 25;       // longest time a slide stays up
+        var SECONDS_PER_WORD = 0.3; // reading time added for each word on the slide
+        // ------------------
+
+        var reviews = [];   // { rating, text, name, date }
+        var slides = [];    // { el, words }
         var current = 0;
-        var autoTimer = null;
+        var timer = null;
+        var paused = false;
+        var lastWidth = 0;
 
-        // Build dots
-        for (var i = 0; i < total; i++) {
-            var dot = document.createElement('button');
-            dot.className = 'reviews-dot';
-            dot.setAttribute('aria-label', 'Review ' + (i+1));
-            (function(idx) {
-                dot.addEventListener('click', function() { goTo(idx); stopAuto(); });
-            })(i);
-            dotsEl.appendChild(dot);
-        }
-
-        function render() {
-            track.style.transform = 'translateX(-' + (current * 100) + '%)';
-            var dots = dotsEl.querySelectorAll('.reviews-dot');
-            dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
-        }
-
-        function goTo(idx) {
-            current = ((idx % total) + total) % total;
-            render();
-        }
-
-        function stopAuto() {
-            clearInterval(autoTimer);
-        }
-
-        function startAuto() {
-            autoTimer = setInterval(function() {
-                current = (current + 1) % total;
-                render();
-            }, 5000);
-        }
-
-        arrowL.addEventListener('click', function() { goTo(current - 1); stopAuto(); startAuto(); });
-        arrowR.addEventListener('click', function() { goTo(current + 1); stopAuto(); startAuto(); });
-
-        // Relative date rendering — auto-updates each page load
+        // Relative dates for the written-in reviews (used only if live reviews fail)
         function relativeDate(offsetDays) {
             var d = Math.abs(offsetDays);
             if (d < 7) return d === 1 ? 'yesterday' : d + ' days ago';
@@ -455,13 +418,210 @@
             return Math.floor(d / 365) + ' years ago';
         }
 
-        document.querySelectorAll('.review-date[data-offset-days]').forEach(function(el) {
-            var offset = parseInt(el.getAttribute('data-offset-days'), 10);
-            el.textContent = relativeDate(offset);
+        function readWrittenInReviews() {
+            var list = [];
+            track.querySelectorAll('.review-card').forEach(function(card) {
+                var dateEl = card.querySelector('.review-date');
+                var offset = dateEl ? parseInt(dateEl.getAttribute('data-offset-days'), 10) : NaN;
+                list.push({
+                    rating: 5,
+                    text: card.querySelector('.review-text').textContent,
+                    name: card.querySelector('.review-author').textContent,
+                    date: isNaN(offset) ? '' : relativeDate(offset)
+                });
+            });
+            return list;
+        }
+
+        function add(parent, tag, cls, text) {
+            var e = document.createElement(tag);
+            e.className = cls;
+            e.textContent = text;
+            parent.appendChild(e);
+            return e;
+        }
+
+        function makeItem(r) {
+            var item = document.createElement('div');
+            item.className = 'review-item';
+            var stars = '';
+            for (var i = 0; i < 5; i++) stars += i < Math.round(r.rating) ? '★' : '☆';
+            add(item, 'div', 'review-stars', stars).setAttribute('aria-label', r.rating + ' out of 5 stars');
+            add(item, 'p', 'review-text', r.text);
+            add(item, 'p', 'review-author', r.name);
+            if (r.date) add(item, 'p', 'review-date', r.date);
+            return item;
+        }
+
+        function makeCard() {
+            var c = document.createElement('div');
+            c.className = 'review-card';
+            return c;
+        }
+
+        function wordCount(s) { return s.split(/\s+/).filter(Boolean).length; }
+
+        // Build the slides: measure every review on its own, then pack them.
+        function layout() {
+            if (!reviews.length) return;
+            lastWidth = wrap.clientWidth;
+            track.style.transition = 'none';
+            track.style.transform = 'none';
+
+            // 1. one review per card, so each one's natural height can be measured
+            track.innerHTML = '';
+            var items = reviews.map(function(r) {
+                var card = makeCard();
+                var item = makeItem(r);
+                card.appendChild(item);
+                track.appendChild(card);
+                return item;
+            });
+            var heights = items.map(function(it) { return it.offsetHeight; });
+            var capacity = Math.max.apply(null, heights);
+
+            // space a divider adds between two stacked reviews
+            var gap = 0;
+            if (items.length > 1) {
+                items[0].parentNode.appendChild(items[1]);
+                gap = items[1].offsetHeight - heights[1];
+                gap += parseFloat(getComputedStyle(items[1]).marginTop) || 0;
+            }
+
+            // 2. pack tallest-first into slides. Try slide heights from the tallest
+            //    single review up to 40% taller, and keep whichever packing leaves
+            //    the emptiest slide least empty.
+            var order = heights.map(function(h, i) { return i; })
+                               .sort(function(a, b) { return heights[b] - heights[a]; });
+            function pack(limit) {
+                var list = [];
+                order.forEach(function(i) {
+                    for (var b = 0; b < list.length; b++) {
+                        var bin = list[b];
+                        if (bin.idx.length < MAX_PER_SLIDE && bin.h + gap + heights[i] <= limit) {
+                            bin.idx.push(i);
+                            bin.h += gap + heights[i];
+                            return;
+                        }
+                    }
+                    list.push({ idx: [i], h: heights[i] });
+                });
+                return list;
+            }
+            function fullness(list) {
+                var hs = list.map(function(b) { return b.h; });
+                return Math.min.apply(null, hs) / Math.max.apply(null, hs);
+            }
+            var bins = pack(capacity), best = fullness(bins);
+            for (var f = 1.05; f <= 1.401; f += 0.05) {
+                var tryBins = pack(capacity * f), score = fullness(tryBins);
+                if (score > best + 0.02) { bins = tryBins; best = score; }
+            }
+
+            // 3. keep the original (newest-first) order inside and across slides
+            bins.forEach(function(bin) { bin.idx.sort(function(a, b) { return a - b; }); });
+            bins.sort(function(a, b) { return a.idx[0] - b.idx[0]; });
+
+            track.innerHTML = '';
+            slides = bins.map(function(bin) {
+                var card = makeCard();
+                var words = 0;
+                bin.idx.forEach(function(i) {
+                    card.appendChild(makeItem(reviews[i]));
+                    words += wordCount(reviews[i].text);
+                });
+                track.appendChild(card);
+                return { el: card, words: words };
+            });
+
+            if (current >= slides.length) current = 0;
+            buildDots();
+            render();
+            void track.offsetHeight;          // apply position before re-enabling the slide animation
+            track.style.transition = '';
+            schedule();
+        }
+
+        function buildDots() {
+            dotsEl.innerHTML = '';
+            slides.forEach(function(s, i) {
+                var dot = document.createElement('button');
+                dot.className = 'reviews-dot';
+                dot.setAttribute('aria-label', 'Reviews ' + (i + 1) + ' of ' + slides.length);
+                dot.addEventListener('click', function() { goTo(i); });
+                dotsEl.appendChild(dot);
+            });
+        }
+
+        function render() {
+            track.style.transform = 'translateX(-' + (current * 100) + '%)';
+            var dots = dotsEl.querySelectorAll('.reviews-dot');
+            dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
+        }
+
+        function goTo(idx) {
+            if (!slides.length) return;
+            current = ((idx % slides.length) + slides.length) % slides.length;
+            render();
+            schedule();
+        }
+
+        // How long the current slide stays up, based on how much there is to read.
+        function secondsFor(slide) {
+            var s = 4 + slide.words * SECONDS_PER_WORD;
+            return Math.max(MIN_SECONDS, Math.min(MAX_SECONDS, s));
+        }
+
+        function schedule() {
+            clearTimeout(timer);
+            if (paused || slides.length < 2) return;
+            timer = setTimeout(function() { goTo(current + 1); }, secondsFor(slides[current]) * 1000);
+        }
+
+        arrowL.addEventListener('click', function() { goTo(current - 1); });
+        arrowR.addEventListener('click', function() { goTo(current + 1); });
+
+        // Pause while someone is hovering over or tabbing through the reviews
+        outer.addEventListener('mouseenter', function() { paused = true; clearTimeout(timer); });
+        outer.addEventListener('mouseleave', function() { paused = false; schedule(); });
+        outer.addEventListener('focusin', function() { paused = true; clearTimeout(timer); });
+        outer.addEventListener('focusout', function() { paused = false; schedule(); });
+
+        // Re-group if the width changes enough to re-wrap the text
+        var resizeTimer = null;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                if (Math.abs(wrap.clientWidth - lastWidth) > 30) layout();
+            }, 250);
         });
 
-        render();
-        startAuto();
+        reviews = readWrittenInReviews();
+        layout();
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
+
+        // ── Swap in live Google reviews
+        if (!window.BMMAReviews) return;
+        BMMAReviews.load(function(data) {
+            if (!data) return;
+            reviews = data.reviews.map(function(r) {
+                return { rating: r.rating, text: r.text, name: r.name, date: BMMAReviews.relativeDate(r.date) };
+            });
+            current = 0;
+            layout();
+
+            var summary = document.getElementById('reviewsSummary');
+            if (summary && data.summary.rating && data.summary.count) {
+                summary.textContent = data.summary.rating.toFixed(1) + ' ★  ·  ' + data.summary.count + ' Google reviews';
+                summary.hidden = false;
+            }
+            if (data.showBranding) {
+                var credit = document.createElement('p');
+                credit.className = 'reviews-credit';
+                credit.innerHTML = 'Reviews from Google via <a href="https://featurable.com" target="_blank" rel="noopener">Featurable</a>';
+                dotsEl.parentNode.insertBefore(credit, dotsEl.nextSibling);
+            }
+        });
     })();
     </script>
 </body>
